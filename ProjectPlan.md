@@ -29,7 +29,7 @@ Studies have shown that firefighters are more susceptible to some medical condit
 
 ### Team Roles
 - Developer: Definition and creation of implementation guide to capture data from NFIRS casualty form
-- QA: Validate tha created guide correctly captures the data within the FHIR standard
+- QA: Validate that the created implementation guide correctly captures the data from the NFIRS casualty form within the FHIR standard
 - Project Manager: Run weekly meetings, determine deliverables along with plan to create them, and plan and track project progress
 
 | Member | Role |
