@@ -40,3 +40,9 @@ Studies have shown that firefighters are more susceptible to some medical condit
 | Traver Clifford | Developer |
 | Michael Rojas | Project Manager |
 | Joe Kurokawa | Developer |
+
+## 4 Mentor Questions
+
+- What version of FHIR are we supporting?  Single version or multiple versions?
+- Is the following process applicable for us? https://confluence.hl7.org/display/FHIR/FHIR+Implementation+Guide+Process+Flow timelines don't line up, so my expectation is we are doing a subset of this (or operating outside of the framework specified here)
+- Similarly, what about QA? E.g. are we following the process outlined here: https://confluence.hl7.org/display/FHIR/FHIR+IG+QA+process
