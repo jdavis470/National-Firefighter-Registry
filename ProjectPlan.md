@@ -46,3 +46,6 @@ Studies have shown that firefighters are more susceptible to some medical condit
 - What version of FHIR are we supporting?  Single version or multiple versions?
 - Is the following process applicable for us? https://confluence.hl7.org/display/FHIR/FHIR+Implementation+Guide+Process+Flow timelines don't line up, so my expectation is we are doing a subset of this (or operating outside of the framework specified here)
 - Similarly, what about QA? E.g. are we following the process outlined here: https://confluence.hl7.org/display/FHIR/FHIR+IG+QA+process
+
+## 5 Team Resources
+- Architecture Diagram (v1.0) - https://drive.google.com/file/d/1AjvS8-__q-TsNvbaazzSP8Fdgf2EOPl7/view?usp=sharing 
