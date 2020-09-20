@@ -12,6 +12,7 @@ Includes links to other examples of how to create IGs, but I think that we're go
 - https://confluence.hl7.org/display/FHIR/FHIR+Implementation+Guide+Publishing+Requirements : Requirements for IG publishing
 - https://confluence.hl7.org/display/FHIR/FHIR+Implementation+Guide+Process+Flow : Don't think this applies to us, since I'm hoping we can workaround the bureaucracy, otherwise the timeline doesn't work for us
 - https://confluence.hl7.org/display/FHIR/FHIR+IG+QA+process : QA process; again, not sure if this is applicable to us
+- https://www.youtube.com/watch?v=ovbRwbd0uD8&list=PL4DUfomz2RZx0RZc2CTP0zGkQxSvk6DKe&ab_channel=HealthLevelSeven : Recorded Videos that introduce HL7 FHIR Implementation Guide Creation
 
 ### Trifolia-on-FHIR
 - https://trifolia-fhir.lantanagroup.com/help/Introduction.html : Some documentation here for specifics on using Trifolia for IG publication
