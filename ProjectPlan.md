@@ -1,12 +1,11 @@
 # Project Plan
 
-*This is the template for your project plan. The parts in italics are concise explanations of what should go in the corresponding sections and should not appear in the final document.*
 
-**Author**: \<person or team name\>
+**Author**: Team 55
 
 ## 1 Introduction
 
-*Here you introduce the product. Keep this  clean and simple, one or two sentences at most.*
+Studies have shown that firefighters are more susceptible to some medical conditions than the general population such as various form sof cancer, respiratory complications, and rhabdomyolysis.  The National Firefighter Registry (NFR) is a CDC initiative to develop a national registry to track and analyze the long-term health of firefighters.
 
 ## 2 Process Description
 
@@ -19,8 +18,25 @@
 
 ## 3 Team
 
-*Describe the team and their roles (there may be more roles than there are team members)*
+### Members
 
-- *Team members' names*
-- *Roles, with a short description of each role*
-- *Table showing which team member(s) has which role(s)*
+- James Davis
+- Haolong Yan
+- Rahul Nowlakha
+- Traver Clifford
+- Michael Rojas
+- Joe Kurokawa
+
+### Team Roles
+- Developer: Definition and creation of implementation guide to capture data from NFIRS casualty form
+- QA: Validate tha created guide correctly captures the data within the FHIR standard
+- Project Manager: Run weekly meetings, determine deliverables along with plan to create them, and plan and track project progress
+
+| Member | Role |
+| ------ | ---- |
+| James Davis | QA |
+| Haolong Yan | Developer |
+| Rahul Nowlakha | Developer |
+| Traver Clifford | Developer |
+| Michael Rojas | Project Manager |
+| Joe Kurokawa | Developer |
