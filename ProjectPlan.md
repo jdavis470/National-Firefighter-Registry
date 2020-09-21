@@ -50,3 +50,4 @@ Studies have shown that firefighters are more susceptible to some medical condit
 
 ## 5 Team Resources
 - Architecture Diagram (v1.0) - https://drive.google.com/file/d/1AjvS8-__q-TsNvbaazzSP8Fdgf2EOPl7/view?usp=sharing 
+- Gantt Chart - https://gtvault-my.sharepoint.com/:x:/g/personal/hyan88_gatech_edu/EdVXBwwxzgFMvicZgVUsn3EBbbw8Za3K7ynamXT5jPVUuw?e=5dxtbg
