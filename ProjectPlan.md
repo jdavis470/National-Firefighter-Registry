@@ -34,11 +34,11 @@ Studies have shown that firefighters are more susceptible to some medical condit
 
 | Member | Role |
 | ------ | ---- |
-| James Davis | QA |
+| James Davis | Project Manager |
 | Haolong Yan | Developer |
 | Rahul Nowlakha | Developer |
 | Traver Clifford | Developer |
-| Michael Rojas | Project Manager |
+| Michael Rojas | QA |
 | Joe Kurokawa | Developer |
 
 ## 4 Mentor Questions
