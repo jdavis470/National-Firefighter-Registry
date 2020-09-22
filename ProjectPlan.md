@@ -9,12 +9,49 @@ Studies have shown that firefighters are more susceptible to some medical condit
 
 ## 2 Process Description
 
-*Process description as a set of activities; for each activity, provide the following:*
+### Research
+Activity name: Perform basic research.  
+Activity description: Must investigate and select languages, database type, and find JSON and XML examples for patient resources.  
+Entrance criteria: Project is assigned.  
+Exit criteria: Language selection for project, database to use, alignment on intermediate data format for patient resource fields, and example patient resources.  
 
-- *Activity name (verb or verb phrase)*
-- *Activity description (concise paragraph)*
-- *Entrance criteria (inputs needed for the activity)*
-- *Exit criteria (outputs produced by the activity and how you know it has been completed satisfactorily)*
+### JSON Parser
+Activity name: Parse patient resource in JSON format.  
+Activity description: The JSON parser should be python code which accepts the FHIR patient resources in JSON format.  This input
+comes in the form of a file with one or more patient resources, each representing a patient.  
+Entrance criteria: Example patient resources and alignment on format for intermediate data output.  
+Exit criteria: Data in some intermediate format for use with FHIR validation code and DB population.  Extracted data should match input in terms of semantics but be in the aligned intermediate format.  
+
+### XML Parser
+Activity name: Parse patient resource in XML format.  
+Activity description: The XML parser should be python code which accepts the FHIR patient resources in XML format.  This input
+comes in the form of a file with one or more patient resources, each representing a patient.  
+Entrance criteria: Example patient resources and alignment on format for intermediate data output.  
+Exit criteria: Data in some intermediate format for use with FHIR validation code and DB population.  Extracted data should match input in terms of semantics but be in the aligned intermediate format.  
+
+### Data validation using FHIR server
+Activity name: Validate extracted data.  
+Activity description: The validation code should query the FHIR server to validate that the data matches the FHIR standard.  If so, should return a pass.  Otherwise, should return a fail and log an error.  
+Entrance criteria: Extracted data in aligned upon intermediate format from XML & JSON parser.  
+Exit criteria: Correct pass/fail depending on the validity of data.  Logs for errors if the data is invalid.  
+
+### DB creation
+Activity name: Create the database.  
+Activity description: The database should be implemented in the agreed upon technology.  It should have all the fields necessary for storing the FHIR patient resource.  
+Entrance criteria: Database technology to use, along with FHIR patient resource fields.  
+Exit criteria: Empty database but configured for patients to be inserted.  
+
+### DB population
+Activity name: Populate the database.  
+Activity description: The database should be populated with sample data from the CDC mentor.  Data will flow through the parsers, be validated, and then inserted accordingly.  
+Entrance criteria: The created (empty) database along with sample patient data from the CDC mentor.  
+Exit criteria: Completely populated database.  
+
+### Data visualization
+Activity name: Visualize the database.  
+Activity description: A Tableau dashboard should be created which connects to the created database.  The dashboard should include the requested visualization of the number of firefighters in each fire department.  
+Entrance criteria: Populated database with sample patient data.  
+Exit criteria: Dashboard to visualize the number of firefighters in each fire department.  
 
 ## 3 Team
 
@@ -28,9 +65,9 @@ Studies have shown that firefighters are more susceptible to some medical condit
 - Joe Kurokawa
 
 ### Team Roles
-- Developer: Definition and creation of implementation guide to capture data from NFIRS casualty form
-- QA: Validate that the created implementation guide correctly captures the data from the NFIRS casualty form within the FHIR standard
-- Project Manager: Run weekly meetings, determine deliverables along with plan to create them, and plan and track project progress
+- Developer: Responsible for the creation of JSON and XML parser for the patient resource, FHIR validation code, and creation and population of SQL DB
+- QA: Validate the parsers with various JSON & XML patient resource examples, testing validation code with good and bad patient resources, and validation that DB is constructed with the resulting data correctly
+- Project Manager: Run weekly meetings, determine deliverables along with plan to create them, plan and track project progress, and develop Tableau visualization dashboard
 
 | Member | Role |
 | ------ | ---- |
@@ -43,10 +80,6 @@ Studies have shown that firefighters are more susceptible to some medical condit
 
 ## 4 Mentor Questions
 
-- What version of FHIR are we supporting?  Single version or multiple versions?
-- Is the following process applicable for us? https://confluence.hl7.org/display/FHIR/FHIR+Implementation+Guide+Process+Flow timelines don't line up, so my expectation is we are doing a subset of this (or operating outside of the framework specified here)
-- Similarly, what about QA? E.g. are we following the process outlined here: https://confluence.hl7.org/display/FHIR/FHIR+IG+QA+process
-- Does Trifolia only host the implementation guide or does it also handle data mapping? (see Architecutre diagram)
 
 ## 5 Team Resources
 - Architecture Diagram (v1.0) - https://drive.google.com/file/d/1AjvS8-__q-TsNvbaazzSP8Fdgf2EOPl7/view?usp=sharing 
