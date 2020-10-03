@@ -1,4 +1,5 @@
 A prototype of the web service for this project (optional)
+How to run:
 Commands (Bash Shell)
 1 virtualenv -p python3 env
 2 . env/bin/activate
