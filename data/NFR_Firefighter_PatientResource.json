@@ -1,0 +1,121 @@
+{
+  "resourceType": "Patient",
+  "id": "Fire-Fred",
+  "meta": {
+    "versionId": "3",
+    "lastUpdated": "2020-09-11T18:47:55.075+00:00",
+    "source": "#zTT7wXrdK53hX4RG",
+    "profile": [
+      "http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient",
+      "https://www.cdc.gov/niosh/nfr/StructureDefinition/nfr-patient"
+    ]
+  },
+  "text": {
+    "status": "generated",
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><div class=\"hapiHeaderText\">Fred F. <b>FIREFIGHTER </b></div><table class=\"hapiPropertyTable\"><tbody><tr><td>Identifier</td><td>123-45-6789</td></tr><tr><td>Address</td><td><span>49 Meadow St </span><br/><span>Mounds </span><span>OK </span><span>US </span></td></tr><tr><td>Date of birth</td><td><span>09 June 1990</span></td></tr></tbody></table></div>"
+  },
+  "extension": [
+    {
+      "extension": [
+        {
+          "url": "ombCategory",
+          "valueCoding": {
+            "system": "urn:oid:2.16.840.1.113883.6.238",
+            "code": "2106-3",
+            "display": "White"
+          }
+        },
+        {
+          "url": "ombCategory",
+          "valueCoding": {
+            "system": "urn:oid:2.16.840.1.113883.6.238",
+            "code": "2054-5",
+            "display": "Black or African American"
+          }
+        }
+      ],
+      "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-race"
+    },
+    {
+      "extension": [
+        {
+          "url": "ombCategory",
+          "valueCoding": {
+            "system": "urn:oid:2.16.840.1.113883.6.238",
+            "code": "2135-2",
+            "display": "Hispanic or Latino"
+          }
+        }
+      ],
+      "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity"
+    },
+    {
+      "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-birthsex",
+      "valueCode": "M"
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/patient-birthPlace",
+      "valueAddress": {
+        "line": [
+          "5 Test St"
+        ],
+        "city": "Norman",
+        "state": "OK",
+        "postalCode": "74047",
+        "country": "US"
+      }
+    }
+  ],
+  "identifier": [
+    {
+      "use": "usual",
+      "type": {
+        "coding": [
+          {
+            "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+            "code": "SB",
+            "display": "United States Social Security Number"
+          }
+        ],
+        "text": "US Social Security Number"
+      },
+      "system": "http://hl7.org/fhir/sid/us-ssn",
+      "value": "123-45-6789"
+    },
+    {
+      "use": "official",
+      "system": "urn:oid:2.16.840.1.113883.3.3367.1",
+      "value": "1825763"
+    }
+  ],
+  "active": true,
+  "name": [
+    {
+      "family": "FireFighter",
+      "given": [
+        "Fred",
+        "F."
+      ]
+    }
+  ],
+  "telecom": [
+    {
+      "system": "email",
+      "value": "FreddyFire@fdtown.com",
+      "use": "work"
+    }
+  ],
+  "gender": "male",
+  "birthDate": "1990-06-09",
+  "address": [
+    {
+      "line": [
+        "49 Meadow St"
+      ],
+      "city": "Mounds",
+      "state": "OK",
+      "postalCode": "74047",
+      "country": "US"
+    }
+  ]
+}
