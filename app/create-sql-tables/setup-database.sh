@@ -2,7 +2,6 @@
 
 echo 'Starting up the database...'
 
-sleep 45s
 
 echo 'Connecting database in container and create the initial db...'
 
