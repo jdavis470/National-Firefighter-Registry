@@ -3,6 +3,7 @@ import json
 import ndjson
 import os
 import xmltodict
+import sys
 
 smart_defaults = {
     'app_id': 'my_web_app',
@@ -11,41 +12,27 @@ smart_defaults = {
 
 
 def post_json(patient, path):
-    try:
-        if patient['resourceType'] == 'Patient':
-            patient_json = json.dumps(patient)
-            headers = {'Content-Type': 'application/json'}
-            res = requests.post(url=smart_defaults['api_base'], headers=headers, data=patient_json).text
-            res = json.loads(res)
-            print(path + ": This validation was right, Patient: " + res['id'] + " created")
-            return res
-        else:
-            print("Cannot handle this type yet")
-            return
-    except requests.HTTPError as e:
-        if e.response.status_code == 400:
-            print("FHIR server validation error")
-    except Exception:
-        print(path + ": This validation was wrong")
-
+    if patient['resourceType'] == 'Patient':
+        patient_json = json.dumps(patient)
+        headers = {'Content-Type': 'application/json'}
+        res = requests.post(url=smart_defaults['api_base'], headers=headers, data=patient_json).text
+        res = json.loads(res)
+        print(path + ": validated, Patient: " + res['id'] + " created")
+        return res
+    else:
+        raise RuntimeError("Can only handle JSON resourceType Patient.")
 
 def post_xml(patient, path):
-    try:
-        xml_dict = xmltodict.parse(patient)
-        if xml_dict['Patient']:
-            headers = {'Content-Type': 'application/xml'}
-            res = requests.post(url=smart_defaults['api_base'], headers=headers, data=patient).text
-            res = xmltodict.parse(res)
-            print(path + ": This validation was right, Patient: " + res['Patient']['id']['@value'] + " created")
-            return res
-        else:
-            print("Cannot handle this type yet")
-            return
-    except requests.HTTPError as e:
-        if e.response.status_code == 400:
-            print("FHIR server validation error")
-    except Exception:
-        print(path + ": This validation was wrong")
+
+    xml_dict = xmltodict.parse(patient)
+    if xml_dict['Patient']:
+        headers = {'Content-Type': 'application/xml'}
+        res = requests.post(url=smart_defaults['api_base'], headers=headers, data=patient).text
+        res = xmltodict.parse(res)
+        print(path + ": validated, Patient: " + res['Patient']['id']['@value'] + " created")
+        return res
+    else:
+        raise RuntimeError("Can only handle XML type(s) Patient.")
 
 
 def verify_fhir(path):
@@ -75,18 +62,42 @@ def verify_fhir(path):
             print('Cannot handle this file yet')
             return
     except FileNotFoundError:
-        print("File path: " + path + " Does not exist")
-        pass
-    except Exception:
-        print(path + ": This validation was wrong")
+        print("File path: " + path + " Does not exist: ", file=sys.stderr)
+        return -1
+    except Exception as err:
+        print("Error validating file: '" + path + "'. Error Message: {0}".format(err), file=sys.stderr)
+        return -1
 
+    return 0
+
+def usage():
+    print("Usage: FHIR_combined.py <file_to_verify>"
+          "   or  FHIR_combined.py")
 
 def main():
-    while (1):
-        file = input("Give file path or type exit to quit: ")
-        if file == 'exit':
-            break
-        verify_fhir(file)
+    if(len(sys.argv) > 2):
+        print("Error, if providing an argument you must provide exactly 1 argument for the path to the data file that will be verified.")
+        usage()
+        exit(1)
+
+    # Command Line Argument Mode
+    elif(len(sys.argv) == 2):
+        returnValue = verify_fhir(sys.argv[1])
+
+        if (returnValue != 0):
+            usage()
+
+        exit(returnValue)
+
+    # Interactive mode
+    else:
+        while (1):
+            file = input("Give file path or type exit to quit: ")
+            if file == 'exit':
+                break
+            verify_fhir(file)
+
+
 
 
 if __name__ == "__main__":
