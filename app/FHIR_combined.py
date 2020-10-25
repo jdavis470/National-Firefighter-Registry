@@ -11,8 +11,9 @@ smart_defaults = {
     'api_bundle': 'https://r4.smarthealthit.org/Bundle'
 }
 
+
 def post_json(patient, path):
-    if patient['resourceType'] == 'Patient' or patient['resourceType'] == 'Bundle': 
+    if patient['resourceType'] == 'Patient' or patient['resourceType'] == 'Bundle':
         patient_json = json.dumps(patient)
         headers = {'Content-Type': 'application/json'}
         if patient['resourceType'] == 'Patient':
@@ -26,6 +27,7 @@ def post_json(patient, path):
         return res
     else:
         raise RuntimeError("Can only handle JSON resourceType Patient.")
+
 
 def post_xml(patient, path):
     xml_dict = xmltodict.parse(patient)
@@ -52,24 +54,32 @@ def verify_fhir(path):
             with open(path) as ndjson_file:
                 patients_data = ndjson.load(ndjson_file)
             ndjson_file.close()
+            res_all = dict()
             for patient_data in patients_data:
-                post_json(patient_data, path)
+                res = post_json(patient_data, path)
+                res_all[res['id']] = res
+            res_all['file_extension'] = file_extension
+            return res_all
 
         elif file_extension == '.json':
             with open(path) as json_data:
                 patient_data = json.load(json_data)
             json_data.close()
-            post_json(patient_data, path)
+            res = post_json(patient_data, path)
+            res['file_extension'] = file_extension
+            return res
 
         elif file_extension == '.xml':
             with open(path) as xml_file:
                 patient_data = xml_file.read()
             xml_file.close()
-            post_xml(patient_data, path)
+            res = post_xml(patient_data, path)
+            res['file_extension'] = file_extension
+            return res
 
         else:
             print('Cannot handle this file yet')
-            return
+            return 0
     except FileNotFoundError:
         print("File path: " + path + " Does not exist: ", file=sys.stderr)
         return -1
@@ -79,18 +89,21 @@ def verify_fhir(path):
 
     return 0
 
+
 def usage():
     print("Usage: FHIR_combined.py <file_to_verify>"
           "   or  FHIR_combined.py")
 
+
 def main():
-    if(len(sys.argv) > 2):
-        print("Error, if providing an argument you must provide exactly 1 argument for the path to the data file that will be verified.")
+    if (len(sys.argv) > 2):
+        print(
+            "Error, if providing an argument you must provide exactly 1 argument for the path to the data file that will be verified.")
         usage()
         exit(1)
 
     # Command Line Argument Mode
-    elif(len(sys.argv) == 2):
+    elif (len(sys.argv) == 2):
         returnValue = verify_fhir(sys.argv[1])
 
         if (returnValue != 0):
@@ -105,8 +118,6 @@ def main():
             if file == 'exit':
                 break
             verify_fhir(file)
-
-
 
 
 if __name__ == "__main__":

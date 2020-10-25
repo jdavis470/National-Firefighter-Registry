@@ -4,7 +4,7 @@ FROM microsoft/mssql-server-linux
 
 RUN apt-get update && apt-get install -y python3 python3-pip
 
-RUN pip3 install ndjson xmltodict
+RUN pip3 install ndjson xmltodict pyodbc
 
 RUN mkdir sqlfiles
 COPY create-sql-tables/DBSchemaInit.sql ./sqlfiles/DBSchemaInit.sql
