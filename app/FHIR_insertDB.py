@@ -83,7 +83,7 @@ def close_db(conn, cursor):
     cursor.close()
     conn.close()
 
-    return
+    return 0
 
 
 def insert_table(cursor, table, tableName):
@@ -119,6 +119,28 @@ def check_table_insertion(cursor, tableName):
     return
 
 
+def post_db(data_posted):
+    # get data from FHIR server by ID
+    data_received = get_data(data_posted)
+    # map server data to db fields
+    tb_Worker, tb_WorkerRace = map_data_json(data_received)
+
+    # connect local db server (docker db should be on)
+    conn, cursor = connect_db()
+    # db insertion
+    insert_table(cursor, tb_WorkerRace, 'WorkerRace')
+    insert_table(cursor, tb_Worker, 'Worker')
+
+    # check if the insertion is succeed
+    check_table_insertion(cursor, 'WorkerRace')
+    check_table_insertion(cursor, 'Worker')
+
+    # close db connection
+    close_db(conn, cursor)
+
+    return 0
+
+
 def usage():
     print("Usage: FHIR_insertDB.py <file_to_verify>"
           "   or  FHIR_insertDB.py")
@@ -133,7 +155,8 @@ if __name__ == "__main__":
 
     # Command Line Argument Mode
     elif (len(sys.argv) == 2):
-        returnValue = FHIR_combined.verify_fhir(sys.argv[1])
+        data_posted = FHIR_combined.verify_fhir(sys.argv[1])
+        returnValue = post_db(data_posted)
 
         if (returnValue != 0):
             usage()
@@ -149,21 +172,5 @@ if __name__ == "__main__":
             # post data to FHIR server
             data_posted = FHIR_combined.verify_fhir(file)
 
-            ## FHIR server data retrieval and SQL database insertion
-            # get data from FHIR server by ID
-            data_received = get_data(data_posted)
-            # map server data to db fields
-            tb_Worker, tb_WorkerRace = map_data_json(data_received)
-
-            # connect local db server (docker db should be on)
-            conn, cursor = connect_db()
-            # db insertion
-            insert_table(cursor, tb_WorkerRace, 'WorkerRace')
-            insert_table(cursor, tb_Worker, 'Worker')
-
-            # check if the insertion is succeed
-            check_table_insertion(cursor, 'WorkerRace')
-            check_table_insertion(cursor, 'Worker')
-
-            # close db connection
-            close_db(conn, cursor)
+            # FHIR server data retrieval and SQL database insertion
+            returnValue = post_db(data_posted)
