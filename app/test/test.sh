@@ -2,7 +2,7 @@
 
 echo === Begin Testing FHIR_combined.py ===
 LOGFILE="$(mktemp FHIR_combined_XXXXXXXXX.log)"
-DATA_LOC="$(dirname $(realpath -s $0))/../../data/team_created"
+DATA_LOC="$(dirname $(realpath -s $0))/data/team_created"
 echo Data: $DATA_LOC
 for file in $(ls $DATA_LOC);
 do
