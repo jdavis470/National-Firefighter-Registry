@@ -10,6 +10,8 @@ RUN mkdir sqlfiles
 COPY create-sql-tables/DBSchemaInit.sql ./sqlfiles/DBSchemaInit.sql
 COPY create-sql-tables/setup-database.sh ./sqlfiles/setup-database.sh
 COPY create-sql-tables/entrypoint.sh ./sqlfiles/entrypoint.sh
+COPY FHIR_combined.py ./
+COPY ./test/ ./test/
 
 COPY FHIR_combined.py ./
 COPY FHIR_insertDB.py ./
