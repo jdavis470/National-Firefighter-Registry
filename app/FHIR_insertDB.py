@@ -68,8 +68,8 @@ def map_data_json(data):
 def connect_db():
     # connection db with credentials
     # improvement: make credentials as parameters
-    conn = pyodbc.connect('Driver={SQL Server};'
-                          'Server=localhost;'
+    conn = pyodbc.connect('Driver={ODBC Driver 17 for SQL Server};'
+                          'Server=localhost,1433;'
                           'Database=FIREFIGHTER;'
                           'UID=sa;'
                           'PWD=Password!123;')
@@ -102,6 +102,7 @@ def insert_table(cursor, table, tableName):
 
     # execute insertion
     cursor.execute(command)
+    cursor.commit()
     print('Data is inserted to table', tableName, ':', command_values[7:-1])
 
     return command
