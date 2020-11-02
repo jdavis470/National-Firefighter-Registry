@@ -26,4 +26,4 @@ RUN chmod a+x ./sqlfiles/entrypoint.sh
 
 EXPOSE 1433
 
-CMD bash ./sqlfiles/entrypoint.sh > sqlOutput.txt
+CMD bash ./sqlfiles/entrypoint.sh 2>&1 | tee sqlOutput.txt
