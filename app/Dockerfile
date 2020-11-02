@@ -2,7 +2,7 @@
 
 FROM microsoft/mssql-server-linux
 
-RUN apt-get update && apt-get install -y python3 python3-pip unixodbc-dev
+RUN apt-get update && apt-get install -y python3 python3-pip unixodbc-dev vim
 
 RUN pip3 install ndjson xmltodict pyodbc requests
 
@@ -15,6 +15,7 @@ COPY ./test/ ./test/
 
 COPY FHIR_combined.py ./
 COPY FHIR_insertDB.py ./
+COPY FHIR_verifyDB.py ./
 COPY ./test/ ./test/
 
 ENV ACCEPT_EULA=Y
