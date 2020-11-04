@@ -79,7 +79,7 @@ def connect_db():
     # connection db with credentials
     # improvement: make credentials as parameters
     conn = pyodbc.connect('Driver={ODBC Driver 17 for SQL Server};'
-                          'Server=localhost,80;'
+                          'Server=localhost,1433;'
                           'Database=FIREFIGHTER;'
                           'UID=sa;'
                           'PWD=Password!123;')
