@@ -15,7 +15,7 @@ COPY ./test/ ./test/
 
 COPY FHIR_combined.py ./
 COPY FHIR_insertDB.py ./
-COPY FHIR_verifyDB.py ./
+COPY /test/FHIR_verifyDB.py ./
 COPY ./test/ ./test/
 
 ENV ACCEPT_EULA=Y
