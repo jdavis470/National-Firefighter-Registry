@@ -56,6 +56,16 @@ def map_data_json(data):
         tb_Worker['BirthMonth'] = birthDate.strftime("%m")
         tb_Worker['BirthDay'] = birthDate.strftime("%d")
         tb_Worker['Birthyear'] = birthDate.strftime("%Y")
+        tb_Worker['SSN'] = data['identifier'][0]['value']
+        for x in range(len(data['extension'])):
+            if data['extension'][x]['url'] == "http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity":
+                tb_Worker['EthnicityCode'] = data['extension'][x]['extension'][-1]['valueCoding']['code']
+
+        for x in range(len(data['extension'])):
+            if data['extension'][x]['url'] == "http://hl7.org/fhir/StructureDefinition/patient-birthPlace":
+                tb_Worker['BirthPlaceCountry'] = data['extension'][x]['valueAddress']['country']
+                tb_Worker['BirthPlaceCity'] = data['extension'][x]['valueAddress']['city']
+                tb_Worker['BirthPlaceStateProv'] = data['extension'][x]['valueAddress']['state'] 
 
         # map for table WorkerRace
         tb_WorkerRace['WorkerID'] = data['id']
