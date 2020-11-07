@@ -56,11 +56,12 @@ def map_data_json(data):
         tb_Worker['BirthMonth'] = birthDate.strftime("%m")
         tb_Worker['BirthDay'] = birthDate.strftime("%d")
         tb_Worker['Birthyear'] = birthDate.strftime("%Y")
-        tb_Worker['SSN'] = data['identifier'][0]['value']
+        for x in range(len(data['identifier'])):
+            if data['identifier'][x]['system'] == "http://hl7.org/fhir/sid/us-ssn":
+                tb_Worker['SSN'] = data['identifier'][x]['value']
         for x in range(len(data['extension'])):
             if data['extension'][x]['url'] == "http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity":
                 tb_Worker['EthnicityCode'] = data['extension'][x]['extension'][-1]['valueCoding']['code']
-
         for x in range(len(data['extension'])):
             if data['extension'][x]['url'] == "http://hl7.org/fhir/StructureDefinition/patient-birthPlace":
                 tb_Worker['BirthPlaceCountry'] = data['extension'][x]['valueAddress']['country']
@@ -70,8 +71,9 @@ def map_data_json(data):
         # map for table WorkerRace
         tb_WorkerRace['WorkerID'] = data['id']
         tb_WorkerRace['StudyCode'] = '0000'
-        tb_WorkerRace['RaceCode'] = '0000'
-
+        for x in range(len(data['extension'])):
+            if data['extension'][x]['url'] == "http://hl7.org/fhir/us/core/StructureDefinition/us-core-race":
+                tb_WorkerRace['RaceCode'] = data['extension'][x]['extension'][-1]['valueCoding']['code']
     return tb_Worker, tb_WorkerRace
 
 
