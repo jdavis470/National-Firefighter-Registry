@@ -8,23 +8,29 @@ import FHIR_combined
 
 def get_data(request_data):
     # id needed to get data, file extension needed for case handling
-    if 'file_extension' and 'id' in request_data:
+    if 'resourceType' and 'id' in request_data:
         # handle json case
-        if request_data['file_extension'] == '.json':
+        if request_data['resourceType'] == 'Patient':
             headers = {'Content-Type': 'application/json'}
             url = FHIR_combined.smart_defaults['api_base'] + '/' + request_data['id']
             res = requests.get(url=url, headers=headers).text
             res = json.loads(res)
             return res
+        elif request_data['resourceType'] == 'Bundle':
+            headers = {'Content-Type': 'application/json'}
+            url = FHIR_combined.smart_defaults['api_bundle'] + '/' + request_data['id']
+            res = requests.get(url=url, headers=headers).text
+            res = json.loads(res)
+            return res
         else:
-            print('Cannot handle this file yet')
+            print('Cannot handle this resource type yet')
             return 0
     else:
-        print('file extension and id should be provided to get data')
-        return 0
+        print('resource type and id should be provided to get data')
+        return -1
 
 
-def map_data_json(data):
+def map_data(data):
     tb_Worker = dict()
     tb_WorkerRace = dict()
     # TODO: mapping other resources to db
@@ -35,22 +41,25 @@ def map_data_json(data):
         tb_Worker['WorkerID'] = data['id']
         tb_Worker['StudyCode'] = '0000'
         tb_Worker['GenderCode'] = data['gender']
-        tb_Worker['CurrentResidentialStreet'] = data['address'][-1]['line'][0]
-        tb_Worker['CurrentResidentialCity'] = data['address'][-1]['city']
-        tb_Worker['CurrentResidentialStateProv'] = data['address'][-1]['state']
-        tb_Worker['CurrentResidentialPostalCode'] = data['address'][-1]['postalCode']
-        tb_Worker['CurrentResidentialCountry'] = data['address'][-1]['country']
+        if 'address' in data:
+            tb_Worker['CurrentResidentialStreet'] = data['address'][-1]['line'][0]
+            tb_Worker['CurrentResidentialCity'] = data['address'][-1]['city']
+            tb_Worker['CurrentResidentialStateProv'] = data['address'][-1]['state']
+            if 'postalCode' in data['address'][-1]:
+                tb_Worker['CurrentResidentialPostalCode'] = data['address'][-1]['postalCode']
+            tb_Worker['CurrentResidentialCountry'] = data['address'][-1]['country']
         tb_Worker['LastName'] = data['name'][-1]['family']
         if len(data['name'][-1]['given']) > 1:
             tb_Worker['FirstName'] = data['name'][-1]['given'][0]
             tb_Worker['MiddleName'] = data['name'][-1]['given'][1]
         else:
-            tb_Worker['FirstName'] = data['name'][-1]['given']
-        for telecom in data['telecom']:
-            if telecom['system'] == 'phone' and telecom['use'] == 'mobile':
-                tb_Worker['MobilePhoneNumber'] = telecom['value']
-            elif telecom['system'] == 'email':
-                tb_Worker['PrimaryEmailAddress'] = telecom['value']
+            tb_Worker['FirstName'] = data['name'][-1]['given'][0]
+        if 'telecom' in data:
+            for telecom in data['telecom']:
+                if telecom['system'] == 'phone' and telecom['use'] == 'mobile':
+                    tb_Worker['MobilePhoneNumber'] = telecom['value']
+                elif telecom['system'] == 'email':
+                    tb_Worker['PrimaryEmailAddress'] = telecom['value']
         # tb_Worker['BirthDate'] = data['birthDate']
         birthDate = datetime.datetime.strptime(data['birthDate'], '%Y-%m-%d')
         tb_Worker['BirthMonth'] = birthDate.strftime("%m")
@@ -62,8 +71,10 @@ def map_data_json(data):
         tb_WorkerRace['StudyCode'] = '0000'
         tb_WorkerRace['RaceCode'] = '0000'
 
-    return tb_Worker, tb_WorkerRace
+    else:
+        print('Cannot handle this resource type yet')
 
+    return tb_Worker, tb_WorkerRace
 
 def connect_db():
     # connection db with credentials
@@ -93,8 +104,9 @@ def insert_table(cursor, table, tableName):
 
     # mapping data for the command
     for key, value in table.items():
+        insert_value = value.replace('\'', '\'\'')
         command_fields += key + ','
-        command_values += '\'' + value + '\','
+        command_values += '\'' + insert_value + '\','
 
     command_fields = command_fields[:-1] + ') '
     command_values = command_values[:-1] + ';'
@@ -117,29 +129,59 @@ def check_table_insertion(cursor, tableName):
     for row in cursor:
         print(row)
 
-    return
+    return 0
 
 
 def post_db(data_posted):
     # get data from FHIR server by ID
     data_received = get_data(data_posted)
-    # map server data to db fields
-    tb_Worker, tb_WorkerRace = map_data_json(data_received)
 
-    # connect local db server (docker db should be on)
-    conn, cursor = connect_db()
-    # db insertion
-    insert_table(cursor, tb_WorkerRace, 'WorkerRace')
-    insert_table(cursor, tb_Worker, 'Worker')
+    if isinstance(data_received, dict):
+        list_Worker = list()
+        list_WorkerRace = list()
 
-    # check if the insertion is succeed
-    check_table_insertion(cursor, 'WorkerRace')
-    check_table_insertion(cursor, 'Worker')
+        # retrieve single data from bundle type
+        if data_received['resourceType'] == 'Bundle':
+            if 'entry' in data_received:
+                for resource_data in data_received['entry']:
+                    if 'resource' in resource_data:
+                        # map server data to db fields
+                        tb_Worker, tb_WorkerRace = map_data(resource_data['resource'])
+                        if tb_Worker:
+                            list_Worker.append(tb_Worker)
+                        if tb_WorkerRace:
+                            list_WorkerRace.append(tb_WorkerRace)
+        else:
+            tb_Worker, tb_WorkerRace = map_data(data_received)
+            if tb_Worker:
+                list_Worker.append(tb_Worker)
+            if tb_WorkerRace:
+                list_WorkerRace.append(tb_WorkerRace)
 
-    # close db connection
-    close_db(conn, cursor)
+        # process further if the mapped tables are not empty
+        if len(list_Worker) > 0 or len(list_WorkerRace) > 0:
+            # connect local db server (docker db should be on)
+            conn, cursor = connect_db()
+            # db insertion
+            for i in range(len(list_WorkerRace)):
+                if list_WorkerRace[i]:
+                    insert_table(cursor, list_WorkerRace[i], 'WorkerRace')
+            for j in range(len(list_Worker)):
+                if list_Worker[j]:
+                    insert_table(cursor, list_Worker[j], 'Worker')
 
-    return 0
+            # check if the insertion is succeed
+            check_table_insertion(cursor, 'WorkerRace')
+            check_table_insertion(cursor, 'Worker')
+
+            # close db connection
+            close_db(conn, cursor)
+        else:
+            print('no data is inserted to the database')
+        return 0
+    else:
+        print('failed to retrieve data from FHIR server')
+        return -1
 
 
 def usage():
@@ -170,8 +212,10 @@ if __name__ == "__main__":
             file = input("Give file path or type exit to quit: ")
             if file == 'exit':
                 break
-            # post data to FHIR server
-            data_posted = FHIR_combined.verify_fhir(file)
+            else:
+                # post data to FHIR server
+                data_posted = FHIR_combined.verify_fhir(file)
 
-            # FHIR server data retrieval and SQL database insertion
-            returnValue = post_db(data_posted)
+                if isinstance(data_posted, dict):
+                    # FHIR server data retrieval and SQL database insertion
+                    returnValue = post_db(data_posted)

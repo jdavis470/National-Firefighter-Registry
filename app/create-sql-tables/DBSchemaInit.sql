@@ -8,7 +8,7 @@ USE FIREFIGHTER
 GO
 
 CREATE TABLE [Worker](
-	[WorkerID] [varchar](30) NOT NULL,
+	[WorkerID] [varchar](40) NOT NULL,
 	[StudyCode] [varchar](50) NOT NULL,
 	[GenderCode] [varchar](20) NULL,
 	[EthnicityCode] [varchar](20) NULL,
@@ -54,7 +54,7 @@ CREATE TABLE [Worker](
 )
 
 CREATE TABLE [WorkerRace](
-	[WorkerID] [varchar](30) NOT NULL,
+	[WorkerID] [varchar](40) NOT NULL,
 	[StudyCode] [varchar](50) NOT NULL,
 	[RaceCode] [varchar](20) NOT NULL,
 	[ImportCode] [varchar](2500) NULL,

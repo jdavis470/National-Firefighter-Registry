@@ -4,6 +4,7 @@ import ndjson
 import os
 import xmltodict
 import sys
+import uuid
 
 smart_defaults = {
     'app_id': 'my_web_app',
@@ -12,10 +13,28 @@ smart_defaults = {
 }
 
 
+def convert_ndjson_to_bundle(patients):
+    # bundle information
+    bundle = dict()
+    bundle['resourceType'] = 'Bundle'
+    bundle['id'] = str(uuid.uuid4())
+    bundle['type'] = 'collection'
+    # patients as entry
+    entry = list()
+    for patient in patients:
+        single_data = dict()
+        single_data['resource'] = patient
+        entry.append(single_data)
+    bundle['entry'] = entry
+
+    return bundle
+
+
 def post_json(patient, path):
     if patient['resourceType'] == 'Patient' or patient['resourceType'] == 'Bundle':
         patient_json = json.dumps(patient)
         headers = {'Content-Type': 'application/json'}
+        res_id = dict()
         if patient['resourceType'] == 'Patient':
             res = requests.post(url=smart_defaults['api_base'], headers=headers, data=patient_json).text
             res = json.loads(res)
@@ -24,7 +43,9 @@ def post_json(patient, path):
             res = requests.post(url=smart_defaults['api_bundle'], headers=headers, data=patient_json).text
             res = json.loads(res)
             print(path + ": validated, Bundle: " + res['id'] + " created")
-        return res
+        res_id['id'] = res['id']
+        res_id['resourceType'] = patient['resourceType']
+        return res_id
     else:
         raise RuntimeError("Can only handle JSON resourceType Patient.")
 
@@ -33,15 +54,20 @@ def post_xml(patient, path):
     xml_dict = xmltodict.parse(patient)
     if 'Patient' in xml_dict or 'Bundle' in xml_dict:
         headers = {'Content-Type': 'application/xml'}
+        res_id = dict()
         if 'Patient' in xml_dict:
             res = requests.post(url=smart_defaults['api_base'], headers=headers, data=patient).text
             res = xmltodict.parse(res)
             print(path + ": validated, Patient: " + res['Patient']['id']['@value'] + " created")
+            res_id['id'] = res['Patient']['id']['@value']
+            res_id['resourceType'] = 'Patient'
         elif 'Bundle' in xml_dict:
             res = requests.post(url=smart_defaults['api_bundle'], headers=headers, data=patient).text
             res = xmltodict.parse(res)
             print(path + ": validated, Bundle: " + res['Bundle']['id']['@value'] + " created")
-        return res
+            res_id['id'] = res['Bundle']['id']['@value']
+            res_id['resourceType'] = 'Bundle'
+        return res_id
     else:
         raise RuntimeError("Can only handle XML type(s) Patient.")
 
@@ -54,19 +80,15 @@ def verify_fhir(path):
             with open(path) as ndjson_file:
                 patients_data = ndjson.load(ndjson_file)
             ndjson_file.close()
-            res_all = dict()
-            for patient_data in patients_data:
-                res = post_json(patient_data, path)
-                res_all[res['id']] = res
-            res_all['file_extension'] = file_extension
-            return res_all
+            patients_bundle = convert_ndjson_to_bundle(patients_data)
+            res = post_json(patients_bundle, path)
+            return res
 
         elif file_extension == '.json':
             with open(path) as json_data:
                 patient_data = json.load(json_data)
             json_data.close()
             res = post_json(patient_data, path)
-            res['file_extension'] = file_extension
             return res
 
         elif file_extension == '.xml':
@@ -74,7 +96,6 @@ def verify_fhir(path):
                 patient_data = xml_file.read()
             xml_file.close()
             res = post_xml(patient_data, path)
-            res['file_extension'] = file_extension
             return res
 
         else:
