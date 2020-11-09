@@ -19,12 +19,23 @@ def get_data(request_data):
         else:
             print('Cannot handle this file yet')
             return 0
+    elif 'file_extension' and 'id' in request_data['Patient']:
+        if request_data['file_extension'] == '.xml':
+            headers = {'Content-Type': 'application/json'}
+            url = FHIR_combined.smart_defaults['api_base'] + '/' + str(request_data['Patient']['id']['@value'])
+            res = requests.get(url=url, headers=headers).text
+            res = json.loads(res)
+            return res
+        else:
+            print('Cannot handle this file yet')
+            return 0
+
     else:
         print('file extension and id should be provided to get data')
         return 0
 
 
-def map_data_json(data):
+def map_data(data):
     tb_Worker = dict()
     tb_WorkerRace = dict()
     # TODO: mapping other resources to db
@@ -63,7 +74,6 @@ def map_data_json(data):
         tb_WorkerRace['RaceCode'] = '0000'
 
     return tb_Worker, tb_WorkerRace
-
 
 def connect_db():
     # connection db with credentials
@@ -124,7 +134,7 @@ def post_db(data_posted):
     # get data from FHIR server by ID
     data_received = get_data(data_posted)
     # map server data to db fields
-    tb_Worker, tb_WorkerRace = map_data_json(data_received)
+    tb_Worker, tb_WorkerRace = map_data(data_received)
 
     # connect local db server (docker db should be on)
     conn, cursor = connect_db()
