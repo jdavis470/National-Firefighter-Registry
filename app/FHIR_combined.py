@@ -77,7 +77,7 @@ def verify_fhir(path):
         filename, file_extension = os.path.splitext(path)
 
         if file_extension == '.ndjson':
-            with open(path) as ndjson_file:
+            with open(path, encoding='utf-8') as ndjson_file:
                 patients_data = ndjson.load(ndjson_file)
             ndjson_file.close()
             patients_bundle = convert_ndjson_to_bundle(patients_data)
@@ -85,14 +85,14 @@ def verify_fhir(path):
             return res
 
         elif file_extension == '.json':
-            with open(path) as json_data:
+            with open(path, encoding='utf-8') as json_data:
                 patient_data = json.load(json_data)
             json_data.close()
             res = post_json(patient_data, path)
             return res
 
         elif file_extension == '.xml':
-            with open(path) as xml_file:
+            with open(path, encoding='utf-8') as xml_file:
                 patient_data = xml_file.read()
             xml_file.close()
             res = post_xml(patient_data, path)
