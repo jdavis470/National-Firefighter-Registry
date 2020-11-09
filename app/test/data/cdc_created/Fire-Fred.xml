@@ -1,0 +1,86 @@
+<Patient xmlns="http://hl7.org/fhir">
+  <id value="Fred-Fred" />
+  <meta>
+    <versionId value="8" />
+    <profile value="http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient" />
+  </meta>
+  <extension url="http://hl7.org/fhir/us/core/StructureDefinition/us-core-race">
+    <extension url="ombCategory">
+      <valueCoding>
+        <system value="urn:oid:2.16.840.1.113883.6.238" />
+        <code value="2106-3" />
+        <display value="White" />
+      </valueCoding>
+    </extension>
+    <extension url="ombCategory">
+      <valueCoding>
+        <system value="urn:oid:2.16.840.1.113883.6.238" />
+        <code value="2054-5" />
+        <display value="Black or African American" />
+      </valueCoding>
+    </extension>
+  </extension>
+  <extension url="http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity">
+    <extension url="ombCategory">
+      <valueCoding>
+        <system value="urn:oid:2.16.840.1.113883.6.238" />
+        <code value="2135-2" />
+        <display value="Hispanic or Latino" />
+      </valueCoding>
+    </extension>
+  </extension>
+  <extension url="http://hl7.org/fhir/us/core/StructureDefinition/us-core-birthsex">
+    <valueCode value="M" />
+  </extension>
+  <extension url="http://hl7.org/fhir/StructureDefinition/patient-birthPlace">
+    <valueAddress>
+      <line value="5 Test St" />
+      <city value="Norman" />
+      <state value="OK" />
+      <postalCode value="74047" />
+      <country value="US" />
+    </valueAddress>
+  </extension>
+  <identifier>
+    <use value="usual" />
+    <type>
+      <coding>
+        <system value="http://terminology.hl7.org/CodeSystem/v2-0203" />
+        <code value="SB" />
+        <display value="United States Social Security Number" />
+      </coding>
+      <text value="US Social Security Number" />
+    </type>
+    <system value="http://hl7.org/fhir/sid/us-ssn" />
+    <value value="123-45-6789" />
+  </identifier>
+  <identifier>
+    <use value="official" />
+    <system value="urn:oid:2.16.840.1.113883.3.3367.1" />
+    <value value="1825763" />
+    <display value="ESO Solutions ID" />
+  </identifier>
+  <active value="true" />
+  <name>
+    <family value="FireFighter" />
+    <given value="Fred" />
+    <given value="F." />
+  </name>
+  <telecom>
+    <system value="email" />
+    <value value="FreddyFire@fdtown.com" />
+    <use value="work" />
+  </telecom>
+  <gender value="male" />
+  <birthDate value="1990-06-09" />
+  <address>
+    <line value="1 Main St" />
+    <city value="Denver" />
+    <state value="CO" />
+    <postalCode value="80204" />
+    <country value="US" />
+  </address>
+  <managingOrganization>
+    <reference value="Organization/FD-GUID" />
+  </managingOrganization>
+</Patient>
