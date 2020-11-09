@@ -19,12 +19,23 @@ def get_data(request_data):
         else:
             print('Cannot handle this file yet')
             return 0
+    elif 'file_extension' and 'id' in request_data['Patient']:
+        if request_data['file_extension'] == '.xml':
+            headers = {'Content-Type': 'application/json'}
+            url = FHIR_combined.smart_defaults['api_base'] + '/' + str(request_data['Patient']['id']['@value'])
+            res = requests.get(url=url, headers=headers).text
+            res = json.loads(res)
+            return res
+        else:
+            print('Cannot handle this file yet')
+            return 0
+
     else:
         print('file extension and id should be provided to get data')
         return 0
 
 
-def map_data_json(data):
+def map_data(data):
     tb_Worker = dict()
     tb_WorkerRace = dict()
     # TODO: mapping other resources to db
@@ -56,14 +67,31 @@ def map_data_json(data):
         tb_Worker['BirthMonth'] = birthDate.strftime("%m")
         tb_Worker['BirthDay'] = birthDate.strftime("%d")
         tb_Worker['Birthyear'] = birthDate.strftime("%Y")
+        for x in range(len(data['identifier'])):
+            if data['identifier'][x]['system'] == "http://hl7.org/fhir/sid/us-ssn":
+                tb_Worker['SSN'] = data['identifier'][x]['value']
+        for x in range(len(data['extension'])):
+            if data['extension'][x]['url'] == "http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity":
+                for i in range(len(data['extension'][x]['extension'])-1, -1, -1):
+                    if 'valueCoding' in data['extension'][x]['extension'][i].keys():
+                        tb_Worker['EthnicityCode'] = data['extension'][x]['extension'][i]['valueCoding']['code']
+                        break
+        for x in range(len(data['extension'])):
+            if data['extension'][x]['url'] == "http://hl7.org/fhir/StructureDefinition/patient-birthPlace":
+                tb_Worker['BirthPlaceCountry'] = data['extension'][x]['valueAddress']['country']
+                tb_Worker['BirthPlaceCity'] = data['extension'][x]['valueAddress']['city']
+                tb_Worker['BirthPlaceStateProv'] = data['extension'][x]['valueAddress']['state']
 
         # map for table WorkerRace
         tb_WorkerRace['WorkerID'] = data['id']
         tb_WorkerRace['StudyCode'] = '0000'
-        tb_WorkerRace['RaceCode'] = '0000'
-
+        for x in range(len(data['extension'])):
+            if data['extension'][x]['url'] == "http://hl7.org/fhir/us/core/StructureDefinition/us-core-race":
+                for i in range(len(data['extension'][x]['extension'])-1, -1, -1):
+                    if 'valueCoding' in data['extension'][x]['extension'][i].keys():
+                        tb_WorkerRace['RaceCode'] = data['extension'][x]['extension'][i]['valueCoding']['code']
+                        break
     return tb_Worker, tb_WorkerRace
-
 
 def connect_db():
     # connection db with credentials
@@ -124,7 +152,7 @@ def post_db(data_posted):
     # get data from FHIR server by ID
     data_received = get_data(data_posted)
     # map server data to db fields
-    tb_Worker, tb_WorkerRace = map_data_json(data_received)
+    tb_Worker, tb_WorkerRace = map_data(data_received)
 
     # connect local db server (docker db should be on)
     conn, cursor = connect_db()
