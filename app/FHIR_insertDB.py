@@ -61,7 +61,7 @@ def map_data_json(data):
                 tb_Worker['SSN'] = data['identifier'][x]['value']
         for x in range(len(data['extension'])):
             if data['extension'][x]['url'] == "http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity":
-                for i in range(len(data['extension'][x]['extension'])-1, 0, -1):
+                for i in range(len(data['extension'][x]['extension'])-1, -1, -1):
                     if 'valueCoding' in data['extension'][x]['extension'][i].keys():
                         tb_Worker['EthnicityCode'] = data['extension'][x]['extension'][i]['valueCoding']['code']
                         break
@@ -76,7 +76,7 @@ def map_data_json(data):
         tb_WorkerRace['StudyCode'] = '0000'
         for x in range(len(data['extension'])):
             if data['extension'][x]['url'] == "http://hl7.org/fhir/us/core/StructureDefinition/us-core-race":
-                for i in range(len(data['extension'][x]['extension'])-1, 0, -1):
+                for i in range(len(data['extension'][x]['extension'])-1, -1, -1):
                     if 'valueCoding' in data['extension'][x]['extension'][i].keys():
                         tb_WorkerRace['RaceCode'] = data['extension'][x]['extension'][i]['valueCoding']['code']
                         break
