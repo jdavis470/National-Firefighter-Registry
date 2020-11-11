@@ -1,0 +1,30 @@
+<Organization xmlns="http://hl7.org/fhir">
+  <id value="FD-GUID"/>
+  <meta>
+    <versionId value="1" />
+    <profile value="http://hl7.org/fhir/us/core/StructureDefinition/organization" />
+  </meta>
+  <!-- NIOSH NFIRS FDID -->
+  <identifier>
+    <system value="https://phinvads.cdc.gov/NIOSHNFRFireDepartment/TBD"/>
+    <value value="CO_01601"/>
+    <display value="Denver Fire Department"/>
+  </identifier>
+  <active value="true"/>
+  <name value="Fire Dep. Denver"/>
+  <telecom>
+    <system value="phone"/>
+    <value value="(+1) 720-677-7777"/>
+  </telecom>
+  <telecom>
+    <system value="email"/>
+    <value value="hq@FDDenver.org"/>
+  </telecom>
+  <address>
+    <line value="745 W Colfax AVE"/>
+    <city value="Denver"/>
+    <state value="CO"/>
+    <postalCode value="80204"/>
+    <country value="USA"/>
+  </address>
+</Organization>

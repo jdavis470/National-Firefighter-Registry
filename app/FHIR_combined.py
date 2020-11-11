@@ -100,7 +100,7 @@ def verify_fhir(path):
 
         else:
             print('Cannot handle this file yet')
-            return 0
+            return -1
     except FileNotFoundError:
         print("File path: " + path + " Does not exist: ", file=sys.stderr)
         return -1
@@ -108,7 +108,7 @@ def verify_fhir(path):
         print("Error validating file: '" + path + "'. Error Message: {0}".format(err), file=sys.stderr)
         return -1
 
-    return 0
+    return -1
 
 
 def usage():
@@ -127,10 +127,11 @@ def main():
     elif (len(sys.argv) == 2):
         returnValue = verify_fhir(sys.argv[1])
 
-        if (returnValue != 0):
+        if (returnValue == -1):
             usage()
+            exit(-1)
+        exit(0)
 
-        exit(returnValue)
 
     # Interactive mode
     else:

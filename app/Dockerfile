@@ -2,7 +2,7 @@
 
 FROM microsoft/mssql-server-linux
 
-RUN apt-get update && apt-get install -y python3 python3-pip unixodbc-dev
+RUN apt-get update && apt-get install -y python3 python3-pip unixodbc-dev vim
 
 RUN pip3 install ndjson xmltodict pyodbc requests uuid
 
@@ -15,6 +15,7 @@ COPY ./test/ ./test/
 
 COPY FHIR_combined.py ./
 COPY FHIR_insertDB.py ./
+COPY /test/FHIR_verifyDB.py ./
 COPY ./test/ ./test/
 
 ENV ACCEPT_EULA=Y
@@ -26,4 +27,4 @@ RUN chmod a+x ./sqlfiles/entrypoint.sh
 
 EXPOSE 1433
 
-CMD bash ./sqlfiles/entrypoint.sh > sqlOutput.txt
+CMD bash ./sqlfiles/entrypoint.sh 2>&1 | tee sqlOutput.txt
