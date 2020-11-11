@@ -91,10 +91,18 @@
   "active": true,
   "name": [
     {
+      "use": "official",
       "family": "FireFighter",
       "given": [
         "Fred",
         "F."
+      ]
+    },
+    {
+      "use": "nickname",
+      "family": "FireFighter",
+      "given": [
+        "Freddie"
       ]
     }
   ],

@@ -43,20 +43,39 @@ def map_data(data):
     # improvement: check the 'period' of the data field to find the most recent one
     if data['resourceType'] == 'Patient':
         # map for table Worker
-        tb_Worker['WorkerID'] = data['id']
-        tb_Worker['StudyCode'] = '0000'
+        for x in range(len(data['identifier'])):
+            if data['identifier'][x]['use'] == "official":
+                tb_Worker['WorkerID'] = data['identifier'][x]['value']
+        tb_Worker['StudyCode'] = 'NFR'
         tb_Worker['GenderCode'] = data['gender']
         tb_Worker['CurrentResidentialStreet'] = data['address'][-1]['line'][0]
         tb_Worker['CurrentResidentialCity'] = data['address'][-1]['city']
         tb_Worker['CurrentResidentialStateProv'] = data['address'][-1]['state']
         tb_Worker['CurrentResidentialPostalCode'] = data['address'][-1]['postalCode']
         tb_Worker['CurrentResidentialCountry'] = data['address'][-1]['country']
-        tb_Worker['LastName'] = data['name'][-1]['family']
-        if len(data['name'][-1]['given']) > 1:
-            tb_Worker['FirstName'] = data['name'][-1]['given'][0]
-            tb_Worker['MiddleName'] = data['name'][-1]['given'][1]
+        if len(data['name']) == 1:
+            tb_Worker['LastName'] = data['name'][-1]['family']
+            if len(data['name'][-1]['given']) > 1:
+                tb_Worker['FirstName'] = data['name'][-1]['given'][0]
+                tb_Worker['MiddleName'] = data['name'][-1]['given'][1]
+            else:
+                tb_Worker['FirstName'] = data['name'][-1]['given'][0]
         else:
-            tb_Worker['FirstName'] = data['name'][-1]['given']
+            for name in data['name']:
+                if name['use'] == "official":
+                    tb_Worker['LastName'] = name['family']
+                    if len(name['given']) > 1:
+                        tb_Worker['FirstName'] = name['given'][0]
+                        tb_Worker['MiddleName'] = name['given'][1]
+                    else:
+                        tb_Worker['FirstName'] = name['given'][0]
+                elif name['use'] == "nickname":
+                    tb_Worker['LastNameAlias'] = name['family']
+                    if len(name['given']) > 1:
+                        tb_Worker['FirstNameAlias'] = name['given'][0]
+                        tb_Worker['MiddleNameAlias'] = name['given'][1]
+                    else:
+                        tb_Worker['FirstNameAlias'] = name['given'][0]
         for telecom in data['telecom']:
             if telecom['system'] == 'phone' and telecom['use'] == 'mobile':
                 tb_Worker['MobilePhoneNumber'] = telecom['value']
