@@ -49,12 +49,14 @@ if __name__ == "__main__":
     # Post the data
     data_posted = FHIR_combined.verify_fhir(sys.argv[1])
     returnValue = FHIR_insertDB.post_db(data_posted)
+    data_received = FHIR_insertDB.get_data(data_posted)
 
     # Execute query for patient ID on Worker table
     cursor = conn.cursor()
     cursor.execute('SELECT StudyCode,GenderCode,CurrentResidentialStreet,CurrentResidentialCity,CurrentResidentialStateProv,'
                    'CurrentResidentialPostalCode,CurrentResidentialCountry,LastName,FirstName,MiddleName,MobilePhoneNumber,'
-                   'PrimaryEmailAddress,BirthMonth,BirthDay,Birthyear FROM Worker WHERE WorkerID = ' + data_posted['id'])
+                   'PrimaryEmailAddress,BirthMonth,BirthDay,Birthyear,EthnicityCode,SSN,BirthPlaceCountry,BirthPlaceStateProv,'
+                   'BirthPlaceCity FROM Worker WHERE WorkerID = ' + data_received['id'])
     worker_item = cursor.fetchone()
 
     # Build Dictionary from column information and query data
@@ -62,7 +64,7 @@ if __name__ == "__main__":
     worker_db_result = dict(zip(worker_columns, worker_item))
 
     # Execute query for patient ID on WorkerRace table
-    cursor.execute('SELECT StudyCode,RaceCode FROM WorkerRace WHERE WorkerID = ' + data_posted['id'])
+    cursor.execute('SELECT StudyCode,RaceCode FROM WorkerRace WHERE WorkerID = ' + data_received['id'])
     workerRace_item = cursor.fetchone()
     # Build Dictionary from column information and query data
     workerRace_columns = [column[0] for column in cursor.description]
@@ -70,31 +72,50 @@ if __name__ == "__main__":
 
     # Verify the Worker data
     assert worker_db_result['StudyCode'] == '0000'
-    assert worker_db_result['GenderCode'] == data_posted['gender']
-    assert worker_db_result['CurrentResidentialStreet'] == data_posted['address'][-1]['line'][0]
-    assert worker_db_result['CurrentResidentialCity'] == data_posted['address'][-1]['city']
-    assert worker_db_result['CurrentResidentialStateProv'] == data_posted['address'][-1]['state']
-    assert worker_db_result['CurrentResidentialPostalCode'] == data_posted['address'][-1]['postalCode']
-    assert worker_db_result['CurrentResidentialCountry'] == data_posted['address'][-1]['country']
-    assert worker_db_result['LastName'] == data_posted['name'][-1]['family']
-    if len(data_posted['name'][-1]['given']) > 1:
-        assert worker_db_result['FirstName'] == data_posted['name'][-1]['given'][0]
-        assert worker_db_result['MiddleName'] == data_posted['name'][-1]['given'][1]
+    assert worker_db_result['GenderCode'] == data_received['gender']
+    assert worker_db_result['CurrentResidentialStreet'] == data_received['address'][-1]['line'][0]
+    assert worker_db_result['CurrentResidentialCity'] == data_received['address'][-1]['city']
+    assert worker_db_result['CurrentResidentialStateProv'] == data_received['address'][-1]['state']
+    assert worker_db_result['CurrentResidentialPostalCode'] == data_received['address'][-1]['postalCode']
+    assert worker_db_result['CurrentResidentialCountry'] == data_received['address'][-1]['country']
+    assert worker_db_result['LastName'] == data_received['name'][-1]['family']
+    if len(data_received['name'][-1]['given']) > 1:
+        assert worker_db_result['FirstName'] == data_received['name'][-1]['given'][0]
+        assert worker_db_result['MiddleName'] == data_received['name'][-1]['given'][1]
     else:
-        assert worker_db_result['FirstName'] == data_posted['name'][-1]['given']
-    for telecom in data_posted['telecom']:
+        assert worker_db_result['FirstName'] == data_received['name'][-1]['given']
+    for telecom in data_received['telecom']:
         if telecom['system'] == 'phone' and telecom['use'] == 'mobile':
             assert worker_db_result['MobilePhoneNumber'] == telecom['value']
         elif telecom['system'] == 'email':
             assert worker_db_result['PrimaryEmailAddress'] == telecom['value']
-    birthDate = datetime.datetime.strptime(data_posted['birthDate'], '%Y-%m-%d')
+    birthDate = datetime.datetime.strptime(data_received['birthDate'], '%Y-%m-%d')
     assert worker_db_result['BirthMonth'] == birthDate.strftime("%m")
     assert worker_db_result['BirthDay'] == birthDate.strftime("%d")
     assert worker_db_result['Birthyear'] == birthDate.strftime("%Y")
+    for extension in data_received['identifier']:
+        if extension['system'] == "http://hl7.org/fhir/sid/us-ssn":
+            assert worker_db_result['SSN'] == extension['value']
+    for extension in data_received['extension']:
+        if extension['url'] == "http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity":
+            for entry in reversed(extension['extension']):
+                if 'valueCoding' in entry.keys():
+                    assert worker_db_result['EthnicityCode'] == entry['valueCoding']['code']
+                    break
+    for extension in data_received['extension']:
+        if extension['url'] == "http://hl7.org/fhir/StructureDefinition/patient-birthPlace":
+            assert worker_db_result['BirthPlaceCountry'] == extension['valueAddress']['country']
+            assert worker_db_result['BirthPlaceCity'] == extension['valueAddress']['city']
+            assert worker_db_result['BirthPlaceStateProv'] == extension['valueAddress']['state']
 
     # Verify the WorkerRace data
     assert workerRace_db_result['StudyCode'] == '0000'
-    assert workerRace_db_result['RaceCode'] == '0000'
+    for extension in data_received['extension']:
+        if extension['url'] == "http://hl7.org/fhir/us/core/StructureDefinition/us-core-race":
+            for entry in reversed(extension['extension']):
+                if 'valueCoding' in entry.keys():
+                    assert workerRace_db_result['RaceCode'] == entry['valueCoding']['code']
+                    break
 
     close_db(conn, cursor)
     exit(exitVal)
