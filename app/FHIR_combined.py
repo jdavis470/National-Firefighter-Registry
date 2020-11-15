@@ -8,8 +8,10 @@ import uuid
 
 smart_defaults = {
     'app_id': 'my_web_app',
-    'api_base': 'https://r4.smarthealthit.org/Patient',
-    'api_bundle': 'https://r4.smarthealthit.org/Bundle'
+    'api_base': 'https://r4.smarthealthit.org',
+    'api_patient': 'https://r4.smarthealthit.org/Patient',
+    'api_bundle': 'https://r4.smarthealthit.org/Bundle',
+    'api_observation': 'https://r4.smarthealthit.org/Observation'
 }
 
 
@@ -31,18 +33,22 @@ def convert_ndjson_to_bundle(patients):
 
 
 def post_json(patient, path):
-    if patient['resourceType'] == 'Patient' or patient['resourceType'] == 'Bundle':
+    if patient['resourceType'] in ['Patient', 'Bundle', 'Observation']:
         patient_json = json.dumps(patient)
         headers = {'Content-Type': 'application/json'}
         res_id = dict()
         if patient['resourceType'] == 'Patient':
-            res = requests.post(url=smart_defaults['api_base'], headers=headers, data=patient_json).text
+            res = requests.post(url=smart_defaults['api_patient'], headers=headers, data=patient_json).text
             res = json.loads(res)
             print(path + ": validated, Patient: " + res['id'] + " created")
         elif patient['resourceType'] == 'Bundle':
             res = requests.post(url=smart_defaults['api_bundle'], headers=headers, data=patient_json).text
             res = json.loads(res)
             print(path + ": validated, Bundle: " + res['id'] + " created")
+        elif patient['resourceType'] == 'Observation':
+            res = requests.post(url=smart_defaults['api_observation'], headers=headers, data=patient_json).text
+            res = json.loads(res)
+            print(path + ": validated, Observation: " + res['id'] + " created")
         res_id['id'] = res['id']
         res_id['resourceType'] = patient['resourceType']
         return res_id, res
@@ -52,11 +58,11 @@ def post_json(patient, path):
 
 def post_xml(patient, path):
     xml_dict = xmltodict.parse(patient)
-    if 'Patient' in xml_dict or 'Bundle' in xml_dict:
+    if 'Patient' in xml_dict or 'Bundle' in xml_dict or 'Observation' in xml_dict:
         headers = {'Content-Type': 'application/xml'}
         res_id = dict()
         if 'Patient' in xml_dict:
-            res = requests.post(url=smart_defaults['api_base'], headers=headers, data=patient).text
+            res = requests.post(url=smart_defaults['api_patient'], headers=headers, data=patient).text
             res = xmltodict.parse(res)
             print(path + ": validated, Patient: " + res['Patient']['id']['@value'] + " created")
             res_id['id'] = res['Patient']['id']['@value']
@@ -67,6 +73,12 @@ def post_xml(patient, path):
             print(path + ": validated, Bundle: " + res['Bundle']['id']['@value'] + " created")
             res_id['id'] = res['Bundle']['id']['@value']
             res_id['resourceType'] = 'Bundle'
+        elif 'Observation' in xml_dict:
+            res = requests.post(url=smart_defaults['api_observation'], headers=headers, data=patient).text
+            res = xmltodict.parse(res)
+            print(path + ": validated, Observation: " + res['Observation']['id']['@value'] + " created")
+            res_id['id'] = res['Observation']['id']['@value']
+            res_id['resourceType'] = 'Observation'
         return res_id, res
     else:
         raise RuntimeError("Can only handle XML type(s) Patient.")
