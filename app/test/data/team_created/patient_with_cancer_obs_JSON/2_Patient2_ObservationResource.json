@@ -1,0 +1,49 @@
+{
+  "resourceType": "Observation",
+  "id": "8ee79e98-1591-4f62-876c-f842f875f178",
+  "meta": {
+    "versionId": "2",
+    "lastUpdated": "2019-06-05T02:56:24.366-04:00",
+    "tag": [
+      {
+        "system": "https://smarthealthit.org/tags",
+        "code": "synthea-5-2019"
+      }
+    ]
+  },
+  "status": "final",
+  "category": [
+    {
+      "coding": [
+        {
+          "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+          "code": "imaging",
+          "display": "imaging"
+        }
+      ]
+    }
+  ],
+  "code": {
+    "coding": [
+      {
+        "system": "http://loinc.org",
+        "code": "21861-0",
+        "display": "Dx confirmed by Cancer"
+      }
+    ],
+    "text": "Dx confirmed by Cancer"
+  },
+  "subject": {
+    "reference": "Patient/494743a2-fea5-4827-8f03-c2b91e4a4c9e"
+  },
+  "encounter": {
+    "reference": "Encounter/74ead71a-2215-4175-968c-65b669e43960"
+  },
+  "effectiveDateTime": "2018-04-16T15:22:39-04:00",
+  "issued": "2018-04-16T15:22:39.163-04:00",
+  "valueQuantity": {
+        "code": "7"
+      }
+    }
+  ]
+}
