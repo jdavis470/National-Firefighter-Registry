@@ -137,20 +137,20 @@ if __name__ == "__main__":
     conn.cursor().commit()
 
     # Post the data
-    insert_id, response_data = FHIR_combined.verify_fhir(sys.argv[1])
+    insert_id, *_ = FHIR_combined.verify_fhir(sys.argv[1])
     returnValue = FHIR_insertDB.post_db(insert_id)
+    response_data = FHIR_insertDB.get_data(insert_id)
 
     # Test for bundle and non-bundle case
     cursor = conn.cursor()
 
-    # Test cases for JSON and bundle
+    # Test cases for single and bundle data
     if 'resourceType' in response_data:
         if response_data['resourceType'] == 'Bundle':
             for single_data in response_data['entry']:
                 assert_data(single_data['resource'], cursor)
-        else:
+        elif response_data['resourceType'] == 'Patient':
             assert_data(response_data, cursor)
-    # TODO: extend test cases for XML and bundle
 
     close_db(conn, cursor)
     exit(exitVal)
