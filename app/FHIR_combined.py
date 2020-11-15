@@ -48,7 +48,10 @@ def post_json(patient, path):
         elif patient['resourceType'] == 'Observation':
             res = requests.post(url=smart_defaults['api_observation'], headers=headers, data=patient_json).text
             res = json.loads(res)
-            print(path + ": validated, Observation: " + res['id'] + " created")
+            if 'id' in res:
+                print(path + ": validated, Observation: " + res['id'] + " created")
+            else:
+                print(res['issue'][0]['severity'], ':', res['issue'][0]['diagnostics'])
         res_id['id'] = res['id']
         res_id['resourceType'] = patient['resourceType']
         return res_id, res

@@ -34,7 +34,7 @@
     "text": "Dx confirmed by Cancer"
   },
   "subject": {
-    "reference": "Patient/494743a2-fea5-4827-8f03-c2b91e4a4c9e"
+    "reference": "Patient/6644"
   },
   "encounter": {
     "reference": "Encounter/74ead71a-2215-4175-968c-65b669e43960"
@@ -42,8 +42,6 @@
   "effectiveDateTime": "2018-04-16T15:22:39-04:00",
   "issued": "2018-04-16T15:22:39.163-04:00",
   "valueQuantity": {
-        "code": "7"
-      }
-    }
-  ]
+    "code": "7"
+  }
 }
