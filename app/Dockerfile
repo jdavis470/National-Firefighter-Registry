@@ -7,7 +7,13 @@ RUN apt-get update && apt-get install -y python3 python3-pip unixodbc-dev vim
 RUN pip3 install ndjson xmltodict pyodbc requests uuid
 
 RUN mkdir sqlfiles
-COPY create-sql-tables/DBSchemaInit.sql ./sqlfiles/DBSchemaInit.sql
+
+COPY create-sql-tables/createDB.sql ./sqlfiles/createDB.sql
+COPY create-sql-tables/worker.Worker.Table.sql ./sqlfiles/worker.Worker.Table.sql
+COPY create-sql-tables/worker.WorkerFireDepartment.Table.sql ./sqlfiles/worker.WorkerFireDepartment.Table.sql
+COPY create-sql-tables/worker.WorkerObservation.Table.sql ./sqlfiles/worker.WorkerObservation.Table.sql
+COPY create-sql-tables/worker.WorkerRace.Table.sql ./sqlfiles/worker.WorkerRace.Table.sql
+
 COPY create-sql-tables/setup-database.sh ./sqlfiles/setup-database.sh
 COPY create-sql-tables/entrypoint.sh ./sqlfiles/entrypoint.sh
 COPY FHIR_combined.py ./
