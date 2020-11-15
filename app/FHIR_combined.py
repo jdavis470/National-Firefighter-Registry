@@ -45,7 +45,7 @@ def post_json(patient, path):
             print(path + ": validated, Bundle: " + res['id'] + " created")
         res_id['id'] = res['id']
         res_id['resourceType'] = patient['resourceType']
-        return res_id
+        return res_id, res
     else:
         raise RuntimeError("Can only handle JSON resourceType Patient.")
 
@@ -67,7 +67,7 @@ def post_xml(patient, path):
             print(path + ": validated, Bundle: " + res['Bundle']['id']['@value'] + " created")
             res_id['id'] = res['Bundle']['id']['@value']
             res_id['resourceType'] = 'Bundle'
-        return res_id
+        return res_id, res
     else:
         raise RuntimeError("Can only handle XML type(s) Patient.")
 
@@ -81,22 +81,22 @@ def verify_fhir(path):
                 patients_data = ndjson.load(ndjson_file)
             ndjson_file.close()
             patients_bundle = convert_ndjson_to_bundle(patients_data)
-            res = post_json(patients_bundle, path)
-            return res
+            patient_id, res = post_json(patients_bundle, path)
+            return patient_id, res
 
         elif file_extension == '.json':
             with open(path, encoding='utf-8') as json_data:
                 patient_data = json.load(json_data)
             json_data.close()
-            res = post_json(patient_data, path)
-            return res
+            patient_id, res = post_json(patient_data, path)
+            return patient_id, res
 
         elif file_extension == '.xml':
             with open(path, encoding='utf-8') as xml_file:
                 patient_data = xml_file.read()
             xml_file.close()
-            res = post_xml(patient_data, path)
-            return res
+            patient_id, res = post_xml(patient_data, path)
+            return patient_id, res
 
         else:
             print('Cannot handle this file yet')
