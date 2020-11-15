@@ -37,10 +37,16 @@ def map_data(data):
     # mapping data from patient resources
     # improvement: check the 'period' of the data field to find the most recent one
     if data['resourceType'] == 'Patient':
-        # map for table Worker
+        # map key fields for table Worker
         tb_Worker['WorkerID'] = data['id']
         tb_Worker['StudyCode'] = '0000'
         tb_Worker['GenderCode'] = data['gender']
+
+        # map key fields for table WorkerRace
+        tb_WorkerRace['WorkerID'] = data['id']
+        tb_WorkerRace['StudyCode'] = '0000'
+        tb_WorkerRace['RaceCode'] = '0000'
+
         if 'address' in data:
             tb_Worker['CurrentResidentialStreet'] = data['address'][-1]['line'][0]
             tb_Worker['CurrentResidentialCity'] = data['address'][-1]['city']
@@ -71,22 +77,16 @@ def map_data(data):
         if 'extension' in data:
             for x in range(len(data['extension'])):
                 if data['extension'][x]['url'] == "http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity":
-                    for i in range(len(data['extension'][x]['extension'])-1, -1, -1):
+                    for i in range(len(data['extension'][x]['extension']) - 1, -1, -1):
                         if 'valueCoding' in data['extension'][x]['extension'][i].keys():
                             tb_Worker['EthnicityCode'] = data['extension'][x]['extension'][i]['valueCoding']['code']
                             break
-            for x in range(len(data['extension'])):
-                if data['extension'][x]['url'] == "http://hl7.org/fhir/StructureDefinition/patient-birthPlace":
+                elif data['extension'][x]['url'] == "http://hl7.org/fhir/StructureDefinition/patient-birthPlace":
                     tb_Worker['BirthPlaceCountry'] = data['extension'][x]['valueAddress']['country']
                     tb_Worker['BirthPlaceCity'] = data['extension'][x]['valueAddress']['city']
                     tb_Worker['BirthPlaceStateProv'] = data['extension'][x]['valueAddress']['state']
-
-            # map for table WorkerRace
-            tb_WorkerRace['WorkerID'] = data['id']
-            tb_WorkerRace['StudyCode'] = '0000'
-            for x in range(len(data['extension'])):
-                if data['extension'][x]['url'] == "http://hl7.org/fhir/us/core/StructureDefinition/us-core-race":
-                    for i in range(len(data['extension'][x]['extension'])-1, -1, -1):
+                elif data['extension'][x]['url'] == "http://hl7.org/fhir/us/core/StructureDefinition/us-core-race":
+                    for i in range(len(data['extension'][x]['extension']) - 1, -1, -1):
                         if 'valueCoding' in data['extension'][x]['extension'][i].keys():
                             tb_WorkerRace['RaceCode'] = data['extension'][x]['extension'][i]['valueCoding']['code']
                             break
@@ -96,14 +96,12 @@ def map_data(data):
     return tb_Worker, tb_WorkerRace
 
 
-def connect_db():
+def connect_db(uid='sa', pwd='Password!123'):
     # connection db with credentials
-    # improvement: make credentials as parameters
-    conn = pyodbc.connect('Driver={ODBC Driver 17 for SQL Server};'
-                          'Server=localhost,1433;'
-                          'Database=FIREFIGHTER;'
-                          'UID=sa;'
-                          'PWD=Password!123;')
+    command = 'Driver={ODBC Driver 17 for SQL Server};' + 'Server=localhost,1433;' + 'Database=DFSE_FRB_WORKER;' \
+              + 'UID=' + uid + ';' \
+              + 'PWD=' + pwd + ';'
+    conn = pyodbc.connect(command)
     cursor = conn.cursor()
 
     # cursor is used as sql query
@@ -119,7 +117,7 @@ def close_db(conn, cursor):
 
 def insert_table(cursor, table, tableName):
     # generate query command for insertion
-    command_fields = 'INSERT INTO dbo.' + tableName + ' ('
+    command_fields = 'INSERT INTO worker.' + tableName + ' ('
     command_values = 'SELECT '
 
     # mapping data for the command
@@ -142,13 +140,15 @@ def insert_table(cursor, table, tableName):
 
 def check_table_insertion(cursor, tableName):
     # get all data from the table as checking
-    command = 'SELECT * FROM FIREFIGHTER.dbo.' + tableName
+    command = 'SELECT * FROM worker.' + tableName
     cursor.execute(command)
+    count = 0
 
     print('All data in table', tableName, ': ')
     for row in cursor:
         print(row)
-
+        count += 1
+    print('Total in table', tableName, ': ', count)
     return 0
 
 
@@ -183,16 +183,16 @@ def post_db(data_posted):
             # connect local db server (docker db should be on)
             conn, cursor = connect_db()
             # db insertion
-            for i in range(len(list_WorkerRace)):
-                if list_WorkerRace[i]:
-                    insert_table(cursor, list_WorkerRace[i], 'WorkerRace')
             for j in range(len(list_Worker)):
                 if list_Worker[j]:
                     insert_table(cursor, list_Worker[j], 'Worker')
+            for i in range(len(list_WorkerRace)):
+                if list_WorkerRace[i]:
+                    insert_table(cursor, list_WorkerRace[i], 'WorkerRace')
 
             # check if the insertion is succeed
-            check_table_insertion(cursor, 'WorkerRace')
             check_table_insertion(cursor, 'Worker')
+            check_table_insertion(cursor, 'WorkerRace')
 
             # close db connection
             close_db(conn, cursor)
@@ -218,8 +218,12 @@ if __name__ == "__main__":
 
     # Command Line Argument Mode
     elif (len(sys.argv) == 2):
-        data_posted = FHIR_combined.verify_fhir(sys.argv[1])
-        returnValue = post_db(data_posted)
+        # ignore second return value which is for testing
+        # post data to FHIR server
+        data_posted, *_ = FHIR_combined.verify_fhir(sys.argv[1])
+        if isinstance(data_posted, dict):
+            # FHIR server data retrieval and SQL database insertion
+            returnValue = post_db(data_posted)
 
         if (returnValue != 0):
             usage()
@@ -234,8 +238,6 @@ if __name__ == "__main__":
                 break
             else:
                 # post data to FHIR server
-                data_posted = FHIR_combined.verify_fhir(file)
-
-                if isinstance(data_posted, dict):
-                    # FHIR server data retrieval and SQL database insertion
-                    returnValue = post_db(data_posted)
+                data_id, *_ = FHIR_combined.verify_fhir(file)
+                if isinstance(data_id, dict):
+                    returnValue = post_db(data_id)
