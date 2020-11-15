@@ -7,16 +7,13 @@ import FHIR_combined
 import datetime
 
 
-def connect_db():
+def connect_db(uid='sa', pwd='Password!123'):
     # connection db with credentials
-    # improvement: make credentials as parameters
-    conn = pyodbc.connect('Driver={ODBC Driver 17 for SQL Server};'
-                          'Server=localhost,1433;'
-                          'Database=DFSE_FRB_WORKER;'
-                          'UID=sa;'
-                          'PWD=Password!123;')
+    command = 'Driver={ODBC Driver 17 for SQL Server};' + 'Server=localhost,1433;' + 'Database=DFSE_FRB_WORKER;' \
+              + 'UID=' + uid + ';' \
+              + 'PWD=' + pwd + ';'
+    conn = pyodbc.connect(command)
 
-    # cursor is used as sql query
     return conn
 
 
@@ -98,7 +95,7 @@ def assert_data(data_posted, cursor):
                 assert worker_db_result['BirthPlaceStateProv'] == data_posted['extension'][x]['valueAddress']['state']
     assert workerRace_db_result['RaceCode'] == race_code
 
-    # Verify trigger
+    # Verify DB trigger
     # Worker table
     assert worker_db_result['LastUpdatedBy'] == 'sa'
     # last update date should be today

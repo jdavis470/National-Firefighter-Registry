@@ -96,14 +96,12 @@ def map_data(data):
     return tb_Worker, tb_WorkerRace
 
 
-def connect_db():
+def connect_db(uid='sa', pwd='Password!123'):
     # connection db with credentials
-    # improvement: make credentials as parameters
-    conn = pyodbc.connect('Driver={ODBC Driver 17 for SQL Server};'
-                          'Server=localhost,1433;'
-                          'Database=DFSE_FRB_WORKER;'
-                          'UID=sa;'
-                          'PWD=Password!123;')
+    command = 'Driver={ODBC Driver 17 for SQL Server};' + 'Server=localhost,1433;' + 'Database=DFSE_FRB_WORKER;' \
+              + 'UID=' + uid + ';' \
+              + 'PWD=' + pwd + ';'
+    conn = pyodbc.connect(command)
     cursor = conn.cursor()
 
     # cursor is used as sql query
