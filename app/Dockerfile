@@ -28,6 +28,8 @@ ENV ACCEPT_EULA=Y
 ENV SA_PASSWORD=Password!123
 ENV PATH=${PATH}:/opt/mssql/bin:/opt/mssql-tools/bin
 
+ENV PYTHONIOENCODING=utf-8
+
 RUN chmod a+x ./sqlfiles/setup-database.sh
 RUN chmod a+x ./sqlfiles/entrypoint.sh
 
