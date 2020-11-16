@@ -1,0 +1,3309 @@
+{
+    "resourceType": "Bundle",
+    "id": "f4890086-16ee-448a-975d-5ea407234422",
+    "meta": {
+        "lastUpdated": "2020-11-15T10:12:26.743-05:00"
+    },
+    "type": "searchset",
+    "total": 53,
+    "link": [
+        {
+            "relation": "self",
+            "url": "https://launch.smarthealthit.org/v/r4/fhir/Observation?subject=Patient%2Ffc200fa2-12c9-4276-ba4a-e0601d424e55"
+        },
+        {
+            "relation": "next",
+            "url": "https://launch.smarthealthit.org/v/r4/fhir?_getpages=f4890086-16ee-448a-975d-5ea407234422&_getpagesoffset=50&_count=50&_pretty=true&_bundletype=searchset"
+        }
+    ],
+    "entry": [
+        {
+            "fullUrl": "https://launch.smarthealthit.org/v/r4/fhir/Observation/9f09219d-3423-43f1-af69-1d6c1bcf0f82",
+            "resource": {
+                "resourceType": "Observation",
+                "id": "9f09219d-3423-43f1-af69-1d6c1bcf0f82",
+                "meta": {
+                    "versionId": "11",
+                    "lastUpdated": "2020-10-06T02:59:06.399-04:00",
+                    "tag": [
+                        {
+                            "system": "https://smarthealthit.org/tags",
+                            "code": "synthea-5-2019"
+                        }
+                    ]
+                },
+                "status": "final",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                                "code": "vital-signs",
+                                "display": "vital-signs"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "29463-7",
+                            "display": "Body Weight"
+                        }
+                    ],
+                    "text": "Body Weight"
+                },
+                "subject": {
+                    "reference": "Patient/fc200fa2-12c9-4276-ba4a-e0601d424e55"
+                },
+                "encounter": {
+                    "reference": "Encounter/543fdc65-2e1a-408d-9d76-115de873201d"
+                },
+                "effectiveDateTime": "2018-07-20T00:38:16-04:00",
+                "issued": "2018-07-20T00:38:16.610-04:00",
+                "valueQuantity": {
+                    "value": 9.258168474851898,
+                    "unit": "kg",
+                    "system": "http://unitsofmeasure.org",
+                    "code": "kg"
+                }
+            },
+            "search": {
+                "mode": "match"
+            },
+            "response": {
+                "status": "200 OK",
+                "etag": "W/\"11\""
+            }
+        },
+        {
+            "fullUrl": "https://launch.smarthealthit.org/v/r4/fhir/Observation/6a6283ad-b368-42b7-abd6-d91cf482aca3",
+            "resource": {
+                "resourceType": "Observation",
+                "id": "6a6283ad-b368-42b7-abd6-d91cf482aca3",
+                "meta": {
+                    "versionId": "114",
+                    "lastUpdated": "2020-10-12T02:59:25.751-04:00",
+                    "tag": [
+                        {
+                            "system": "https://smarthealthit.org/tags",
+                            "code": "synthea-5-2019"
+                        }
+                    ]
+                },
+                "status": "final",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                                "code": "vital-signs",
+                                "display": "vital-signs"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "29463-7",
+                            "display": "Body Weight"
+                        }
+                    ],
+                    "text": "Body Weight"
+                },
+                "subject": {
+                    "reference": "Patient/fc200fa2-12c9-4276-ba4a-e0601d424e55"
+                },
+                "encounter": {
+                    "reference": "Encounter/8e78bef7-9e26-4d85-879e-d9c49fe6ea91"
+                },
+                "effectiveDateTime": "2019-01-17T23:38:16-05:00",
+                "issued": "2019-01-17T23:38:16.610-05:00",
+                "valueQuantity": {
+                    "value": 10.422904188624788,
+                    "unit": "kg",
+                    "system": "http://unitsofmeasure.org",
+                    "code": "kg"
+                }
+            },
+            "search": {
+                "mode": "match"
+            },
+            "response": {
+                "status": "200 OK",
+                "etag": "W/\"114\""
+            }
+        },
+        {
+            "fullUrl": "https://launch.smarthealthit.org/v/r4/fhir/Observation/91111cd8-b7b9-4178-aba0-dbd14ef48276",
+            "resource": {
+                "resourceType": "Observation",
+                "id": "91111cd8-b7b9-4178-aba0-dbd14ef48276",
+                "meta": {
+                    "versionId": "6",
+                    "lastUpdated": "2020-10-16T02:59:53.024-04:00",
+                    "tag": [
+                        {
+                            "system": "https://smarthealthit.org/tags",
+                            "code": "synthea-5-2019"
+                        }
+                    ]
+                },
+                "status": "final",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                                "code": "vital-signs",
+                                "display": "vital-signs"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "29463-7",
+                            "display": "Body Weight"
+                        }
+                    ],
+                    "text": "Body Weight"
+                },
+                "subject": {
+                    "reference": "Patient/fc200fa2-12c9-4276-ba4a-e0601d424e55"
+                },
+                "encounter": {
+                    "reference": "Encounter/ed101927-96af-46a0-b153-8f9b92fd952f"
+                },
+                "effectiveDateTime": "2018-04-20T00:38:16-04:00",
+                "issued": "2018-04-20T00:38:16.610-04:00",
+                "valueQuantity": {
+                    "value": 8.254559010118069,
+                    "unit": "kg",
+                    "system": "http://unitsofmeasure.org",
+                    "code": "kg"
+                }
+            },
+            "search": {
+                "mode": "match"
+            },
+            "response": {
+                "status": "200 OK",
+                "etag": "W/\"6\""
+            }
+        },
+        {
+            "fullUrl": "https://launch.smarthealthit.org/v/r4/fhir/Observation/467473f5-2694-4622-aea0-8df52d0cf69b",
+            "resource": {
+                "resourceType": "Observation",
+                "id": "467473f5-2694-4622-aea0-8df52d0cf69b",
+                "meta": {
+                    "versionId": "10",
+                    "lastUpdated": "2020-10-05T03:00:27.627-04:00",
+                    "tag": [
+                        {
+                            "system": "https://smarthealthit.org/tags",
+                            "code": "synthea-5-2019"
+                        }
+                    ]
+                },
+                "status": "final",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                                "code": "vital-signs",
+                                "display": "vital-signs"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "29463-7",
+                            "display": "Body Weight"
+                        }
+                    ],
+                    "text": "Body Weight"
+                },
+                "subject": {
+                    "reference": "Patient/fc200fa2-12c9-4276-ba4a-e0601d424e55"
+                },
+                "encounter": {
+                    "reference": "Encounter/7891daa5-e476-41bb-8b25-12defcecbe8f"
+                },
+                "effectiveDateTime": "2018-10-19T00:38:16-04:00",
+                "issued": "2018-10-19T00:38:16.610-04:00",
+                "valueQuantity": {
+                    "value": 10.015079101044664,
+                    "unit": "kg",
+                    "system": "http://unitsofmeasure.org",
+                    "code": "kg"
+                }
+            },
+            "search": {
+                "mode": "match"
+            },
+            "response": {
+                "status": "200 OK",
+                "etag": "W/\"10\""
+            }
+        },
+        {
+            "fullUrl": "https://launch.smarthealthit.org/v/r4/fhir/Observation/72aa9b3e-6501-46dc-a379-104edb9ef9c4",
+            "resource": {
+                "resourceType": "Observation",
+                "id": "72aa9b3e-6501-46dc-a379-104edb9ef9c4",
+                "meta": {
+                    "versionId": "2",
+                    "lastUpdated": "2019-06-05T03:00:24.762-04:00",
+                    "tag": [
+                        {
+                            "system": "https://smarthealthit.org/tags",
+                            "code": "synthea-5-2019"
+                        }
+                    ]
+                },
+                "status": "final",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                                "code": "vital-signs",
+                                "display": "vital-signs"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "55284-4",
+                            "display": "Blood Pressure"
+                        }
+                    ],
+                    "text": "Blood Pressure"
+                },
+                "subject": {
+                    "reference": "Patient/fc200fa2-12c9-4276-ba4a-e0601d424e55"
+                },
+                "encounter": {
+                    "reference": "Encounter/543fdc65-2e1a-408d-9d76-115de873201d"
+                },
+                "effectiveDateTime": "2018-07-20T00:38:16-04:00",
+                "issued": "2018-07-20T00:38:16.610-04:00",
+                "component": [
+                    {
+                        "code": {
+                            "coding": [
+                                {
+                                    "system": "http://loinc.org",
+                                    "code": "8462-4",
+                                    "display": "Diastolic Blood Pressure"
+                                }
+                            ],
+                            "text": "Diastolic Blood Pressure"
+                        },
+                        "valueQuantity": {
+                            "value": 79.02222836208477,
+                            "unit": "mm[Hg]",
+                            "system": "http://unitsofmeasure.org",
+                            "code": "mm[Hg]"
+                        }
+                    },
+                    {
+                        "code": {
+                            "coding": [
+                                {
+                                    "system": "http://loinc.org",
+                                    "code": "8480-6",
+                                    "display": "Systolic Blood Pressure"
+                                }
+                            ],
+                            "text": "Systolic Blood Pressure"
+                        },
+                        "valueQuantity": {
+                            "value": 124.52504676212894,
+                            "unit": "mm[Hg]",
+                            "system": "http://unitsofmeasure.org",
+                            "code": "mm[Hg]"
+                        }
+                    }
+                ]
+            },
+            "search": {
+                "mode": "match"
+            },
+            "response": {
+                "status": "200 OK",
+                "etag": "W/\"2\""
+            }
+        },
+        {
+            "fullUrl": "https://launch.smarthealthit.org/v/r4/fhir/Observation/b3f296f9-c0a0-4291-882e-83af70ade127",
+            "resource": {
+                "resourceType": "Observation",
+                "id": "b3f296f9-c0a0-4291-882e-83af70ade127",
+                "meta": {
+                    "versionId": "2",
+                    "lastUpdated": "2019-06-05T03:00:24.082-04:00",
+                    "tag": [
+                        {
+                            "system": "https://smarthealthit.org/tags",
+                            "code": "synthea-5-2019"
+                        }
+                    ]
+                },
+                "status": "final",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                                "code": "vital-signs",
+                                "display": "vital-signs"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "8302-2",
+                            "display": "Body Height"
+                        }
+                    ],
+                    "text": "Body Height"
+                },
+                "subject": {
+                    "reference": "Patient/fc200fa2-12c9-4276-ba4a-e0601d424e55"
+                },
+                "encounter": {
+                    "reference": "Encounter/8e78bef7-9e26-4d85-879e-d9c49fe6ea91"
+                },
+                "effectiveDateTime": "2019-01-17T23:38:16-05:00",
+                "issued": "2019-01-17T23:38:16.610-05:00",
+                "valueQuantity": {
+                    "value": 83.84011198549621,
+                    "unit": "cm",
+                    "system": "http://unitsofmeasure.org",
+                    "code": "cm"
+                }
+            },
+            "search": {
+                "mode": "match"
+            },
+            "response": {
+                "status": "200 OK",
+                "etag": "W/\"2\""
+            }
+        },
+        {
+            "fullUrl": "https://launch.smarthealthit.org/v/r4/fhir/Observation/e92a2511-a1cf-4947-b981-f400261be4a2",
+            "resource": {
+                "resourceType": "Observation",
+                "id": "e92a2511-a1cf-4947-b981-f400261be4a2",
+                "meta": {
+                    "versionId": "2",
+                    "lastUpdated": "2019-06-05T03:00:14.091-04:00",
+                    "tag": [
+                        {
+                            "system": "https://smarthealthit.org/tags",
+                            "code": "synthea-5-2019"
+                        }
+                    ]
+                },
+                "status": "final",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                                "code": "vital-signs",
+                                "display": "vital-signs"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "8302-2",
+                            "display": "Body Height"
+                        }
+                    ],
+                    "text": "Body Height"
+                },
+                "subject": {
+                    "reference": "Patient/fc200fa2-12c9-4276-ba4a-e0601d424e55"
+                },
+                "encounter": {
+                    "reference": "Encounter/ed101927-96af-46a0-b153-8f9b92fd952f"
+                },
+                "effectiveDateTime": "2018-04-20T00:38:16-04:00",
+                "issued": "2018-04-20T00:38:16.610-04:00",
+                "valueQuantity": {
+                    "value": 73.95751618431896,
+                    "unit": "cm",
+                    "system": "http://unitsofmeasure.org",
+                    "code": "cm"
+                }
+            },
+            "search": {
+                "mode": "match"
+            },
+            "response": {
+                "status": "200 OK",
+                "etag": "W/\"2\""
+            }
+        },
+        {
+            "fullUrl": "https://launch.smarthealthit.org/v/r4/fhir/Observation/2344e576-78d1-4f03-a938-9dfbc2105af0",
+            "resource": {
+                "resourceType": "Observation",
+                "id": "2344e576-78d1-4f03-a938-9dfbc2105af0",
+                "meta": {
+                    "versionId": "2",
+                    "lastUpdated": "2019-06-05T03:00:05.153-04:00",
+                    "tag": [
+                        {
+                            "system": "https://smarthealthit.org/tags",
+                            "code": "synthea-5-2019"
+                        }
+                    ]
+                },
+                "status": "final",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                                "code": "vital-signs",
+                                "display": "vital-signs"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "8331-1",
+                            "display": "Oral temperature"
+                        }
+                    ],
+                    "text": "Oral temperature"
+                },
+                "subject": {
+                    "reference": "Patient/fc200fa2-12c9-4276-ba4a-e0601d424e55"
+                },
+                "encounter": {
+                    "reference": "Encounter/3390f97e-5242-47dc-90a0-8c7d7c338ab0"
+                },
+                "effectiveDateTime": "2018-10-23T00:38:16-04:00",
+                "issued": "2018-10-23T00:38:16.610-04:00",
+                "valueQuantity": {
+                    "value": 39.10709401761354,
+                    "unit": "Cel",
+                    "system": "http://unitsofmeasure.org",
+                    "code": "Cel"
+                }
+            },
+            "search": {
+                "mode": "match"
+            },
+            "response": {
+                "status": "200 OK",
+                "etag": "W/\"2\""
+            }
+        },
+        {
+            "fullUrl": "https://launch.smarthealthit.org/v/r4/fhir/Observation/33f74561-e5a3-4b6c-b3cd-456736b0f2f1",
+            "resource": {
+                "resourceType": "Observation",
+                "id": "33f74561-e5a3-4b6c-b3cd-456736b0f2f1",
+                "meta": {
+                    "versionId": "2",
+                    "lastUpdated": "2019-06-05T02:59:54.076-04:00",
+                    "tag": [
+                        {
+                            "system": "https://smarthealthit.org/tags",
+                            "code": "synthea-5-2019"
+                        }
+                    ]
+                },
+                "status": "final",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                                "code": "vital-signs",
+                                "display": "vital-signs"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "72514-3",
+                            "display": "Pain severity - 0-10 verbal numeric rating [Score] - Reported"
+                        }
+                    ],
+                    "text": "Pain severity - 0-10 verbal numeric rating [Score] - Reported"
+                },
+                "subject": {
+                    "reference": "Patient/fc200fa2-12c9-4276-ba4a-e0601d424e55"
+                },
+                "encounter": {
+                    "reference": "Encounter/8e78bef7-9e26-4d85-879e-d9c49fe6ea91"
+                },
+                "effectiveDateTime": "2019-01-17T23:38:16-05:00",
+                "issued": "2019-01-17T23:38:16.610-05:00",
+                "valueQuantity": {
+                    "value": 0.011846307372095577,
+                    "unit": "{score}",
+                    "system": "http://unitsofmeasure.org",
+                    "code": "{score}"
+                }
+            },
+            "search": {
+                "mode": "match"
+            },
+            "response": {
+                "status": "200 OK",
+                "etag": "W/\"2\""
+            }
+        },
+        {
+            "fullUrl": "https://launch.smarthealthit.org/v/r4/fhir/Observation/343fea2e-4f4d-446c-86a0-c6a33b41f120",
+            "resource": {
+                "resourceType": "Observation",
+                "id": "343fea2e-4f4d-446c-86a0-c6a33b41f120",
+                "meta": {
+                    "versionId": "2",
+                    "lastUpdated": "2019-06-05T02:59:43.161-04:00",
+                    "tag": [
+                        {
+                            "system": "https://smarthealthit.org/tags",
+                            "code": "synthea-5-2019"
+                        }
+                    ]
+                },
+                "status": "final",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                                "code": "vital-signs",
+                                "display": "vital-signs"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "55284-4",
+                            "display": "Blood Pressure"
+                        }
+                    ],
+                    "text": "Blood Pressure"
+                },
+                "subject": {
+                    "reference": "Patient/fc200fa2-12c9-4276-ba4a-e0601d424e55"
+                },
+                "encounter": {
+                    "reference": "Encounter/5e2082a7-02ab-4669-98b1-b40d1789cd9e"
+                },
+                "effectiveDateTime": "2017-11-16T23:38:16-05:00",
+                "issued": "2017-11-16T23:38:16.610-05:00",
+                "component": [
+                    {
+                        "code": {
+                            "coding": [
+                                {
+                                    "system": "http://loinc.org",
+                                    "code": "8462-4",
+                                    "display": "Diastolic Blood Pressure"
+                                }
+                            ],
+                            "text": "Diastolic Blood Pressure"
+                        },
+                        "valueQuantity": {
+                            "value": 72.97027398116414,
+                            "unit": "mm[Hg]",
+                            "system": "http://unitsofmeasure.org",
+                            "code": "mm[Hg]"
+                        }
+                    },
+                    {
+                        "code": {
+                            "coding": [
+                                {
+                                    "system": "http://loinc.org",
+                                    "code": "8480-6",
+                                    "display": "Systolic Blood Pressure"
+                                }
+                            ],
+                            "text": "Systolic Blood Pressure"
+                        },
+                        "valueQuantity": {
+                            "value": 119.3398556852165,
+                            "unit": "mm[Hg]",
+                            "system": "http://unitsofmeasure.org",
+                            "code": "mm[Hg]"
+                        }
+                    }
+                ]
+            },
+            "search": {
+                "mode": "match"
+            },
+            "response": {
+                "status": "200 OK",
+                "etag": "W/\"2\""
+            }
+        },
+        {
+            "fullUrl": "https://launch.smarthealthit.org/v/r4/fhir/Observation/ee1cc5a6-c829-4108-98b3-7d0e81418fe4",
+            "resource": {
+                "resourceType": "Observation",
+                "id": "ee1cc5a6-c829-4108-98b3-7d0e81418fe4",
+                "meta": {
+                    "versionId": "2",
+                    "lastUpdated": "2019-06-05T02:59:42.518-04:00",
+                    "tag": [
+                        {
+                            "system": "https://smarthealthit.org/tags",
+                            "code": "synthea-5-2019"
+                        }
+                    ]
+                },
+                "status": "final",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                                "code": "survey",
+                                "display": "survey"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "72166-2",
+                            "display": "Tobacco smoking status NHIS"
+                        }
+                    ],
+                    "text": "Tobacco smoking status NHIS"
+                },
+                "subject": {
+                    "reference": "Patient/fc200fa2-12c9-4276-ba4a-e0601d424e55"
+                },
+                "encounter": {
+                    "reference": "Encounter/5e2082a7-02ab-4669-98b1-b40d1789cd9e"
+                },
+                "effectiveDateTime": "2017-11-16T23:38:16-05:00",
+                "issued": "2017-11-16T23:38:16.610-05:00",
+                "valueCodeableConcept": {
+                    "coding": [
+                        {
+                            "system": "http://snomed.info/sct",
+                            "code": "266919005",
+                            "display": "Never smoker"
+                        }
+                    ],
+                    "text": "Never smoker"
+                }
+            },
+            "search": {
+                "mode": "match"
+            },
+            "response": {
+                "status": "200 OK",
+                "etag": "W/\"2\""
+            }
+        },
+        {
+            "fullUrl": "https://launch.smarthealthit.org/v/r4/fhir/Observation/8b85e500-7f26-43bf-bc3c-8ee97c3d667c",
+            "resource": {
+                "resourceType": "Observation",
+                "id": "8b85e500-7f26-43bf-bc3c-8ee97c3d667c",
+                "meta": {
+                    "versionId": "2",
+                    "lastUpdated": "2019-06-05T02:59:32.513-04:00",
+                    "tag": [
+                        {
+                            "system": "https://smarthealthit.org/tags",
+                            "code": "synthea-5-2019"
+                        }
+                    ]
+                },
+                "status": "final",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                                "code": "vital-signs",
+                                "display": "vital-signs"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "72514-3",
+                            "display": "Pain severity - 0-10 verbal numeric rating [Score] - Reported"
+                        }
+                    ],
+                    "text": "Pain severity - 0-10 verbal numeric rating [Score] - Reported"
+                },
+                "subject": {
+                    "reference": "Patient/fc200fa2-12c9-4276-ba4a-e0601d424e55"
+                },
+                "encounter": {
+                    "reference": "Encounter/ed101927-96af-46a0-b153-8f9b92fd952f"
+                },
+                "effectiveDateTime": "2018-04-20T00:38:16-04:00",
+                "issued": "2018-04-20T00:38:16.610-04:00",
+                "valueQuantity": {
+                    "value": 0.4677415459788641,
+                    "unit": "{score}",
+                    "system": "http://unitsofmeasure.org",
+                    "code": "{score}"
+                }
+            },
+            "search": {
+                "mode": "match"
+            },
+            "response": {
+                "status": "200 OK",
+                "etag": "W/\"2\""
+            }
+        },
+        {
+            "fullUrl": "https://launch.smarthealthit.org/v/r4/fhir/Observation/6240f785-7254-40b2-85c8-38bdc17b7456",
+            "resource": {
+                "resourceType": "Observation",
+                "id": "6240f785-7254-40b2-85c8-38bdc17b7456",
+                "meta": {
+                    "versionId": "2",
+                    "lastUpdated": "2019-06-05T02:59:20.273-04:00",
+                    "tag": [
+                        {
+                            "system": "https://smarthealthit.org/tags",
+                            "code": "synthea-5-2019"
+                        }
+                    ]
+                },
+                "status": "final",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                                "code": "vital-signs",
+                                "display": "vital-signs"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "72514-3",
+                            "display": "Pain severity - 0-10 verbal numeric rating [Score] - Reported"
+                        }
+                    ],
+                    "text": "Pain severity - 0-10 verbal numeric rating [Score] - Reported"
+                },
+                "subject": {
+                    "reference": "Patient/fc200fa2-12c9-4276-ba4a-e0601d424e55"
+                },
+                "encounter": {
+                    "reference": "Encounter/543fdc65-2e1a-408d-9d76-115de873201d"
+                },
+                "effectiveDateTime": "2018-07-20T00:38:16-04:00",
+                "issued": "2018-07-20T00:38:16.610-04:00",
+                "valueQuantity": {
+                    "value": 0.3215239314110385,
+                    "unit": "{score}",
+                    "system": "http://unitsofmeasure.org",
+                    "code": "{score}"
+                }
+            },
+            "search": {
+                "mode": "match"
+            },
+            "response": {
+                "status": "200 OK",
+                "etag": "W/\"2\""
+            }
+        },
+        {
+            "fullUrl": "https://launch.smarthealthit.org/v/r4/fhir/Observation/ffde8d8f-438b-49cb-afac-c5b1d46807ba",
+            "resource": {
+                "resourceType": "Observation",
+                "id": "ffde8d8f-438b-49cb-afac-c5b1d46807ba",
+                "meta": {
+                    "versionId": "2",
+                    "lastUpdated": "2019-06-05T02:59:09.156-04:00",
+                    "tag": [
+                        {
+                            "system": "https://smarthealthit.org/tags",
+                            "code": "synthea-5-2019"
+                        }
+                    ]
+                },
+                "status": "final",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                                "code": "vital-signs",
+                                "display": "vital-signs"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "8302-2",
+                            "display": "Body Height"
+                        }
+                    ],
+                    "text": "Body Height"
+                },
+                "subject": {
+                    "reference": "Patient/fc200fa2-12c9-4276-ba4a-e0601d424e55"
+                },
+                "encounter": {
+                    "reference": "Encounter/543fdc65-2e1a-408d-9d76-115de873201d"
+                },
+                "effectiveDateTime": "2018-07-20T00:38:16-04:00",
+                "issued": "2018-07-20T00:38:16.610-04:00",
+                "valueQuantity": {
+                    "value": 78.07849046372607,
+                    "unit": "cm",
+                    "system": "http://unitsofmeasure.org",
+                    "code": "cm"
+                }
+            },
+            "search": {
+                "mode": "match"
+            },
+            "response": {
+                "status": "200 OK",
+                "etag": "W/\"2\""
+            }
+        },
+        {
+            "fullUrl": "https://launch.smarthealthit.org/v/r4/fhir/Observation/5dd013eb-1571-4a9a-b8fe-5266fcb2f33d",
+            "resource": {
+                "resourceType": "Observation",
+                "id": "5dd013eb-1571-4a9a-b8fe-5266fcb2f33d",
+                "meta": {
+                    "versionId": "2",
+                    "lastUpdated": "2019-06-05T02:59:03.013-04:00",
+                    "tag": [
+                        {
+                            "system": "https://smarthealthit.org/tags",
+                            "code": "synthea-5-2019"
+                        }
+                    ]
+                },
+                "status": "final",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                                "code": "survey",
+                                "display": "survey"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "72166-2",
+                            "display": "Tobacco smoking status NHIS"
+                        }
+                    ],
+                    "text": "Tobacco smoking status NHIS"
+                },
+                "subject": {
+                    "reference": "Patient/fc200fa2-12c9-4276-ba4a-e0601d424e55"
+                },
+                "encounter": {
+                    "reference": "Encounter/5f204a2c-d5c4-417a-a67e-eafef0270456"
+                },
+                "effectiveDateTime": "2018-01-18T23:38:16-05:00",
+                "issued": "2018-01-18T23:38:16.610-05:00",
+                "valueCodeableConcept": {
+                    "coding": [
+                        {
+                            "system": "http://snomed.info/sct",
+                            "code": "266919005",
+                            "display": "Never smoker"
+                        }
+                    ],
+                    "text": "Never smoker"
+                }
+            },
+            "search": {
+                "mode": "match"
+            },
+            "response": {
+                "status": "200 OK",
+                "etag": "W/\"2\""
+            }
+        },
+        {
+            "fullUrl": "https://launch.smarthealthit.org/v/r4/fhir/Observation/960e05a0-3c7f-4183-9a74-4c666eaaef1d",
+            "resource": {
+                "resourceType": "Observation",
+                "id": "960e05a0-3c7f-4183-9a74-4c666eaaef1d",
+                "meta": {
+                    "versionId": "2",
+                    "lastUpdated": "2019-06-05T02:58:56.660-04:00",
+                    "tag": [
+                        {
+                            "system": "https://smarthealthit.org/tags",
+                            "code": "synthea-5-2019"
+                        }
+                    ]
+                },
+                "status": "final",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                                "code": "survey",
+                                "display": "survey"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "72166-2",
+                            "display": "Tobacco smoking status NHIS"
+                        }
+                    ],
+                    "text": "Tobacco smoking status NHIS"
+                },
+                "subject": {
+                    "reference": "Patient/fc200fa2-12c9-4276-ba4a-e0601d424e55"
+                },
+                "encounter": {
+                    "reference": "Encounter/0e9fa186-0480-432c-97e2-fd6bd5969a49"
+                },
+                "effectiveDateTime": "2017-08-11T00:38:16-04:00",
+                "issued": "2017-08-11T00:38:16.610-04:00",
+                "valueCodeableConcept": {
+                    "coding": [
+                        {
+                            "system": "http://snomed.info/sct",
+                            "code": "266919005",
+                            "display": "Never smoker"
+                        }
+                    ],
+                    "text": "Never smoker"
+                }
+            },
+            "search": {
+                "mode": "match"
+            },
+            "response": {
+                "status": "200 OK",
+                "etag": "W/\"2\""
+            }
+        },
+        {
+            "fullUrl": "https://launch.smarthealthit.org/v/r4/fhir/Observation/9f733df9-dee3-4891-a74e-3803de1d4d03",
+            "resource": {
+                "resourceType": "Observation",
+                "id": "9f733df9-dee3-4891-a74e-3803de1d4d03",
+                "meta": {
+                    "versionId": "2",
+                    "lastUpdated": "2019-06-05T02:58:55.415-04:00",
+                    "tag": [
+                        {
+                            "system": "https://smarthealthit.org/tags",
+                            "code": "synthea-5-2019"
+                        }
+                    ]
+                },
+                "status": "final",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                                "code": "survey",
+                                "display": "survey"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "72166-2",
+                            "display": "Tobacco smoking status NHIS"
+                        }
+                    ],
+                    "text": "Tobacco smoking status NHIS"
+                },
+                "subject": {
+                    "reference": "Patient/fc200fa2-12c9-4276-ba4a-e0601d424e55"
+                },
+                "encounter": {
+                    "reference": "Encounter/1d46ce8f-ac44-4d62-8d8c-613cb93a1b27"
+                },
+                "effectiveDateTime": "2017-09-15T00:38:16-04:00",
+                "issued": "2017-09-15T00:38:16.610-04:00",
+                "valueCodeableConcept": {
+                    "coding": [
+                        {
+                            "system": "http://snomed.info/sct",
+                            "code": "266919005",
+                            "display": "Never smoker"
+                        }
+                    ],
+                    "text": "Never smoker"
+                }
+            },
+            "search": {
+                "mode": "match"
+            },
+            "response": {
+                "status": "200 OK",
+                "etag": "W/\"2\""
+            }
+        },
+        {
+            "fullUrl": "https://launch.smarthealthit.org/v/r4/fhir/Observation/1ddc5a2b-5da3-4e48-b5d6-d5e88ea353a1",
+            "resource": {
+                "resourceType": "Observation",
+                "id": "1ddc5a2b-5da3-4e48-b5d6-d5e88ea353a1",
+                "meta": {
+                    "versionId": "2",
+                    "lastUpdated": "2019-06-05T02:58:48.531-04:00",
+                    "tag": [
+                        {
+                            "system": "https://smarthealthit.org/tags",
+                            "code": "synthea-5-2019"
+                        }
+                    ]
+                },
+                "status": "final",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                                "code": "vital-signs",
+                                "display": "vital-signs"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "8302-2",
+                            "display": "Body Height"
+                        }
+                    ],
+                    "text": "Body Height"
+                },
+                "subject": {
+                    "reference": "Patient/fc200fa2-12c9-4276-ba4a-e0601d424e55"
+                },
+                "encounter": {
+                    "reference": "Encounter/7891daa5-e476-41bb-8b25-12defcecbe8f"
+                },
+                "effectiveDateTime": "2018-10-19T00:38:16-04:00",
+                "issued": "2018-10-19T00:38:16.610-04:00",
+                "valueQuantity": {
+                    "value": 81.66447177910041,
+                    "unit": "cm",
+                    "system": "http://unitsofmeasure.org",
+                    "code": "cm"
+                }
+            },
+            "search": {
+                "mode": "match"
+            },
+            "response": {
+                "status": "200 OK",
+                "etag": "W/\"2\""
+            }
+        },
+        {
+            "fullUrl": "https://launch.smarthealthit.org/v/r4/fhir/Observation/99a11087-4bfb-41d1-9c01-224ab0e569ba",
+            "resource": {
+                "resourceType": "Observation",
+                "id": "99a11087-4bfb-41d1-9c01-224ab0e569ba",
+                "meta": {
+                    "versionId": "2",
+                    "lastUpdated": "2019-06-05T02:58:27.108-04:00",
+                    "tag": [
+                        {
+                            "system": "https://smarthealthit.org/tags",
+                            "code": "synthea-5-2019"
+                        }
+                    ]
+                },
+                "status": "final",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                                "code": "survey",
+                                "display": "survey"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "72166-2",
+                            "display": "Tobacco smoking status NHIS"
+                        }
+                    ],
+                    "text": "Tobacco smoking status NHIS"
+                },
+                "subject": {
+                    "reference": "Patient/fc200fa2-12c9-4276-ba4a-e0601d424e55"
+                },
+                "encounter": {
+                    "reference": "Encounter/8e78bef7-9e26-4d85-879e-d9c49fe6ea91"
+                },
+                "effectiveDateTime": "2019-01-17T23:38:16-05:00",
+                "issued": "2019-01-17T23:38:16.610-05:00",
+                "valueCodeableConcept": {
+                    "coding": [
+                        {
+                            "system": "http://snomed.info/sct",
+                            "code": "266919005",
+                            "display": "Never smoker"
+                        }
+                    ],
+                    "text": "Never smoker"
+                }
+            },
+            "search": {
+                "mode": "match"
+            },
+            "response": {
+                "status": "200 OK",
+                "etag": "W/\"2\""
+            }
+        },
+        {
+            "fullUrl": "https://launch.smarthealthit.org/v/r4/fhir/Observation/79124bf2-bfdc-4e3d-9a77-b90588b01f15",
+            "resource": {
+                "resourceType": "Observation",
+                "id": "79124bf2-bfdc-4e3d-9a77-b90588b01f15",
+                "meta": {
+                    "versionId": "2",
+                    "lastUpdated": "2019-06-05T02:58:11.593-04:00",
+                    "tag": [
+                        {
+                            "system": "https://smarthealthit.org/tags",
+                            "code": "synthea-5-2019"
+                        }
+                    ]
+                },
+                "status": "final",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                                "code": "vital-signs",
+                                "display": "vital-signs"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "55284-4",
+                            "display": "Blood Pressure"
+                        }
+                    ],
+                    "text": "Blood Pressure"
+                },
+                "subject": {
+                    "reference": "Patient/fc200fa2-12c9-4276-ba4a-e0601d424e55"
+                },
+                "encounter": {
+                    "reference": "Encounter/8e78bef7-9e26-4d85-879e-d9c49fe6ea91"
+                },
+                "effectiveDateTime": "2019-01-17T23:38:16-05:00",
+                "issued": "2019-01-17T23:38:16.610-05:00",
+                "component": [
+                    {
+                        "code": {
+                            "coding": [
+                                {
+                                    "system": "http://loinc.org",
+                                    "code": "8462-4",
+                                    "display": "Diastolic Blood Pressure"
+                                }
+                            ],
+                            "text": "Diastolic Blood Pressure"
+                        },
+                        "valueQuantity": {
+                            "value": 82.58847791583042,
+                            "unit": "mm[Hg]",
+                            "system": "http://unitsofmeasure.org",
+                            "code": "mm[Hg]"
+                        }
+                    },
+                    {
+                        "code": {
+                            "coding": [
+                                {
+                                    "system": "http://loinc.org",
+                                    "code": "8480-6",
+                                    "display": "Systolic Blood Pressure"
+                                }
+                            ],
+                            "text": "Systolic Blood Pressure"
+                        },
+                        "valueQuantity": {
+                            "value": 115.96208964219171,
+                            "unit": "mm[Hg]",
+                            "system": "http://unitsofmeasure.org",
+                            "code": "mm[Hg]"
+                        }
+                    }
+                ]
+            },
+            "search": {
+                "mode": "match"
+            },
+            "response": {
+                "status": "200 OK",
+                "etag": "W/\"2\""
+            }
+        },
+        {
+            "fullUrl": "https://launch.smarthealthit.org/v/r4/fhir/Observation/6aff855c-f0bb-4df8-967f-1c12707fa133",
+            "resource": {
+                "resourceType": "Observation",
+                "id": "6aff855c-f0bb-4df8-967f-1c12707fa133",
+                "meta": {
+                    "versionId": "2",
+                    "lastUpdated": "2019-06-05T02:58:04.953-04:00",
+                    "tag": [
+                        {
+                            "system": "https://smarthealthit.org/tags",
+                            "code": "synthea-5-2019"
+                        }
+                    ]
+                },
+                "status": "final",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                                "code": "vital-signs",
+                                "display": "vital-signs"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "72514-3",
+                            "display": "Pain severity - 0-10 verbal numeric rating [Score] - Reported"
+                        }
+                    ],
+                    "text": "Pain severity - 0-10 verbal numeric rating [Score] - Reported"
+                },
+                "subject": {
+                    "reference": "Patient/fc200fa2-12c9-4276-ba4a-e0601d424e55"
+                },
+                "encounter": {
+                    "reference": "Encounter/7891daa5-e476-41bb-8b25-12defcecbe8f"
+                },
+                "effectiveDateTime": "2018-10-19T00:38:16-04:00",
+                "issued": "2018-10-19T00:38:16.610-04:00",
+                "valueQuantity": {
+                    "value": 3.6355882970375997,
+                    "unit": "{score}",
+                    "system": "http://unitsofmeasure.org",
+                    "code": "{score}"
+                }
+            },
+            "search": {
+                "mode": "match"
+            },
+            "response": {
+                "status": "200 OK",
+                "etag": "W/\"2\""
+            }
+        },
+        {
+            "fullUrl": "https://launch.smarthealthit.org/v/r4/fhir/Observation/7cc2e960-7dc3-4c48-a9a5-4f77a4f332f7",
+            "resource": {
+                "resourceType": "Observation",
+                "id": "7cc2e960-7dc3-4c48-a9a5-4f77a4f332f7",
+                "meta": {
+                    "versionId": "2",
+                    "lastUpdated": "2019-06-05T02:57:53.301-04:00",
+                    "tag": [
+                        {
+                            "system": "https://smarthealthit.org/tags",
+                            "code": "synthea-5-2019"
+                        }
+                    ]
+                },
+                "status": "final",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                                "code": "vital-signs",
+                                "display": "vital-signs"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "8302-2",
+                            "display": "Body Height"
+                        }
+                    ],
+                    "text": "Body Height"
+                },
+                "subject": {
+                    "reference": "Patient/fc200fa2-12c9-4276-ba4a-e0601d424e55"
+                },
+                "encounter": {
+                    "reference": "Encounter/1d46ce8f-ac44-4d62-8d8c-613cb93a1b27"
+                },
+                "effectiveDateTime": "2017-09-15T00:38:16-04:00",
+                "issued": "2017-09-15T00:38:16.610-04:00",
+                "valueQuantity": {
+                    "value": 55.421822547204336,
+                    "unit": "cm",
+                    "system": "http://unitsofmeasure.org",
+                    "code": "cm"
+                }
+            },
+            "search": {
+                "mode": "match"
+            },
+            "response": {
+                "status": "200 OK",
+                "etag": "W/\"2\""
+            }
+        },
+        {
+            "fullUrl": "https://launch.smarthealthit.org/v/r4/fhir/Observation/0e80210b-0576-4ea0-b0b4-317a51d1c25c",
+            "resource": {
+                "resourceType": "Observation",
+                "id": "0e80210b-0576-4ea0-b0b4-317a51d1c25c",
+                "meta": {
+                    "versionId": "2",
+                    "lastUpdated": "2019-06-05T02:57:47.680-04:00",
+                    "tag": [
+                        {
+                            "system": "https://smarthealthit.org/tags",
+                            "code": "synthea-5-2019"
+                        }
+                    ]
+                },
+                "status": "final",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                                "code": "vital-signs",
+                                "display": "vital-signs"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "8302-2",
+                            "display": "Body Height"
+                        }
+                    ],
+                    "text": "Body Height"
+                },
+                "subject": {
+                    "reference": "Patient/fc200fa2-12c9-4276-ba4a-e0601d424e55"
+                },
+                "encounter": {
+                    "reference": "Encounter/5e2082a7-02ab-4669-98b1-b40d1789cd9e"
+                },
+                "effectiveDateTime": "2017-11-16T23:38:16-05:00",
+                "issued": "2017-11-16T23:38:16.610-05:00",
+                "valueQuantity": {
+                    "value": 62.34230796132067,
+                    "unit": "cm",
+                    "system": "http://unitsofmeasure.org",
+                    "code": "cm"
+                }
+            },
+            "search": {
+                "mode": "match"
+            },
+            "response": {
+                "status": "200 OK",
+                "etag": "W/\"2\""
+            }
+        },
+        {
+            "fullUrl": "https://launch.smarthealthit.org/v/r4/fhir/Observation/60cf4b30-4715-4293-8079-6574ebfd1f87",
+            "resource": {
+                "resourceType": "Observation",
+                "id": "60cf4b30-4715-4293-8079-6574ebfd1f87",
+                "meta": {
+                    "versionId": "2",
+                    "lastUpdated": "2019-06-05T02:57:42.596-04:00",
+                    "tag": [
+                        {
+                            "system": "https://smarthealthit.org/tags",
+                            "code": "synthea-5-2019"
+                        }
+                    ]
+                },
+                "status": "final",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                                "code": "vital-signs",
+                                "display": "vital-signs"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "72514-3",
+                            "display": "Pain severity - 0-10 verbal numeric rating [Score] - Reported"
+                        }
+                    ],
+                    "text": "Pain severity - 0-10 verbal numeric rating [Score] - Reported"
+                },
+                "subject": {
+                    "reference": "Patient/fc200fa2-12c9-4276-ba4a-e0601d424e55"
+                },
+                "encounter": {
+                    "reference": "Encounter/5f204a2c-d5c4-417a-a67e-eafef0270456"
+                },
+                "effectiveDateTime": "2018-01-18T23:38:16-05:00",
+                "issued": "2018-01-18T23:38:16.610-05:00",
+                "valueQuantity": {
+                    "value": 0.1287982216737431,
+                    "unit": "{score}",
+                    "system": "http://unitsofmeasure.org",
+                    "code": "{score}"
+                }
+            },
+            "search": {
+                "mode": "match"
+            },
+            "response": {
+                "status": "200 OK",
+                "etag": "W/\"2\""
+            }
+        },
+        {
+            "fullUrl": "https://launch.smarthealthit.org/v/r4/fhir/Observation/f8e886ad-ca39-4cac-b11f-bbb76684457d",
+            "resource": {
+                "resourceType": "Observation",
+                "id": "f8e886ad-ca39-4cac-b11f-bbb76684457d",
+                "meta": {
+                    "versionId": "2",
+                    "lastUpdated": "2019-06-05T02:57:24.225-04:00",
+                    "tag": [
+                        {
+                            "system": "https://smarthealthit.org/tags",
+                            "code": "synthea-5-2019"
+                        }
+                    ]
+                },
+                "status": "final",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                                "code": "vital-signs",
+                                "display": "vital-signs"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "55284-4",
+                            "display": "Blood Pressure"
+                        }
+                    ],
+                    "text": "Blood Pressure"
+                },
+                "subject": {
+                    "reference": "Patient/fc200fa2-12c9-4276-ba4a-e0601d424e55"
+                },
+                "encounter": {
+                    "reference": "Encounter/7891daa5-e476-41bb-8b25-12defcecbe8f"
+                },
+                "effectiveDateTime": "2018-10-19T00:38:16-04:00",
+                "issued": "2018-10-19T00:38:16.610-04:00",
+                "component": [
+                    {
+                        "code": {
+                            "coding": [
+                                {
+                                    "system": "http://loinc.org",
+                                    "code": "8462-4",
+                                    "display": "Diastolic Blood Pressure"
+                                }
+                            ],
+                            "text": "Diastolic Blood Pressure"
+                        },
+                        "valueQuantity": {
+                            "value": 83.38505648393489,
+                            "unit": "mm[Hg]",
+                            "system": "http://unitsofmeasure.org",
+                            "code": "mm[Hg]"
+                        }
+                    },
+                    {
+                        "code": {
+                            "coding": [
+                                {
+                                    "system": "http://loinc.org",
+                                    "code": "8480-6",
+                                    "display": "Systolic Blood Pressure"
+                                }
+                            ],
+                            "text": "Systolic Blood Pressure"
+                        },
+                        "valueQuantity": {
+                            "value": 115.62049847186736,
+                            "unit": "mm[Hg]",
+                            "system": "http://unitsofmeasure.org",
+                            "code": "mm[Hg]"
+                        }
+                    }
+                ]
+            },
+            "search": {
+                "mode": "match"
+            },
+            "response": {
+                "status": "200 OK",
+                "etag": "W/\"2\""
+            }
+        },
+        {
+            "fullUrl": "https://launch.smarthealthit.org/v/r4/fhir/Observation/77192b89-7bfa-4f50-9084-f2a35ebcbfcf",
+            "resource": {
+                "resourceType": "Observation",
+                "id": "77192b89-7bfa-4f50-9084-f2a35ebcbfcf",
+                "meta": {
+                    "versionId": "7",
+                    "lastUpdated": "2020-09-28T02:58:08.340-04:00",
+                    "tag": [
+                        {
+                            "system": "https://smarthealthit.org/tags",
+                            "code": "synthea-5-2019"
+                        }
+                    ]
+                },
+                "status": "final",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                                "code": "vital-signs",
+                                "display": "vital-signs"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "29463-7",
+                            "display": "Body Weight"
+                        }
+                    ],
+                    "text": "Body Weight"
+                },
+                "subject": {
+                    "reference": "Patient/fc200fa2-12c9-4276-ba4a-e0601d424e55"
+                },
+                "encounter": {
+                    "reference": "Encounter/5e2082a7-02ab-4669-98b1-b40d1789cd9e"
+                },
+                "effectiveDateTime": "2017-11-16T23:38:16-05:00",
+                "issued": "2017-11-16T23:38:16.610-05:00",
+                "valueQuantity": {
+                    "value": 5.059431486603857,
+                    "unit": "kg",
+                    "system": "http://unitsofmeasure.org",
+                    "code": "kg"
+                }
+            },
+            "search": {
+                "mode": "match"
+            },
+            "response": {
+                "status": "200 OK",
+                "etag": "W/\"7\""
+            }
+        },
+        {
+            "fullUrl": "https://launch.smarthealthit.org/v/r4/fhir/Observation/2f05686e-615d-4c49-bd34-e538089ea488",
+            "resource": {
+                "resourceType": "Observation",
+                "id": "2f05686e-615d-4c49-bd34-e538089ea488",
+                "meta": {
+                    "versionId": "2",
+                    "lastUpdated": "2019-06-05T02:57:02.697-04:00",
+                    "tag": [
+                        {
+                            "system": "https://smarthealthit.org/tags",
+                            "code": "synthea-5-2019"
+                        }
+                    ]
+                },
+                "status": "final",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                                "code": "vital-signs",
+                                "display": "vital-signs"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "8302-2",
+                            "display": "Body Height"
+                        }
+                    ],
+                    "text": "Body Height"
+                },
+                "subject": {
+                    "reference": "Patient/fc200fa2-12c9-4276-ba4a-e0601d424e55"
+                },
+                "encounter": {
+                    "reference": "Encounter/5f204a2c-d5c4-417a-a67e-eafef0270456"
+                },
+                "effectiveDateTime": "2018-01-18T23:38:16-05:00",
+                "issued": "2018-01-18T23:38:16.610-05:00",
+                "valueQuantity": {
+                    "value": 68.98565459600877,
+                    "unit": "cm",
+                    "system": "http://unitsofmeasure.org",
+                    "code": "cm"
+                }
+            },
+            "search": {
+                "mode": "match"
+            },
+            "response": {
+                "status": "200 OK",
+                "etag": "W/\"2\""
+            }
+        },
+        {
+            "fullUrl": "https://launch.smarthealthit.org/v/r4/fhir/Observation/785f4ac6-4404-4d4c-897f-0601377c71ed",
+            "resource": {
+                "resourceType": "Observation",
+                "id": "785f4ac6-4404-4d4c-897f-0601377c71ed",
+                "meta": {
+                    "versionId": "2",
+                    "lastUpdated": "2019-06-05T02:56:39.973-04:00",
+                    "tag": [
+                        {
+                            "system": "https://smarthealthit.org/tags",
+                            "code": "synthea-5-2019"
+                        }
+                    ]
+                },
+                "status": "final",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                                "code": "survey",
+                                "display": "survey"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "72166-2",
+                            "display": "Tobacco smoking status NHIS"
+                        }
+                    ],
+                    "text": "Tobacco smoking status NHIS"
+                },
+                "subject": {
+                    "reference": "Patient/fc200fa2-12c9-4276-ba4a-e0601d424e55"
+                },
+                "encounter": {
+                    "reference": "Encounter/7891daa5-e476-41bb-8b25-12defcecbe8f"
+                },
+                "effectiveDateTime": "2018-10-19T00:38:16-04:00",
+                "issued": "2018-10-19T00:38:16.610-04:00",
+                "valueCodeableConcept": {
+                    "coding": [
+                        {
+                            "system": "http://snomed.info/sct",
+                            "code": "266919005",
+                            "display": "Never smoker"
+                        }
+                    ],
+                    "text": "Never smoker"
+                }
+            },
+            "search": {
+                "mode": "match"
+            },
+            "response": {
+                "status": "200 OK",
+                "etag": "W/\"2\""
+            }
+        },
+        {
+            "fullUrl": "https://launch.smarthealthit.org/v/r4/fhir/Observation/0e4f4465-c5e3-4db4-94d8-31ce5e16dea6",
+            "resource": {
+                "resourceType": "Observation",
+                "id": "0e4f4465-c5e3-4db4-94d8-31ce5e16dea6",
+                "meta": {
+                    "versionId": "2",
+                    "lastUpdated": "2019-06-05T02:56:25.747-04:00",
+                    "tag": [
+                        {
+                            "system": "https://smarthealthit.org/tags",
+                            "code": "synthea-5-2019"
+                        }
+                    ]
+                },
+                "status": "final",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                                "code": "vital-signs",
+                                "display": "vital-signs"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "29463-7",
+                            "display": "Body Weight"
+                        }
+                    ],
+                    "text": "Body Weight"
+                },
+                "subject": {
+                    "reference": "Patient/fc200fa2-12c9-4276-ba4a-e0601d424e55"
+                },
+                "encounter": {
+                    "reference": "Encounter/5f204a2c-d5c4-417a-a67e-eafef0270456"
+                },
+                "effectiveDateTime": "2018-01-18T23:38:16-05:00",
+                "issued": "2018-01-18T23:38:16.610-05:00",
+                "valueQuantity": {
+                    "value": 6.8993153390171145,
+                    "unit": "kg",
+                    "system": "http://unitsofmeasure.org",
+                    "code": "kg"
+                }
+            },
+            "search": {
+                "mode": "match"
+            },
+            "response": {
+                "status": "200 OK",
+                "etag": "W/\"2\""
+            }
+        },
+        {
+            "fullUrl": "https://launch.smarthealthit.org/v/r4/fhir/Observation/61853eec-fcb4-491f-a6de-269d569d836c",
+            "resource": {
+                "resourceType": "Observation",
+                "id": "61853eec-fcb4-491f-a6de-269d569d836c",
+                "meta": {
+                    "versionId": "2",
+                    "lastUpdated": "2019-06-05T02:55:59.531-04:00",
+                    "tag": [
+                        {
+                            "system": "https://smarthealthit.org/tags",
+                            "code": "synthea-5-2019"
+                        }
+                    ]
+                },
+                "status": "final",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                                "code": "vital-signs",
+                                "display": "vital-signs"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "29463-7",
+                            "display": "Body Weight"
+                        }
+                    ],
+                    "text": "Body Weight"
+                },
+                "subject": {
+                    "reference": "Patient/fc200fa2-12c9-4276-ba4a-e0601d424e55"
+                },
+                "encounter": {
+                    "reference": "Encounter/1d46ce8f-ac44-4d62-8d8c-613cb93a1b27"
+                },
+                "effectiveDateTime": "2017-09-15T00:38:16-04:00",
+                "issued": "2017-09-15T00:38:16.610-04:00",
+                "valueQuantity": {
+                    "value": 3.4887711776860453,
+                    "unit": "kg",
+                    "system": "http://unitsofmeasure.org",
+                    "code": "kg"
+                }
+            },
+            "search": {
+                "mode": "match"
+            },
+            "response": {
+                "status": "200 OK",
+                "etag": "W/\"2\""
+            }
+        },
+        {
+            "fullUrl": "https://launch.smarthealthit.org/v/r4/fhir/Observation/fea42ce8-b6e0-4afa-bc1e-619a45f96466",
+            "resource": {
+                "resourceType": "Observation",
+                "id": "fea42ce8-b6e0-4afa-bc1e-619a45f96466",
+                "meta": {
+                    "versionId": "2",
+                    "lastUpdated": "2019-06-05T02:55:57.412-04:00",
+                    "tag": [
+                        {
+                            "system": "https://smarthealthit.org/tags",
+                            "code": "synthea-5-2019"
+                        }
+                    ]
+                },
+                "status": "final",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                                "code": "survey",
+                                "display": "survey"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "72166-2",
+                            "display": "Tobacco smoking status NHIS"
+                        }
+                    ],
+                    "text": "Tobacco smoking status NHIS"
+                },
+                "subject": {
+                    "reference": "Patient/fc200fa2-12c9-4276-ba4a-e0601d424e55"
+                },
+                "encounter": {
+                    "reference": "Encounter/543fdc65-2e1a-408d-9d76-115de873201d"
+                },
+                "effectiveDateTime": "2018-07-20T00:38:16-04:00",
+                "issued": "2018-07-20T00:38:16.610-04:00",
+                "valueCodeableConcept": {
+                    "coding": [
+                        {
+                            "system": "http://snomed.info/sct",
+                            "code": "266919005",
+                            "display": "Never smoker"
+                        }
+                    ],
+                    "text": "Never smoker"
+                }
+            },
+            "search": {
+                "mode": "match"
+            },
+            "response": {
+                "status": "200 OK",
+                "etag": "W/\"2\""
+            }
+        },
+        {
+            "fullUrl": "https://launch.smarthealthit.org/v/r4/fhir/Observation/4f8935a0-f851-407d-8513-d37e5dd42e77",
+            "resource": {
+                "resourceType": "Observation",
+                "id": "4f8935a0-f851-407d-8513-d37e5dd42e77",
+                "meta": {
+                    "versionId": "2",
+                    "lastUpdated": "2019-06-05T02:55:44.232-04:00",
+                    "tag": [
+                        {
+                            "system": "https://smarthealthit.org/tags",
+                            "code": "synthea-5-2019"
+                        }
+                    ]
+                },
+                "status": "final",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                                "code": "vital-signs",
+                                "display": "vital-signs"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "55284-4",
+                            "display": "Blood Pressure"
+                        }
+                    ],
+                    "text": "Blood Pressure"
+                },
+                "subject": {
+                    "reference": "Patient/fc200fa2-12c9-4276-ba4a-e0601d424e55"
+                },
+                "encounter": {
+                    "reference": "Encounter/ed101927-96af-46a0-b153-8f9b92fd952f"
+                },
+                "effectiveDateTime": "2018-04-20T00:38:16-04:00",
+                "issued": "2018-04-20T00:38:16.610-04:00",
+                "component": [
+                    {
+                        "code": {
+                            "coding": [
+                                {
+                                    "system": "http://loinc.org",
+                                    "code": "8462-4",
+                                    "display": "Diastolic Blood Pressure"
+                                }
+                            ],
+                            "text": "Diastolic Blood Pressure"
+                        },
+                        "valueQuantity": {
+                            "value": 76.48187167742549,
+                            "unit": "mm[Hg]",
+                            "system": "http://unitsofmeasure.org",
+                            "code": "mm[Hg]"
+                        }
+                    },
+                    {
+                        "code": {
+                            "coding": [
+                                {
+                                    "system": "http://loinc.org",
+                                    "code": "8480-6",
+                                    "display": "Systolic Blood Pressure"
+                                }
+                            ],
+                            "text": "Systolic Blood Pressure"
+                        },
+                        "valueQuantity": {
+                            "value": 130.41152024014355,
+                            "unit": "mm[Hg]",
+                            "system": "http://unitsofmeasure.org",
+                            "code": "mm[Hg]"
+                        }
+                    }
+                ]
+            },
+            "search": {
+                "mode": "match"
+            },
+            "response": {
+                "status": "200 OK",
+                "etag": "W/\"2\""
+            }
+        },
+        {
+            "fullUrl": "https://launch.smarthealthit.org/v/r4/fhir/Observation/2d8d4966-0888-450d-beb7-cfe8c9575906",
+            "resource": {
+                "resourceType": "Observation",
+                "id": "2d8d4966-0888-450d-beb7-cfe8c9575906",
+                "meta": {
+                    "versionId": "2",
+                    "lastUpdated": "2019-06-05T02:55:42.687-04:00",
+                    "tag": [
+                        {
+                            "system": "https://smarthealthit.org/tags",
+                            "code": "synthea-5-2019"
+                        }
+                    ]
+                },
+                "status": "final",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                                "code": "vital-signs",
+                                "display": "vital-signs"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "55284-4",
+                            "display": "Blood Pressure"
+                        }
+                    ],
+                    "text": "Blood Pressure"
+                },
+                "subject": {
+                    "reference": "Patient/fc200fa2-12c9-4276-ba4a-e0601d424e55"
+                },
+                "encounter": {
+                    "reference": "Encounter/5f204a2c-d5c4-417a-a67e-eafef0270456"
+                },
+                "effectiveDateTime": "2018-01-18T23:38:16-05:00",
+                "issued": "2018-01-18T23:38:16.610-05:00",
+                "component": [
+                    {
+                        "code": {
+                            "coding": [
+                                {
+                                    "system": "http://loinc.org",
+                                    "code": "8462-4",
+                                    "display": "Diastolic Blood Pressure"
+                                }
+                            ],
+                            "text": "Diastolic Blood Pressure"
+                        },
+                        "valueQuantity": {
+                            "value": 74.0266533043846,
+                            "unit": "mm[Hg]",
+                            "system": "http://unitsofmeasure.org",
+                            "code": "mm[Hg]"
+                        }
+                    },
+                    {
+                        "code": {
+                            "coding": [
+                                {
+                                    "system": "http://loinc.org",
+                                    "code": "8480-6",
+                                    "display": "Systolic Blood Pressure"
+                                }
+                            ],
+                            "text": "Systolic Blood Pressure"
+                        },
+                        "valueQuantity": {
+                            "value": 109.3905674235545,
+                            "unit": "mm[Hg]",
+                            "system": "http://unitsofmeasure.org",
+                            "code": "mm[Hg]"
+                        }
+                    }
+                ]
+            },
+            "search": {
+                "mode": "match"
+            },
+            "response": {
+                "status": "200 OK",
+                "etag": "W/\"2\""
+            }
+        },
+        {
+            "fullUrl": "https://launch.smarthealthit.org/v/r4/fhir/Observation/634dcc8e-6a4d-45a4-aa76-07c231534a3b",
+            "resource": {
+                "resourceType": "Observation",
+                "id": "634dcc8e-6a4d-45a4-aa76-07c231534a3b",
+                "meta": {
+                    "versionId": "2",
+                    "lastUpdated": "2019-06-05T02:55:21.826-04:00",
+                    "tag": [
+                        {
+                            "system": "https://smarthealthit.org/tags",
+                            "code": "synthea-5-2019"
+                        }
+                    ]
+                },
+                "status": "final",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                                "code": "vital-signs",
+                                "display": "vital-signs"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "72514-3",
+                            "display": "Pain severity - 0-10 verbal numeric rating [Score] - Reported"
+                        }
+                    ],
+                    "text": "Pain severity - 0-10 verbal numeric rating [Score] - Reported"
+                },
+                "subject": {
+                    "reference": "Patient/fc200fa2-12c9-4276-ba4a-e0601d424e55"
+                },
+                "encounter": {
+                    "reference": "Encounter/5e2082a7-02ab-4669-98b1-b40d1789cd9e"
+                },
+                "effectiveDateTime": "2017-11-16T23:38:16-05:00",
+                "issued": "2017-11-16T23:38:16.610-05:00",
+                "valueQuantity": {
+                    "value": 2.338931865255631,
+                    "unit": "{score}",
+                    "system": "http://unitsofmeasure.org",
+                    "code": "{score}"
+                }
+            },
+            "search": {
+                "mode": "match"
+            },
+            "response": {
+                "status": "200 OK",
+                "etag": "W/\"2\""
+            }
+        },
+        {
+            "fullUrl": "https://launch.smarthealthit.org/v/r4/fhir/Observation/9ab8da79-87d8-4e5a-8135-4cecb48d40c1",
+            "resource": {
+                "resourceType": "Observation",
+                "id": "9ab8da79-87d8-4e5a-8135-4cecb48d40c1",
+                "meta": {
+                    "versionId": "2",
+                    "lastUpdated": "2019-06-05T02:55:21.816-04:00",
+                    "tag": [
+                        {
+                            "system": "https://smarthealthit.org/tags",
+                            "code": "synthea-5-2019"
+                        }
+                    ]
+                },
+                "status": "final",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                                "code": "vital-signs",
+                                "display": "vital-signs"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "72514-3",
+                            "display": "Pain severity - 0-10 verbal numeric rating [Score] - Reported"
+                        }
+                    ],
+                    "text": "Pain severity - 0-10 verbal numeric rating [Score] - Reported"
+                },
+                "subject": {
+                    "reference": "Patient/fc200fa2-12c9-4276-ba4a-e0601d424e55"
+                },
+                "encounter": {
+                    "reference": "Encounter/0e9fa186-0480-432c-97e2-fd6bd5969a49"
+                },
+                "effectiveDateTime": "2017-08-11T00:38:16-04:00",
+                "issued": "2017-08-11T00:38:16.610-04:00",
+                "valueQuantity": {
+                    "value": 2.2952939462848994,
+                    "unit": "{score}",
+                    "system": "http://unitsofmeasure.org",
+                    "code": "{score}"
+                }
+            },
+            "search": {
+                "mode": "match"
+            },
+            "response": {
+                "status": "200 OK",
+                "etag": "W/\"2\""
+            }
+        },
+        {
+            "fullUrl": "https://launch.smarthealthit.org/v/r4/fhir/Observation/647f487e-0c84-4904-bf8a-615b882b1395",
+            "resource": {
+                "resourceType": "Observation",
+                "id": "647f487e-0c84-4904-bf8a-615b882b1395",
+                "meta": {
+                    "versionId": "2",
+                    "lastUpdated": "2019-06-05T02:54:29.158-04:00",
+                    "tag": [
+                        {
+                            "system": "https://smarthealthit.org/tags",
+                            "code": "synthea-5-2019"
+                        }
+                    ]
+                },
+                "status": "final",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                                "code": "vital-signs",
+                                "display": "vital-signs"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "55284-4",
+                            "display": "Blood Pressure"
+                        }
+                    ],
+                    "text": "Blood Pressure"
+                },
+                "subject": {
+                    "reference": "Patient/fc200fa2-12c9-4276-ba4a-e0601d424e55"
+                },
+                "encounter": {
+                    "reference": "Encounter/0e9fa186-0480-432c-97e2-fd6bd5969a49"
+                },
+                "effectiveDateTime": "2017-08-11T00:38:16-04:00",
+                "issued": "2017-08-11T00:38:16.610-04:00",
+                "component": [
+                    {
+                        "code": {
+                            "coding": [
+                                {
+                                    "system": "http://loinc.org",
+                                    "code": "8462-4",
+                                    "display": "Diastolic Blood Pressure"
+                                }
+                            ],
+                            "text": "Diastolic Blood Pressure"
+                        },
+                        "valueQuantity": {
+                            "value": 76.54080070473562,
+                            "unit": "mm[Hg]",
+                            "system": "http://unitsofmeasure.org",
+                            "code": "mm[Hg]"
+                        }
+                    },
+                    {
+                        "code": {
+                            "coding": [
+                                {
+                                    "system": "http://loinc.org",
+                                    "code": "8480-6",
+                                    "display": "Systolic Blood Pressure"
+                                }
+                            ],
+                            "text": "Systolic Blood Pressure"
+                        },
+                        "valueQuantity": {
+                            "value": 124.034056616412,
+                            "unit": "mm[Hg]",
+                            "system": "http://unitsofmeasure.org",
+                            "code": "mm[Hg]"
+                        }
+                    }
+                ]
+            },
+            "search": {
+                "mode": "match"
+            },
+            "response": {
+                "status": "200 OK",
+                "etag": "W/\"2\""
+            }
+        },
+        {
+            "fullUrl": "https://launch.smarthealthit.org/v/r4/fhir/Observation/e0da698b-b8cb-4b80-9a5b-a43169c4010f",
+            "resource": {
+                "resourceType": "Observation",
+                "id": "e0da698b-b8cb-4b80-9a5b-a43169c4010f",
+                "meta": {
+                    "versionId": "2",
+                    "lastUpdated": "2019-06-05T02:54:18.015-04:00",
+                    "tag": [
+                        {
+                            "system": "https://smarthealthit.org/tags",
+                            "code": "synthea-5-2019"
+                        }
+                    ]
+                },
+                "status": "final",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                                "code": "laboratory",
+                                "display": "laboratory"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "32623-1",
+                            "display": "Platelet mean volume [Entitic volume] in Blood by Automated count"
+                        }
+                    ],
+                    "text": "Platelet mean volume [Entitic volume] in Blood by Automated count"
+                },
+                "subject": {
+                    "reference": "Patient/fc200fa2-12c9-4276-ba4a-e0601d424e55"
+                },
+                "encounter": {
+                    "reference": "Encounter/0e9fa186-0480-432c-97e2-fd6bd5969a49"
+                },
+                "effectiveDateTime": "2017-08-11T00:38:16-04:00",
+                "issued": "2017-08-11T00:38:16.610-04:00",
+                "valueQuantity": {
+                    "value": 11.456886980305082,
+                    "unit": "fL",
+                    "system": "http://unitsofmeasure.org",
+                    "code": "fL"
+                }
+            },
+            "search": {
+                "mode": "match"
+            },
+            "response": {
+                "status": "200 OK",
+                "etag": "W/\"2\""
+            }
+        },
+        {
+            "fullUrl": "https://launch.smarthealthit.org/v/r4/fhir/Observation/a2908d30-56ca-4585-88a2-19ad4a6b206d",
+            "resource": {
+                "resourceType": "Observation",
+                "id": "a2908d30-56ca-4585-88a2-19ad4a6b206d",
+                "meta": {
+                    "versionId": "2",
+                    "lastUpdated": "2019-06-05T02:54:17.951-04:00",
+                    "tag": [
+                        {
+                            "system": "https://smarthealthit.org/tags",
+                            "code": "synthea-5-2019"
+                        }
+                    ]
+                },
+                "status": "final",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                                "code": "laboratory",
+                                "display": "laboratory"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "32207-3",
+                            "display": "Platelet distribution width [Entitic volume] in Blood by Automated count"
+                        }
+                    ],
+                    "text": "Platelet distribution width [Entitic volume] in Blood by Automated count"
+                },
+                "subject": {
+                    "reference": "Patient/fc200fa2-12c9-4276-ba4a-e0601d424e55"
+                },
+                "encounter": {
+                    "reference": "Encounter/0e9fa186-0480-432c-97e2-fd6bd5969a49"
+                },
+                "effectiveDateTime": "2017-08-11T00:38:16-04:00",
+                "issued": "2017-08-11T00:38:16.610-04:00",
+                "valueQuantity": {
+                    "value": 282.4797122910605,
+                    "unit": "fL",
+                    "system": "http://unitsofmeasure.org",
+                    "code": "fL"
+                }
+            },
+            "search": {
+                "mode": "match"
+            },
+            "response": {
+                "status": "200 OK",
+                "etag": "W/\"2\""
+            }
+        },
+        {
+            "fullUrl": "https://launch.smarthealthit.org/v/r4/fhir/Observation/6734a77e-fffb-4f98-8b96-3a0cd084188b",
+            "resource": {
+                "resourceType": "Observation",
+                "id": "6734a77e-fffb-4f98-8b96-3a0cd084188b",
+                "meta": {
+                    "versionId": "2",
+                    "lastUpdated": "2019-06-05T02:54:17.899-04:00",
+                    "tag": [
+                        {
+                            "system": "https://smarthealthit.org/tags",
+                            "code": "synthea-5-2019"
+                        }
+                    ]
+                },
+                "status": "final",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                                "code": "laboratory",
+                                "display": "laboratory"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "777-3",
+                            "display": "Platelets [#/volume] in Blood by Automated count"
+                        }
+                    ],
+                    "text": "Platelets [#/volume] in Blood by Automated count"
+                },
+                "subject": {
+                    "reference": "Patient/fc200fa2-12c9-4276-ba4a-e0601d424e55"
+                },
+                "encounter": {
+                    "reference": "Encounter/0e9fa186-0480-432c-97e2-fd6bd5969a49"
+                },
+                "effectiveDateTime": "2017-08-11T00:38:16-04:00",
+                "issued": "2017-08-11T00:38:16.610-04:00",
+                "valueQuantity": {
+                    "value": 296.7349447254808,
+                    "unit": "10*3/uL",
+                    "system": "http://unitsofmeasure.org",
+                    "code": "10*3/uL"
+                }
+            },
+            "search": {
+                "mode": "match"
+            },
+            "response": {
+                "status": "200 OK",
+                "etag": "W/\"2\""
+            }
+        },
+        {
+            "fullUrl": "https://launch.smarthealthit.org/v/r4/fhir/Observation/c0209f48-9088-417e-ac13-59ab41c63e25",
+            "resource": {
+                "resourceType": "Observation",
+                "id": "c0209f48-9088-417e-ac13-59ab41c63e25",
+                "meta": {
+                    "versionId": "2",
+                    "lastUpdated": "2019-06-05T02:54:17.804-04:00",
+                    "tag": [
+                        {
+                            "system": "https://smarthealthit.org/tags",
+                            "code": "synthea-5-2019"
+                        }
+                    ]
+                },
+                "status": "final",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                                "code": "laboratory",
+                                "display": "laboratory"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "21000-5",
+                            "display": "Erythrocyte distribution width [Entitic volume] by Automated count"
+                        }
+                    ],
+                    "text": "Erythrocyte distribution width [Entitic volume] by Automated count"
+                },
+                "subject": {
+                    "reference": "Patient/fc200fa2-12c9-4276-ba4a-e0601d424e55"
+                },
+                "encounter": {
+                    "reference": "Encounter/0e9fa186-0480-432c-97e2-fd6bd5969a49"
+                },
+                "effectiveDateTime": "2017-08-11T00:38:16-04:00",
+                "issued": "2017-08-11T00:38:16.610-04:00",
+                "valueQuantity": {
+                    "value": 41.56821136732911,
+                    "unit": "fL",
+                    "system": "http://unitsofmeasure.org",
+                    "code": "fL"
+                }
+            },
+            "search": {
+                "mode": "match"
+            },
+            "response": {
+                "status": "200 OK",
+                "etag": "W/\"2\""
+            }
+        },
+        {
+            "fullUrl": "https://launch.smarthealthit.org/v/r4/fhir/Observation/5083fcb7-f89c-4ff9-96a8-4708cc52a5a9",
+            "resource": {
+                "resourceType": "Observation",
+                "id": "5083fcb7-f89c-4ff9-96a8-4708cc52a5a9",
+                "meta": {
+                    "versionId": "2",
+                    "lastUpdated": "2019-06-05T02:54:17.713-04:00",
+                    "tag": [
+                        {
+                            "system": "https://smarthealthit.org/tags",
+                            "code": "synthea-5-2019"
+                        }
+                    ]
+                },
+                "status": "final",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                                "code": "laboratory",
+                                "display": "laboratory"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "785-6",
+                            "display": "MCH [Entitic mass] by Automated count"
+                        }
+                    ],
+                    "text": "MCH [Entitic mass] by Automated count"
+                },
+                "subject": {
+                    "reference": "Patient/fc200fa2-12c9-4276-ba4a-e0601d424e55"
+                },
+                "encounter": {
+                    "reference": "Encounter/0e9fa186-0480-432c-97e2-fd6bd5969a49"
+                },
+                "effectiveDateTime": "2017-08-11T00:38:16-04:00",
+                "issued": "2017-08-11T00:38:16.610-04:00",
+                "valueQuantity": {
+                    "value": 29.643135719742094,
+                    "unit": "pg",
+                    "system": "http://unitsofmeasure.org",
+                    "code": "pg"
+                }
+            },
+            "search": {
+                "mode": "match"
+            },
+            "response": {
+                "status": "200 OK",
+                "etag": "W/\"2\""
+            }
+        },
+        {
+            "fullUrl": "https://launch.smarthealthit.org/v/r4/fhir/Observation/325410d6-a692-446a-81d2-9b9a5c1f53db",
+            "resource": {
+                "resourceType": "Observation",
+                "id": "325410d6-a692-446a-81d2-9b9a5c1f53db",
+                "meta": {
+                    "versionId": "2",
+                    "lastUpdated": "2019-06-05T02:54:17.611-04:00",
+                    "tag": [
+                        {
+                            "system": "https://smarthealthit.org/tags",
+                            "code": "synthea-5-2019"
+                        }
+                    ]
+                },
+                "status": "final",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                                "code": "laboratory",
+                                "display": "laboratory"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "4544-3",
+                            "display": "Hematocrit [Volume Fraction] of Blood by Automated count"
+                        }
+                    ],
+                    "text": "Hematocrit [Volume Fraction] of Blood by Automated count"
+                },
+                "subject": {
+                    "reference": "Patient/fc200fa2-12c9-4276-ba4a-e0601d424e55"
+                },
+                "encounter": {
+                    "reference": "Encounter/0e9fa186-0480-432c-97e2-fd6bd5969a49"
+                },
+                "effectiveDateTime": "2017-08-11T00:38:16-04:00",
+                "issued": "2017-08-11T00:38:16.610-04:00",
+                "valueQuantity": {
+                    "value": 43.76044441438143,
+                    "unit": "%",
+                    "system": "http://unitsofmeasure.org",
+                    "code": "%"
+                }
+            },
+            "search": {
+                "mode": "match"
+            },
+            "response": {
+                "status": "200 OK",
+                "etag": "W/\"2\""
+            }
+        },
+        {
+            "fullUrl": "https://launch.smarthealthit.org/v/r4/fhir/Observation/5db9f158-4a3a-45f5-9c7d-07168a03f5ef",
+            "resource": {
+                "resourceType": "Observation",
+                "id": "5db9f158-4a3a-45f5-9c7d-07168a03f5ef",
+                "meta": {
+                    "versionId": "2",
+                    "lastUpdated": "2019-06-05T02:54:17.537-04:00",
+                    "tag": [
+                        {
+                            "system": "https://smarthealthit.org/tags",
+                            "code": "synthea-5-2019"
+                        }
+                    ]
+                },
+                "status": "final",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                                "code": "laboratory",
+                                "display": "laboratory"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "789-8",
+                            "display": "Erythrocytes [#/volume] in Blood by Automated count"
+                        }
+                    ],
+                    "text": "Erythrocytes [#/volume] in Blood by Automated count"
+                },
+                "subject": {
+                    "reference": "Patient/fc200fa2-12c9-4276-ba4a-e0601d424e55"
+                },
+                "encounter": {
+                    "reference": "Encounter/0e9fa186-0480-432c-97e2-fd6bd5969a49"
+                },
+                "effectiveDateTime": "2017-08-11T00:38:16-04:00",
+                "issued": "2017-08-11T00:38:16.610-04:00",
+                "valueQuantity": {
+                    "value": 3.9150196454796236,
+                    "unit": "10*6/uL",
+                    "system": "http://unitsofmeasure.org",
+                    "code": "10*6/uL"
+                }
+            },
+            "search": {
+                "mode": "match"
+            },
+            "response": {
+                "status": "200 OK",
+                "etag": "W/\"2\""
+            }
+        },
+        {
+            "fullUrl": "https://launch.smarthealthit.org/v/r4/fhir/Observation/44657230-7846-4cb7-a990-04d950468ce3",
+            "resource": {
+                "resourceType": "Observation",
+                "id": "44657230-7846-4cb7-a990-04d950468ce3",
+                "meta": {
+                    "versionId": "2",
+                    "lastUpdated": "2019-06-05T02:54:08.193-04:00",
+                    "tag": [
+                        {
+                            "system": "https://smarthealthit.org/tags",
+                            "code": "synthea-5-2019"
+                        }
+                    ]
+                },
+                "status": "final",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                                "code": "laboratory",
+                                "display": "laboratory"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "786-4",
+                            "display": "MCHC [Mass/volume] by Automated count"
+                        }
+                    ],
+                    "text": "MCHC [Mass/volume] by Automated count"
+                },
+                "subject": {
+                    "reference": "Patient/fc200fa2-12c9-4276-ba4a-e0601d424e55"
+                },
+                "encounter": {
+                    "reference": "Encounter/0e9fa186-0480-432c-97e2-fd6bd5969a49"
+                },
+                "effectiveDateTime": "2017-08-11T00:38:16-04:00",
+                "issued": "2017-08-11T00:38:16.610-04:00",
+                "valueQuantity": {
+                    "value": 33.91527697007341,
+                    "unit": "g/dL",
+                    "system": "http://unitsofmeasure.org",
+                    "code": "g/dL"
+                }
+            },
+            "search": {
+                "mode": "match"
+            },
+            "response": {
+                "status": "200 OK",
+                "etag": "W/\"2\""
+            }
+        },
+        {
+            "fullUrl": "https://launch.smarthealthit.org/v/r4/fhir/Observation/0e2286a7-d3ea-4a42-8c84-a5d517e00f1b",
+            "resource": {
+                "resourceType": "Observation",
+                "id": "0e2286a7-d3ea-4a42-8c84-a5d517e00f1b",
+                "meta": {
+                    "versionId": "2",
+                    "lastUpdated": "2019-06-05T02:54:00.697-04:00",
+                    "tag": [
+                        {
+                            "system": "https://smarthealthit.org/tags",
+                            "code": "synthea-5-2019"
+                        }
+                    ]
+                },
+                "status": "final",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                                "code": "vital-signs",
+                                "display": "vital-signs"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "55284-4",
+                            "display": "Blood Pressure"
+                        }
+                    ],
+                    "text": "Blood Pressure"
+                },
+                "subject": {
+                    "reference": "Patient/fc200fa2-12c9-4276-ba4a-e0601d424e55"
+                },
+                "encounter": {
+                    "reference": "Encounter/1d46ce8f-ac44-4d62-8d8c-613cb93a1b27"
+                },
+                "effectiveDateTime": "2017-09-15T00:38:16-04:00",
+                "issued": "2017-09-15T00:38:16.610-04:00",
+                "component": [
+                    {
+                        "code": {
+                            "coding": [
+                                {
+                                    "system": "http://loinc.org",
+                                    "code": "8462-4",
+                                    "display": "Diastolic Blood Pressure"
+                                }
+                            ],
+                            "text": "Diastolic Blood Pressure"
+                        },
+                        "valueQuantity": {
+                            "value": 86.52995226321346,
+                            "unit": "mm[Hg]",
+                            "system": "http://unitsofmeasure.org",
+                            "code": "mm[Hg]"
+                        }
+                    },
+                    {
+                        "code": {
+                            "coding": [
+                                {
+                                    "system": "http://loinc.org",
+                                    "code": "8480-6",
+                                    "display": "Systolic Blood Pressure"
+                                }
+                            ],
+                            "text": "Systolic Blood Pressure"
+                        },
+                        "valueQuantity": {
+                            "value": 124.74919273857803,
+                            "unit": "mm[Hg]",
+                            "system": "http://unitsofmeasure.org",
+                            "code": "mm[Hg]"
+                        }
+                    }
+                ]
+            },
+            "search": {
+                "mode": "match"
+            },
+            "response": {
+                "status": "200 OK",
+                "etag": "W/\"2\""
+            }
+        },
+        {
+            "fullUrl": "https://launch.smarthealthit.org/v/r4/fhir/Observation/697f9dbe-9094-4bba-9050-ea6944315fa3",
+            "resource": {
+                "resourceType": "Observation",
+                "id": "697f9dbe-9094-4bba-9050-ea6944315fa3",
+                "meta": {
+                    "versionId": "2",
+                    "lastUpdated": "2019-06-05T02:54:00.597-04:00",
+                    "tag": [
+                        {
+                            "system": "https://smarthealthit.org/tags",
+                            "code": "synthea-5-2019"
+                        }
+                    ]
+                },
+                "status": "final",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                                "code": "vital-signs",
+                                "display": "vital-signs"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "72514-3",
+                            "display": "Pain severity - 0-10 verbal numeric rating [Score] - Reported"
+                        }
+                    ],
+                    "text": "Pain severity - 0-10 verbal numeric rating [Score] - Reported"
+                },
+                "subject": {
+                    "reference": "Patient/fc200fa2-12c9-4276-ba4a-e0601d424e55"
+                },
+                "encounter": {
+                    "reference": "Encounter/1d46ce8f-ac44-4d62-8d8c-613cb93a1b27"
+                },
+                "effectiveDateTime": "2017-09-15T00:38:16-04:00",
+                "issued": "2017-09-15T00:38:16.610-04:00",
+                "valueQuantity": {
+                    "value": 2.015395777638163,
+                    "unit": "{score}",
+                    "system": "http://unitsofmeasure.org",
+                    "code": "{score}"
+                }
+            },
+            "search": {
+                "mode": "match"
+            },
+            "response": {
+                "status": "200 OK",
+                "etag": "W/\"2\""
+            }
+        },
+        {
+            "fullUrl": "https://launch.smarthealthit.org/v/r4/fhir/Observation/9da80c98-1c69-488b-b299-cd197f38d687",
+            "resource": {
+                "resourceType": "Observation",
+                "id": "9da80c98-1c69-488b-b299-cd197f38d687",
+                "meta": {
+                    "versionId": "2",
+                    "lastUpdated": "2019-06-05T02:53:52.031-04:00",
+                    "tag": [
+                        {
+                            "system": "https://smarthealthit.org/tags",
+                            "code": "synthea-5-2019"
+                        }
+                    ]
+                },
+                "status": "final",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                                "code": "vital-signs",
+                                "display": "vital-signs"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "8331-1",
+                            "display": "Oral temperature"
+                        }
+                    ],
+                    "text": "Oral temperature"
+                },
+                "subject": {
+                    "reference": "Patient/fc200fa2-12c9-4276-ba4a-e0601d424e55"
+                },
+                "encounter": {
+                    "reference": "Encounter/e6eb6016-68a2-4c47-83a9-5e4ecde0ec75"
+                },
+                "effectiveDateTime": "2018-01-10T23:38:16-05:00",
+                "issued": "2018-01-10T23:38:16.610-05:00",
+                "valueQuantity": {
+                    "value": 39.33392377857211,
+                    "unit": "Cel",
+                    "system": "http://unitsofmeasure.org",
+                    "code": "Cel"
+                }
+            },
+            "search": {
+                "mode": "match"
+            },
+            "response": {
+                "status": "200 OK",
+                "etag": "W/\"2\""
+            }
+        },
+        {
+            "fullUrl": "https://launch.smarthealthit.org/v/r4/fhir/Observation/bbe41f82-5db2-43cc-b04b-593cd56c3be7",
+            "resource": {
+                "resourceType": "Observation",
+                "id": "bbe41f82-5db2-43cc-b04b-593cd56c3be7",
+                "meta": {
+                    "versionId": "2",
+                    "lastUpdated": "2019-06-05T02:53:42.456-04:00",
+                    "tag": [
+                        {
+                            "system": "https://smarthealthit.org/tags",
+                            "code": "synthea-5-2019"
+                        }
+                    ]
+                },
+                "status": "final",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                                "code": "laboratory",
+                                "display": "laboratory"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "718-7",
+                            "display": "Hemoglobin [Mass/volume] in Blood"
+                        }
+                    ],
+                    "text": "Hemoglobin [Mass/volume] in Blood"
+                },
+                "subject": {
+                    "reference": "Patient/fc200fa2-12c9-4276-ba4a-e0601d424e55"
+                },
+                "encounter": {
+                    "reference": "Encounter/0e9fa186-0480-432c-97e2-fd6bd5969a49"
+                },
+                "effectiveDateTime": "2017-08-11T00:38:16-04:00",
+                "issued": "2017-08-11T00:38:16.610-04:00",
+                "valueQuantity": {
+                    "value": 15.3761263408303,
+                    "unit": "g/dL",
+                    "system": "http://unitsofmeasure.org",
+                    "code": "g/dL"
+                }
+            },
+            "search": {
+                "mode": "match"
+            },
+            "response": {
+                "status": "200 OK",
+                "etag": "W/\"2\""
+            }
+        },
+        {
+            "fullUrl": "https://launch.smarthealthit.org/v/r4/fhir/Observation/fc40520e-b676-4a3d-a7ec-aa510628616d",
+            "resource": {
+                "resourceType": "Observation",
+                "id": "fc40520e-b676-4a3d-a7ec-aa510628616d",
+                "meta": {
+                    "versionId": "2",
+                    "lastUpdated": "2019-06-05T02:53:22.305-04:00",
+                    "tag": [
+                        {
+                            "system": "https://smarthealthit.org/tags",
+                            "code": "synthea-5-2019"
+                        }
+                    ]
+                },
+                "status": "final",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                                "code": "survey",
+                                "display": "survey"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "72166-2",
+                            "display": "Tobacco smoking status NHIS"
+                        }
+                    ],
+                    "text": "Tobacco smoking status NHIS"
+                },
+                "subject": {
+                    "reference": "Patient/fc200fa2-12c9-4276-ba4a-e0601d424e55"
+                },
+                "encounter": {
+                    "reference": "Encounter/ed101927-96af-46a0-b153-8f9b92fd952f"
+                },
+                "effectiveDateTime": "2018-04-20T00:38:16-04:00",
+                "issued": "2018-04-20T00:38:16.610-04:00",
+                "valueCodeableConcept": {
+                    "coding": [
+                        {
+                            "system": "http://snomed.info/sct",
+                            "code": "266919005",
+                            "display": "Never smoker"
+                        }
+                    ],
+                    "text": "Never smoker"
+                }
+            },
+            "search": {
+                "mode": "match"
+            },
+            "response": {
+                "status": "200 OK",
+                "etag": "W/\"2\""
+            }
+        },
+        {
+            "fullUrl": "https://launch.smarthealthit.org/v/r4/fhir/Observation/f3c54383-5903-4c71-8c81-d9a26c377658",
+            "resource": {
+                "resourceType": "Observation",
+                "id": "f3c54383-5903-4c71-8c81-d9a26c377658",
+                "meta": {
+                    "versionId": "2",
+                    "lastUpdated": "2019-06-05T02:53:18.642-04:00",
+                    "tag": [
+                        {
+                            "system": "https://smarthealthit.org/tags",
+                            "code": "synthea-5-2019"
+                        }
+                    ]
+                },
+                "status": "final",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                                "code": "vital-signs",
+                                "display": "vital-signs"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "8302-2",
+                            "display": "Body Height"
+                        }
+                    ],
+                    "text": "Body Height"
+                },
+                "subject": {
+                    "reference": "Patient/fc200fa2-12c9-4276-ba4a-e0601d424e55"
+                },
+                "encounter": {
+                    "reference": "Encounter/0e9fa186-0480-432c-97e2-fd6bd5969a49"
+                },
+                "effectiveDateTime": "2017-08-11T00:38:16-04:00",
+                "issued": "2017-08-11T00:38:16.610-04:00",
+                "valueQuantity": {
+                    "value": 55.421822547204336,
+                    "unit": "cm",
+                    "system": "http://unitsofmeasure.org",
+                    "code": "cm"
+                }
+            },
+            "search": {
+                "mode": "match"
+            },
+            "response": {
+                "status": "200 OK",
+                "etag": "W/\"2\""
+            }
+        }
+    ]
+}
