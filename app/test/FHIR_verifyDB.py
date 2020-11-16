@@ -43,10 +43,10 @@ def assert_data(data_posted, cursor):
     workerRace_db_result = dict(zip(workerRace_columns, workerRace_item))
 
     # Verify key fields of the Worker data
-    assert worker_db_result['StudyCode'] == '0000'
+    assert worker_db_result['StudyCode'] == 'NFR'
     assert worker_db_result['GenderCode'] == data_posted['gender']
     # Verify key fields of the WorkerRace data
-    assert workerRace_db_result['StudyCode'] == '0000'
+    assert workerRace_db_result['StudyCode'] == 'NFR'
     race_code = '0000'
     # Verify other fields
     if 'address' in data_posted:
