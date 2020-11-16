@@ -1,0 +1,53 @@
+{
+  "resourceType": "Bundle",
+  "id": "b0a5e4277-83c4-4adb-87e2-e3efe3369b6f",
+  "meta": {
+    "lastUpdated": "2012-05-29T23:45:32Z"
+  },
+  "type": "collection",
+  "entry": [
+    {
+      "fullUrl": "http://hl7.org/fhir/Patient/9026cdc6-7303-488c-97c9-4aabf9a2ba98",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "9026cdc6-7303-488c-97c9-4aabf9a2ba98",
+        "meta": {
+          "lastUpdated": "2012-06-03T23:45:32Z"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Fletcher, Brenda. MRN:\n          577390</div>"
+        },
+        "identifier": [
+          {
+            "type": {
+              "coding": [
+                {
+                  "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                  "code": "SS"
+                }
+              ]
+            },
+            "system": "https://github.com/projectcypress/cypress/patient",
+            "value": "577390"
+          }
+        ],
+        "active": true,
+        "name": [
+          {
+            "use": "official",
+            "family": "Fletcher",
+            "given": [
+              "Brenda"
+            ]
+          }
+        ],
+        "gender": "female",
+        "birthDate": "1954-09-15",
+        "managingOrganization": {
+          "reference": "Organization/1"
+        }
+      }
+    }
+  ]
+}

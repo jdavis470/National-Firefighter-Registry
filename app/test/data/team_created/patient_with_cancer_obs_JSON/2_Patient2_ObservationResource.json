@@ -34,7 +34,7 @@
     "text": "Dx confirmed by Cancer"
   },
   "subject": {
-    "reference": "Patient/6644"
+    "reference": "Patient/494743a2-fea5-4827-8f03-c2b91e4a4c9e"
   },
   "encounter": {
     "reference": "Encounter/74ead71a-2215-4175-968c-65b669e43960"

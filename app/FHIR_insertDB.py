@@ -34,8 +34,7 @@ def get_data(request_data):
 
 
 def search_observation(patient_id):
-    # url for testing
-    # url = 'https://r4.smarthealthit.org/Observation/_search?subject%3APatient=7e1f4334-1a53-41a7-b07f-f0203bb55733&code=http://loinc.org|8302-2'
+    # print("Searching Observations...")
     url = FHIR_combined.smart_defaults['api_base'] \
           + '/Observation?subject%3APatient=' + patient_id \
           + '&code=http://loinc.org|21861-0'
@@ -160,7 +159,10 @@ def insert_table(cursor, table, tableName):
 
     # mapping data for the command
     for key, value in table.items():
-        insert_value = value.replace('\'', '\'\'')
+        if isinstance(value, str):
+            insert_value = value.replace('\'', '\'\'')
+        else:
+            insert_value = str(value)
         command_fields += key + ','
         command_values += '\'' + insert_value + '\','
 

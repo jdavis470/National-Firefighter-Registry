@@ -32,52 +32,58 @@ def convert_ndjson_to_bundle(patients):
     return bundle
 
 
-def post_json(patient, path):
-    if patient['resourceType'] in ['Patient', 'Bundle', 'Observation']:
-        patient_json = json.dumps(patient)
+def post_json(resource, path):
+    if resource['resourceType'] in ['Patient', 'Bundle', 'Observation']:
+        patient_json = json.dumps(resource)
         headers = {'Content-Type': 'application/json'}
         res_id = dict()
-        if patient['resourceType'] == 'Patient':
-            res = requests.post(url=smart_defaults['api_patient'], headers=headers, data=patient_json).text
+        if resource['resourceType'] == 'Patient':
+            url = smart_defaults['api_patient'] + '/' + resource['id']
+            res = requests.put(url=url, headers=headers, data=patient_json).text
             res = json.loads(res)
             print(path + ": validated, Patient: " + res['id'] + " created")
-        elif patient['resourceType'] == 'Bundle':
-            res = requests.post(url=smart_defaults['api_bundle'], headers=headers, data=patient_json).text
+        elif resource['resourceType'] == 'Bundle':
+            url = smart_defaults['api_bundle'] + '/' + resource['id']
+            res = requests.put(url=url, headers=headers, data=patient_json).text
             res = json.loads(res)
             print(path + ": validated, Bundle: " + res['id'] + " created")
-        elif patient['resourceType'] == 'Observation':
-            res = requests.post(url=smart_defaults['api_observation'], headers=headers, data=patient_json).text
+        elif resource['resourceType'] == 'Observation':
+            url = smart_defaults['api_observation'] + '/' + resource['id']
+            res = requests.put(url=url, headers=headers, data=patient_json).text
             res = json.loads(res)
             if 'id' in res:
                 print(path + ": validated, Observation: " + res['id'] + " created")
             else:
                 print(res['issue'][0]['severity'], ':', res['issue'][0]['diagnostics'])
         res_id['id'] = res['id']
-        res_id['resourceType'] = patient['resourceType']
+        res_id['resourceType'] = resource['resourceType']
         return res_id, res
     else:
         raise RuntimeError("Can only handle JSON resourceType Patient.")
 
 
-def post_xml(patient, path):
-    xml_dict = xmltodict.parse(patient)
+def post_xml(resource, path):
+    xml_dict = xmltodict.parse(resource)
     if 'Patient' in xml_dict or 'Bundle' in xml_dict or 'Observation' in xml_dict:
         headers = {'Content-Type': 'application/xml'}
         res_id = dict()
         if 'Patient' in xml_dict:
-            res = requests.post(url=smart_defaults['api_patient'], headers=headers, data=patient).text
+            url = smart_defaults['api_patient'] + '/' + xml_dict['Patient']['id']['@value']
+            res = requests.put(url=url, headers=headers, data=resource).text
             res = xmltodict.parse(res)
             print(path + ": validated, Patient: " + res['Patient']['id']['@value'] + " created")
             res_id['id'] = res['Patient']['id']['@value']
             res_id['resourceType'] = 'Patient'
         elif 'Bundle' in xml_dict:
-            res = requests.post(url=smart_defaults['api_bundle'], headers=headers, data=patient).text
+            url = smart_defaults['api_bundle'] + '/' + xml_dict['Bundle']['id']['@value']
+            res = requests.put(url=url, headers=headers, data=resource).text
             res = xmltodict.parse(res)
             print(path + ": validated, Bundle: " + res['Bundle']['id']['@value'] + " created")
             res_id['id'] = res['Bundle']['id']['@value']
             res_id['resourceType'] = 'Bundle'
         elif 'Observation' in xml_dict:
-            res = requests.post(url=smart_defaults['api_observation'], headers=headers, data=patient).text
+            url = smart_defaults['api_observation'] + '/' + xml_dict['Observation']['id']['@value']
+            res = requests.put(url=url, headers=headers, data=resource).text
             res = xmltodict.parse(res)
             print(path + ": validated, Observation: " + res['Observation']['id']['@value'] + " created")
             res_id['id'] = res['Observation']['id']['@value']
@@ -122,8 +128,6 @@ def verify_fhir(path):
     except Exception as err:
         print("Error validating file: '" + path + "'. Error Message: {0}".format(err), file=sys.stderr)
         return -1
-
-    return -1
 
 
 def usage():
