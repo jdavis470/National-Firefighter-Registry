@@ -59,7 +59,7 @@ def post_json(resource, path):
         res_id['resourceType'] = resource['resourceType']
         return res_id, res
     else:
-        raise RuntimeError("Can only handle JSON resourceType Patient.")
+        raise RuntimeError("Can only handle JSON resourceType Patient and Observation.")
 
 
 def post_xml(resource, path):
@@ -90,7 +90,7 @@ def post_xml(resource, path):
             res_id['resourceType'] = 'Observation'
         return res_id, res
     else:
-        raise RuntimeError("Can only handle XML type(s) Patient.")
+        raise RuntimeError("Can only handle XML type(s) Patient and Observation.")
 
 
 def verify_fhir(path):

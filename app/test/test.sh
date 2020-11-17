@@ -36,7 +36,7 @@ do
 	fi
 done
 
-echo === Begin Testing FHIR_insertDB.py (Obeservation cases) ===
+echo "=== Begin Testing FHIR_insertDB.py (Obeservation cases) ==="
 echo === Reminder: Patient data should import before Obeservation data ===
 LOGFILE="$(mktemp FHIR_insertDB_XXXXXXXXX.log)"
 DATA_LOC="$(dirname $(realpath -s $0))/data/team_created/patient_with_cancer_obs_JSON"
