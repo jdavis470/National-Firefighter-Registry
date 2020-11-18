@@ -56,12 +56,30 @@ def assert_data(data_posted, cursor):
         if 'postalCode' in data_posted['address'][-1]:
             assert worker_db_result['CurrentResidentialPostalCode'] == data_posted['address'][-1]['postalCode']
         assert worker_db_result['CurrentResidentialCountry'] == data_posted['address'][-1]['country']
-    assert worker_db_result['LastName'] == data_posted['name'][-1]['family']
-    if len(data_posted['name'][-1]['given']) > 1:
-        assert worker_db_result['FirstName'] == data_posted['name'][-1]['given'][0]
-        assert worker_db_result['MiddleName'] == data_posted['name'][-1]['given'][1]
+    if len(data_posted['name']) == 1:
+        assert worker_db_result['LastName'] == data_posted['name'][-1]['family']
+        if len(data_posted['name'][-1]['given']) > 1:
+            assert worker_db_result['FirstName'] == data_posted['name'][-1]['given'][0]
+            assert worker_db_result['MiddleName'] == data_posted['name'][-1]['given'][1]
+        else:
+            assert worker_db_result['FirstName'] == data_posted['name'][-1]['given'][0]
     else:
-        assert worker_db_result['FirstName'] == data_posted['name'][-1]['given'][0]
+        for x in range(len(data_posted['name'])):
+            if 'use' in data_posted['extension'][x]:
+                if data_posted['extension'][x]['use'] == "official":
+                    assert worker_db_result['LastName'] == data_posted['name'][x]['family']
+                    if len(data_posted['name'][x]['given']) > 1:
+                        assert worker_db_result['FirstName'] == data_posted['name'][x]['given'][0]
+                        assert worker_db_result['MiddleName'] == data_posted['name'][x]['given'][1]
+                    else:
+                        assert worker_db_result['FirstName'] == data_posted['name'][x]['given'][0]
+                elif data_posted['extension'][x]['use'] == "nickname":
+                    assert worker_db_result['LastNameAlias'] == data_posted['name'][x]['family']
+                    if len(data_posted['name'][x]['given']) > 1:
+                        assert worker_db_result['FirstNameAlias'] == data_posted['name'][x]['given'][0]
+                        assert worker_db_result['MiddleNameAlias'] == data_posted['name'][x]['given'][1]
+                    else:
+                        assert worker_db_result['FirstNameAlias'] == data_posted['name'][x]['given'][0]
     if 'telecom' in data_posted:
         for telecom in data_posted['telecom']:
             if telecom['system'] == 'phone' and telecom['use'] == 'mobile':
