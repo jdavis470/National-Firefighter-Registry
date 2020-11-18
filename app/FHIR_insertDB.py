@@ -30,7 +30,7 @@ def get_data(request_data):
         return -1
 
 
-def map_data(data):
+def map_data(data, path):
     tb_Worker = dict()
     tb_WorkerRace = dict()
     # TODO: mapping other resources to db
@@ -54,10 +54,14 @@ def map_data(data):
         #    tb_WorkerRace['WorkerID'] = data['identifier'][x]['value']
         tb_Worker['StudyCode'] = 'NFR'
         tb_Worker['GenderCode'] = data['gender']
+        tb_Worker['SourceFile'] = path
+        tb_Worker['ImportCode'] = 'NFR_Script'
 
         # map key fields for table WorkerRace
         tb_WorkerRace['StudyCode'] = 'NFR'
         tb_WorkerRace['RaceCode'] = '0000'
+        tb_WorkerRace['SourceFile'] = path
+        tb_WorkerRace['ImportCode'] = 'NFR_Script'
 
         if 'address' in data:
             tb_Worker['CurrentResidentialStreet'] = data['address'][-1]['line'][0]
@@ -193,7 +197,7 @@ def check_table_insertion(cursor, tableName):
     return 0
 
 
-def post_db(data_posted):
+def post_db(data_posted, path):
     # get data from FHIR server by ID
     data_received = get_data(data_posted)
 
@@ -207,13 +211,13 @@ def post_db(data_posted):
                 for resource_data in data_received['entry']:
                     if 'resource' in resource_data:
                         # map server data to db fields
-                        tb_Worker, tb_WorkerRace = map_data(resource_data['resource'])
+                        tb_Worker, tb_WorkerRace = map_data(resource_data['resource'], path)
                         if tb_Worker:
                             list_Worker.append(tb_Worker)
                         if tb_WorkerRace:
                             list_WorkerRace.append(tb_WorkerRace)
         else:
-            tb_Worker, tb_WorkerRace = map_data(data_received)
+            tb_Worker, tb_WorkerRace = map_data(data_received, path)
             if tb_Worker:
                 list_Worker.append(tb_Worker)
             if tb_WorkerRace:
@@ -264,7 +268,7 @@ if __name__ == "__main__":
         data_posted, *_ = FHIR_combined.verify_fhir(sys.argv[1])
         if isinstance(data_posted, dict):
             # FHIR server data retrieval and SQL database insertion
-            returnValue = post_db(data_posted)
+            returnValue = post_db(data_posted, sys.argv[1])
 
         if (returnValue != 0):
             usage()
@@ -281,4 +285,4 @@ if __name__ == "__main__":
                 # post data to FHIR server
                 data_id, *_ = FHIR_combined.verify_fhir(file)
                 if isinstance(data_id, dict):
-                    returnValue = post_db(data_id)
+                    returnValue = post_db(data_id, file)

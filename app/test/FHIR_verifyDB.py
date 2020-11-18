@@ -24,7 +24,7 @@ def close_db(conn, cursor):
     return 0
 
 
-def assert_data(data_posted, cursor):
+def assert_data(data_posted, cursor, path):
     # Execute query for patient ID on Worker table
     command = 'SELECT * FROM worker.Worker WHERE WorkerID = ' + '\'' + data_posted['id'] + '\''
     cursor.execute(command)
@@ -44,9 +44,13 @@ def assert_data(data_posted, cursor):
 
     # Verify key fields of the Worker data
     assert worker_db_result['StudyCode'] == 'NFR'
+    assert worker_db_result['SourceFile'] == path
+    assert worker_db_result['ImportCode'] == 'NFR_Script'
     assert worker_db_result['GenderCode'] == data_posted['gender']
     # Verify key fields of the WorkerRace data
     assert workerRace_db_result['StudyCode'] == 'NFR'
+    assert workerRace_db_result['SourceFile'] == path
+    assert workerRace_db_result['ImportCode'] == 'NFR_Script'
     race_code = '0000'
     # Verify other fields
     if 'address' in data_posted:
@@ -153,7 +157,7 @@ if __name__ == "__main__":
 
     # Post the data
     insert_id, *_ = FHIR_combined.verify_fhir(sys.argv[1])
-    returnValue = FHIR_insertDB.post_db(insert_id)
+    returnValue = FHIR_insertDB.post_db(insert_id, sys.argv[1])
     response_data = FHIR_insertDB.get_data(insert_id)
 
     # Test for bundle and non-bundle case
@@ -163,9 +167,9 @@ if __name__ == "__main__":
     if 'resourceType' in response_data:
         if response_data['resourceType'] == 'Bundle':
             for single_data in response_data['entry']:
-                assert_data(single_data['resource'], cursor)
+                assert_data(single_data['resource'], cursor, sys.argv[1])
         elif response_data['resourceType'] == 'Patient':
-            assert_data(response_data, cursor)
+            assert_data(response_data, cursor, sys.argv[1])
 
     close_db(conn, cursor)
     exit(exitVal)
