@@ -1,0 +1,58 @@
+{
+  "resourceType": "Bundle",
+  "id": "88007e95-b052-48f3-a0e5-8aee5db94e91",
+  "meta": {
+    "lastUpdated": "2012-05-29T23:45:32Z"
+  },
+  "type": "collection",
+  "entry": [
+    {
+      "fullUrl": "http://hl7.org/fhir/Observation/8ee79e98-1591-4f62-876c-f842f875f178",
+      "resourceType": "Observation",
+      "id": "8ee79e98-1591-4f62-876c-f842f875f178",
+      "meta": {
+        "versionId": "2",
+        "lastUpdated": "2019-06-05T02:56:24.366-04:00",
+        "tag": [
+          {
+            "system": "https://smarthealthit.org/tags",
+            "code": "synthea-5-2019"
+          }
+        ]
+      },
+      "status": "final",
+      "category": [
+        {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+              "code": "imaging",
+              "display": "imaging"
+            }
+          ]
+        }
+      ],
+      "code": {
+        "coding": [
+          {
+            "system": "http://loinc.org",
+            "code": "21861-0",
+            "display": "Dx confirmed by Cancer"
+          }
+        ],
+        "text": "Dx confirmed by Cancer"
+      },
+      "subject": {
+        "reference": "Patient/9026cdc6-7303-488c-97c9-4aabf9a2ba98"
+      },
+      "encounter": {
+        "reference": "Encounter/74ead71a-2215-4175-968c-65b669e43960"
+      },
+      "effectiveDateTime": "2018-04-16T15:22:39-04:00",
+      "issued": "2018-04-16T15:22:39.163-04:00",
+      "valueQuantity": {
+        "code": "7"
+      }
+    }
+  ]
+}
