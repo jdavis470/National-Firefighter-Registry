@@ -32,7 +32,6 @@ def get_data(request_data):
         print('resource type and id should be provided to get data')
         return -1
 
-
 def search_observation(patient_id):
     # print("Searching Observations...")
     url = FHIR_combined.smart_defaults['api_base'] \
@@ -67,22 +66,38 @@ def handle_dates(i):
     return d
 
 
-def map_data(data):
+def map_data(data, path):
     tb_Worker = dict()
     tb_WorkerRace = dict()
     # TODO: mapping other resources to db
     # mapping data from patient resources
     # improvement: check the 'period' of the data field to find the most recent one
     if data['resourceType'] == 'Patient':
-        # map key fields for table Worker
+        # map for table Worker
+        # TODO: Need to rework ID.  Either need to capture store original ID here or add a field
+        # otherwise we cannot link an observation to a patient
         tb_Worker['WorkerID'] = data['id']
-        tb_Worker['StudyCode'] = '0000'
+        tb_WorkerRace['WorkerID'] = data['id']
+
+        # JD 11/16/2020: Commented this out; this breaks if we don't have an "official" identifier
+        # and we need to rework this anyways to handle patients/observations
+        #for x in range(len(data['identifier'])):
+        #    if data['identifier'][x]['use'] == "official":
+        #        tb_Worker['WorkerID'] = data['identifier'][x]['value']
+        #        tb_WorkerRace['WorkerID'] = data['identifier'][x]['value']
+        #if WorkerID not in tb_Worker:
+        #    tb_Worker['WorkerID'] = data['identifier'][x]['value']
+        #    tb_WorkerRace['WorkerID'] = data['identifier'][x]['value']
+        tb_Worker['StudyCode'] = 'NFR'
         tb_Worker['GenderCode'] = data['gender']
+        tb_Worker['SourceFile'] = path
+        tb_Worker['ImportCode'] = 'NFR_Script'
 
         # map key fields for table WorkerRace
-        tb_WorkerRace['WorkerID'] = data['id']
-        tb_WorkerRace['StudyCode'] = '0000'
+        tb_WorkerRace['StudyCode'] = 'NFR'
         tb_WorkerRace['RaceCode'] = '0000'
+        tb_WorkerRace['SourceFile'] = path
+        tb_WorkerRace['ImportCode'] = 'NFR_Script'
 
         if 'address' in data:
             tb_Worker['CurrentResidentialStreet'] = data['address'][-1]['line'][0]
@@ -91,19 +106,48 @@ def map_data(data):
             if 'postalCode' in data['address'][-1]:
                 tb_Worker['CurrentResidentialPostalCode'] = data['address'][-1]['postalCode']
             tb_Worker['CurrentResidentialCountry'] = data['address'][-1]['country']
-        tb_Worker['LastName'] = data['name'][-1]['family']
-        if len(data['name'][-1]['given']) > 1:
-            tb_Worker['FirstName'] = data['name'][-1]['given'][0]
-            tb_Worker['MiddleName'] = data['name'][-1]['given'][1]
+        # Mapping logic for name:
+            # If only one name provided, use it as their primary name (not alias)
+            # else >1 name provided check to see if use exists
+                # If it does, look for official (primary) and nickname (alias)
+            # If primary name wasn't found, set it to the last value in name array
+        if len(data['name']) == 1:
+            tb_Worker['LastName'] = data['name'][-1]['family']
+            if len(data['name'][-1]['given']) > 1:
+                tb_Worker['FirstName'] = data['name'][-1]['given'][0]
+                tb_Worker['MiddleName'] = data['name'][-1]['given'][1]
+            else:
+                tb_Worker['FirstName'] = data['name'][-1]['given'][0]
         else:
-            tb_Worker['FirstName'] = data['name'][-1]['given'][0]
+            for name in data['name']:
+                if 'use' in name:
+                    if name['use'] == "official":
+                        tb_Worker['LastName'] = name['family']
+                        if len(name['given']) > 1:
+                            tb_Worker['FirstName'] = name['given'][0]
+                            tb_Worker['MiddleName'] = name['given'][1]
+                        else:
+                            tb_Worker['FirstName'] = name['given'][0]
+                    elif name['use'] == "nickname":
+                        tb_Worker['LastNameAlias'] = name['family']
+                        if len(name['given']) > 1:
+                            tb_Worker['FirstNameAlias'] = name['given'][0]
+                            tb_Worker['MiddleNameAlias'] = name['given'][1]
+                        else:
+                            tb_Worker['FirstNameAlias'] = name['given'][0]
+            if 'FirstName' not in tb_Worker:
+                tb_Worker['LastName'] = data['name'][-1]['family']
+                if len(data['name'][-1]['given']) > 1:
+                    tb_Worker['FirstName'] = data['name'][-1]['given'][0]
+                    tb_Worker['MiddleName'] = data['name'][-1]['given'][1]
+                else:
+                    tb_Worker['FirstName'] = data['name'][-1]['given'][0]
         if 'telecom' in data:
             for telecom in data['telecom']:
                 if telecom['system'] == 'phone' and telecom['use'] == 'mobile':
                     tb_Worker['MobilePhoneNumber'] = telecom['value']
                 elif telecom['system'] == 'email':
                     tb_Worker['PrimaryEmailAddress'] = telecom['value']
-        # tb_Worker['BirthDate'] = data['birthDate']
         birthDate = datetime.datetime.strptime(data['birthDate'], '%Y-%m-%d')
         tb_Worker['BirthMonth'] = birthDate.strftime("%m")
         tb_Worker['BirthDay'] = birthDate.strftime("%d")
@@ -201,7 +245,7 @@ def check_table_insertion(cursor, tableName):
     return 0
 
 
-def post_db(data_posted):
+def post_db(data_posted, path):
     # get data from FHIR server by ID
     data_received = get_data(data_posted)
 
@@ -215,13 +259,13 @@ def post_db(data_posted):
                 for resource_data in data_received['entry']:
                     if 'resource' in resource_data:
                         # map server data to db fields
-                        tb_Worker, tb_WorkerRace = map_data(resource_data['resource'])
+                        tb_Worker, tb_WorkerRace = map_data(resource_data['resource'], path)
                         if tb_Worker:
                             list_Worker.append(tb_Worker)
                         if tb_WorkerRace:
                             list_WorkerRace.append(tb_WorkerRace)
         else:
-            tb_Worker, tb_WorkerRace = map_data(data_received)
+            tb_Worker, tb_WorkerRace = map_data(data_received, path)
             if tb_Worker:
                 list_Worker.append(tb_Worker)
             if tb_WorkerRace:
@@ -272,7 +316,7 @@ if __name__ == "__main__":
         data_posted, *_ = FHIR_combined.verify_fhir(sys.argv[1])
         if isinstance(data_posted, dict):
             # FHIR server data retrieval and SQL database insertion
-            returnValue = post_db(data_posted)
+            returnValue = post_db(data_posted, sys.argv[1])
 
         if (returnValue != 0):
             usage()
@@ -289,4 +333,4 @@ if __name__ == "__main__":
                 # post data to FHIR server
                 data_id, *_ = FHIR_combined.verify_fhir(file)
                 if isinstance(data_id, dict):
-                    returnValue = post_db(data_id)
+                    returnValue = post_db(data_id, file)

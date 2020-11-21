@@ -48,8 +48,8 @@ do
 
 	python3 $(dirname $(realpath -s $0))/../FHIR_combined.py $file &>> $LOGFILE
 done
-FILES="/data/team_created/patient_with_cancer_obs_JSON/1_patient2_patientResource.json
-/data/team_created/patient_with_cancer_obs_JSON/3_patient2_patientBundleResource.json"
+FILES="$(dirname $(realpath -s $0))/data/team_created/patient_with_cancer_obs_JSON/1_patient2_patientResource.json
+$(dirname $(realpath -s $0))/data/team_created/patient_with_cancer_obs_JSON/3_patient2_patientBundleResource.json"
 for file in $FILES;
 do
      	echo === Starting Test with $file ===

@@ -24,7 +24,7 @@ def close_db(conn, cursor):
     return 0
 
 
-def assert_data(data_posted, cursor):
+def assert_data(data_posted, cursor, path):
     # Execute query for patient ID on Worker table
     command = 'SELECT * FROM worker.Worker WHERE WorkerID = ' + '\'' + data_posted['id'] + '\''
     cursor.execute(command)
@@ -43,10 +43,14 @@ def assert_data(data_posted, cursor):
     workerRace_db_result = dict(zip(workerRace_columns, workerRace_item))
 
     # Verify key fields of the Worker data
-    assert worker_db_result['StudyCode'] == '0000'
+    assert worker_db_result['StudyCode'] == 'NFR'
+    assert worker_db_result['SourceFile'] == path
+    assert worker_db_result['ImportCode'] == 'NFR_Script'
     assert worker_db_result['GenderCode'] == data_posted['gender']
     # Verify key fields of the WorkerRace data
-    assert workerRace_db_result['StudyCode'] == '0000'
+    assert workerRace_db_result['StudyCode'] == 'NFR'
+    assert workerRace_db_result['SourceFile'] == path
+    assert workerRace_db_result['ImportCode'] == 'NFR_Script'
     race_code = '0000'
     # Verify other fields
     if 'address' in data_posted:
@@ -56,12 +60,30 @@ def assert_data(data_posted, cursor):
         if 'postalCode' in data_posted['address'][-1]:
             assert worker_db_result['CurrentResidentialPostalCode'] == data_posted['address'][-1]['postalCode']
         assert worker_db_result['CurrentResidentialCountry'] == data_posted['address'][-1]['country']
-    assert worker_db_result['LastName'] == data_posted['name'][-1]['family']
-    if len(data_posted['name'][-1]['given']) > 1:
-        assert worker_db_result['FirstName'] == data_posted['name'][-1]['given'][0]
-        assert worker_db_result['MiddleName'] == data_posted['name'][-1]['given'][1]
+    if len(data_posted['name']) == 1:
+        assert worker_db_result['LastName'] == data_posted['name'][-1]['family']
+        if len(data_posted['name'][-1]['given']) > 1:
+            assert worker_db_result['FirstName'] == data_posted['name'][-1]['given'][0]
+            assert worker_db_result['MiddleName'] == data_posted['name'][-1]['given'][1]
+        else:
+            assert worker_db_result['FirstName'] == data_posted['name'][-1]['given'][0]
     else:
-        assert worker_db_result['FirstName'] == data_posted['name'][-1]['given'][0]
+        for x in range(len(data_posted['name'])):
+            if 'use' in data_posted['extension'][x]:
+                if data_posted['extension'][x]['use'] == "official":
+                    assert worker_db_result['LastName'] == data_posted['name'][x]['family']
+                    if len(data_posted['name'][x]['given']) > 1:
+                        assert worker_db_result['FirstName'] == data_posted['name'][x]['given'][0]
+                        assert worker_db_result['MiddleName'] == data_posted['name'][x]['given'][1]
+                    else:
+                        assert worker_db_result['FirstName'] == data_posted['name'][x]['given'][0]
+                elif data_posted['extension'][x]['use'] == "nickname":
+                    assert worker_db_result['LastNameAlias'] == data_posted['name'][x]['family']
+                    if len(data_posted['name'][x]['given']) > 1:
+                        assert worker_db_result['FirstNameAlias'] == data_posted['name'][x]['given'][0]
+                        assert worker_db_result['MiddleNameAlias'] == data_posted['name'][x]['given'][1]
+                    else:
+                        assert worker_db_result['FirstNameAlias'] == data_posted['name'][x]['given'][0]
     if 'telecom' in data_posted:
         for telecom in data_posted['telecom']:
             if telecom['system'] == 'phone' and telecom['use'] == 'mobile':
@@ -144,7 +166,7 @@ if __name__ == "__main__":
 
     # Post the data
     insert_id, *_ = FHIR_combined.verify_fhir(sys.argv[1])
-    returnValue = FHIR_insertDB.post_db(insert_id)
+    returnValue = FHIR_insertDB.post_db(insert_id, sys.argv[1])
     response_data = FHIR_insertDB.get_data(insert_id)
 
     # Test for bundle and non-bundle case
@@ -154,9 +176,9 @@ if __name__ == "__main__":
     if 'resourceType' in response_data:
         if response_data['resourceType'] == 'Bundle':
             for single_data in response_data['entry']:
-                assert_data(single_data['resource'], cursor)
+                assert_data(single_data['resource'], cursor, sys.argv[1])
         elif response_data['resourceType'] == 'Patient':
-            assert_data(response_data, cursor)
+            assert_data(response_data, cursor, sys.argv[1])
 
     close_db(conn, cursor)
     exit(exitVal)
