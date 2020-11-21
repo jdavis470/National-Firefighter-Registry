@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <Patient xmlns="http://hl7.org/fhir">
-  <id value="example"/>
+  <id value="b20139a2-b95a-41ec-a199-4ab7d001a54a"/>
   <meta>
     <profile value="http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient"/>
   </meta>

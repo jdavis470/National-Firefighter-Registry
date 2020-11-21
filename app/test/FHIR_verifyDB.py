@@ -95,6 +95,15 @@ def assert_data(data_posted, cursor):
                 assert worker_db_result['BirthPlaceStateProv'] == data_posted['extension'][x]['valueAddress']['state']
     assert workerRace_db_result['RaceCode'] == race_code
 
+    # Verify Observation fields
+    observation_found, observation_data = FHIR_insertDB.search_observation(data_posted['id'])
+    assert observation_found is not None
+    assert worker_db_result['DiagnosedWithCancer'] == observation_data['DiagnosedWithCancer']
+    if observation_found:
+        assert worker_db_result['LastObservedMonth'] == observation_data['LastObservedMonth']
+        assert worker_db_result['LastObservedDay'] == observation_data['LastObservedDay']
+        assert worker_db_result['LastObservedyear'] == observation_data['LastObservedyear']
+
     # Verify DB trigger
     # Worker table
     assert worker_db_result['LastUpdatedBy'] == 'sa'

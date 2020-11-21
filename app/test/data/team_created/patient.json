@@ -1,6 +1,6 @@
 {
   "resourceType": "Patient",
-  "id": "example",
+  "id": "8cbaae4c-e60a-4838-8644-0523fb5fef8c",
   "meta": {
     "profile": [
       "http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient"

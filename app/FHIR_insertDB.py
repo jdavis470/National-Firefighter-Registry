@@ -6,13 +6,16 @@ import sys
 import FHIR_combined
 
 
+# https://r4.smarthealthit.org/Observation?subject%3APatient=7e1f4334-1a53-41a7-b07f-f0203bb55733&code=http://loinc.org|8302-2
+
+
 def get_data(request_data):
     # id needed to get data, file extension needed for case handling
     if 'resourceType' and 'id' in request_data:
         # handle json case
         if request_data['resourceType'] == 'Patient':
             headers = {'Content-Type': 'application/json'}
-            url = FHIR_combined.smart_defaults['api_base'] + '/' + request_data['id']
+            url = FHIR_combined.smart_defaults['api_patient'] + '/' + request_data['id']
             res = requests.get(url=url, headers=headers).text
             res = json.loads(res)
             return res
@@ -28,6 +31,31 @@ def get_data(request_data):
     else:
         print('resource type and id should be provided to get data')
         return -1
+
+
+def search_observation(patient_id):
+    # print("Searching Observations...")
+    url = FHIR_combined.smart_defaults['api_base'] \
+          + '/Observation?subject%3APatient=' + patient_id \
+          + '&code=http://loinc.org|21861-0'
+    headers = {'Content-Type': 'application/json'}
+    res = requests.get(url=url, headers=headers).text
+    res = json.loads(res)
+
+    observation_data = dict()
+    observation_found = False
+    if res['total'] > 0:
+        sorted_entry = sorted(res['entry'], key=lambda i: datetime.datetime.strptime(i['resource']['effectiveDateTime'], '%Y-%m-%dT%H:%M:%S%z'), reverse=True)
+        effectiveDateTime = datetime.datetime.strptime(sorted_entry[0]['resource']['effectiveDateTime'], '%Y-%m-%dT%H:%M:%S%z')
+        observation_data['LastObservedMonth'] = effectiveDateTime.strftime("%m")
+        observation_data['LastObservedDay'] = effectiveDateTime.strftime("%d")
+        observation_data['LastObservedyear'] = effectiveDateTime.strftime("%Y")
+        observation_data['DiagnosedWithCancer'] = 1
+        observation_found = True
+    else:
+        observation_data['DiagnosedWithCancer'] = 0
+
+    return observation_found, observation_data
 
 
 def map_data(data):
@@ -90,6 +118,15 @@ def map_data(data):
                         if 'valueCoding' in data['extension'][x]['extension'][i].keys():
                             tb_WorkerRace['RaceCode'] = data['extension'][x]['extension'][i]['valueCoding']['code']
                             break
+
+        # search for cancer observation of the patient
+        observation_found, observation_data = search_observation(data['id'])
+        tb_Worker['DiagnosedWithCancer'] = observation_data['DiagnosedWithCancer']
+        if observation_found:
+            tb_Worker['LastObservedMonth'] = observation_data['LastObservedMonth']
+            tb_Worker['LastObservedDay'] = observation_data['LastObservedDay']
+            tb_Worker['LastObservedyear'] = observation_data['LastObservedyear']
+
     else:
         print('Cannot handle this resource type yet')
 
@@ -122,7 +159,10 @@ def insert_table(cursor, table, tableName):
 
     # mapping data for the command
     for key, value in table.items():
-        insert_value = value.replace('\'', '\'\'')
+        if isinstance(value, str):
+            insert_value = value.replace('\'', '\'\'')
+        else:
+            insert_value = str(value)
         command_fields += key + ','
         command_values += '\'' + insert_value + '\','
 
