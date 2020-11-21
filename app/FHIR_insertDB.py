@@ -44,8 +44,8 @@ def search_observation(patient_id):
     observation_data = dict()
     observation_found = False
     if res['total'] > 0:
-        sorted_entry = sorted(res['entry'], key=lambda i: datetime.datetime.strptime(i['resource']['effectiveDateTime'], '%Y-%m-%dT%H:%M:%S%z'), reverse=True)
-        effectiveDateTime = datetime.datetime.strptime(sorted_entry[0]['resource']['effectiveDateTime'], '%Y-%m-%dT%H:%M:%S%z')
+        sorted_entry = sorted(res['entry'], key=lambda i: datetime.datetime.strptime(handle_dates(i), '%Y-%m-%dT%H:%M:%S%z'), reverse=True)
+        effectiveDateTime = datetime.datetime.strptime(handle_dates(sorted_entry[0]), '%Y-%m-%dT%H:%M:%S%z')
         observation_data['LastObservedMonth'] = effectiveDateTime.strftime("%m")
         observation_data['LastObservedDay'] = effectiveDateTime.strftime("%d")
         observation_data['LastObservedyear'] = effectiveDateTime.strftime("%Y")
@@ -55,6 +55,15 @@ def search_observation(patient_id):
         observation_data['DiagnosedWithCancer'] = 0
 
     return observation_found, observation_data
+
+
+# Note: Python 3.7 fixes this problem
+# see: https://stackoverflow.com/questions/41684991/datetime-strptime-2017-01-12t141206-000-0500-y-m-dthms-fz
+def handle_dates(i):
+    d = i['resource']['effectiveDateTime']
+    if ":" == d[-3]:
+            d = d[:-3]+d[-2:]
+    return d
 
 
 def map_data(data, path):
