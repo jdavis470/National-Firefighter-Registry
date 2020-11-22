@@ -25,6 +25,12 @@ def get_data(request_data):
             res = requests.get(url=url, headers=headers).text
             res = json.loads(res)
             return res
+        elif request_data['resourceType'] == 'Observation':
+            headers = {'Content-Type': 'application/json'}
+            url = FHIR_combined.smart_defaults['api_observation'] + '/' + request_data['id']
+            res = requests.get(url=url, headers=headers).text
+            res = json.loads(res)
+            return res
         else:
             print('Cannot handle this resource type yet')
             return 0
@@ -44,8 +50,8 @@ def search_observation(patient_id):
     observation_data = dict()
     observation_found = False
     if res['total'] > 0:
-        sorted_entry = sorted(res['entry'], key=lambda i: datetime.datetime.strptime(handle_dates(i), '%Y-%m-%dT%H:%M:%S%z'), reverse=True)
-        effectiveDateTime = datetime.datetime.strptime(handle_dates(sorted_entry[0]), '%Y-%m-%dT%H:%M:%S%z')
+        sorted_entry = sorted(res['entry'], key=lambda i: datetime.datetime.strptime(handle_dates(i['resource']), '%Y-%m-%dT%H:%M:%S%z'), reverse=True)
+        effectiveDateTime = datetime.datetime.strptime(handle_dates(sorted_entry[0]['resource']), '%Y-%m-%dT%H:%M:%S%z')
         observation_data['LastObservedMonth'] = effectiveDateTime.strftime("%m")
         observation_data['LastObservedDay'] = effectiveDateTime.strftime("%d")
         observation_data['LastObservedyear'] = effectiveDateTime.strftime("%Y")
@@ -56,11 +62,20 @@ def search_observation(patient_id):
 
     return observation_found, observation_data
 
+def create_observation_dict(data):
+    observation_data = dict()
+    effectiveDateTime = datetime.datetime.strptime(handle_dates(data), '%Y-%m-%dT%H:%M:%S%z')
+    observation_data['LastObservedMonth'] = effectiveDateTime.strftime("%m")
+    observation_data['LastObservedDay'] = effectiveDateTime.strftime("%d")
+    observation_data['LastObservedyear'] = effectiveDateTime.strftime("%Y")
+    observation_data['DiagnosedWithCancer'] = 1
+    observation_found = True
+    return observation_data
 
 # Note: Python 3.7 fixes this problem
 # see: https://stackoverflow.com/questions/41684991/datetime-strptime-2017-01-12t141206-000-0500-y-m-dthms-fz
 def handle_dates(i):
-    d = i['resource']['effectiveDateTime']
+    d = i['effectiveDateTime']
     if ":" == d[-3]:
             d = d[:-3]+d[-2:]
     return d
@@ -179,7 +194,19 @@ def map_data(data, path):
             tb_Worker['LastObservedMonth'] = observation_data['LastObservedMonth']
             tb_Worker['LastObservedDay'] = observation_data['LastObservedDay']
             tb_Worker['LastObservedyear'] = observation_data['LastObservedyear']
+        #determine if this is an update or an insert,
+        tb_Worker['isUpdate'] = False
 
+    elif data['resourceType'] == 'Observation':
+        # find the patient attached to the observation
+        subjectId = data['subject']['reference'].split('/')[1]
+        observation_data = create_observation_dict(data)
+        tb_Worker['WorkerID'] = subjectId
+        tb_Worker['DiagnosedWithCancer'] = observation_data['DiagnosedWithCancer']
+        tb_Worker['LastObservedMonth'] = observation_data['LastObservedMonth']
+        tb_Worker['LastObservedDay'] = observation_data['LastObservedDay']
+        tb_Worker['LastObservedyear'] = observation_data['LastObservedyear']
+        tb_Worker['isUpdate'] = True
     else:
         print('Cannot handle this resource type yet')
 
@@ -212,6 +239,8 @@ def insert_table(cursor, table, tableName):
 
     # mapping data for the command
     for key, value in table.items():
+        if key == 'isUpdate':
+            continue
         if isinstance(value, str):
             insert_value = value.replace('\'', '\'\'')
         else:
@@ -243,6 +272,38 @@ def check_table_insertion(cursor, tableName):
         count += 1
     print('Total in table', tableName, ': ', count)
     return 0
+
+def update_table(cursor, table, tableName):
+    # generate query command for insertion
+    command = 'UPDATE worker.' + tableName + ' SET '
+    command_values = ''
+    command_condition = ' WHERE WorkerID = \'' + table['WorkerID'] + '\';'
+    for key, value in table.items():
+        if key == 'WorkerID' or key =='isUpdate':
+            continue
+        if isinstance(value, str):
+            insert_value = value.replace('\'', '\'\'')
+        else:
+            insert_value = str(value)
+        command_line = key + '=\'' + insert_value + '\','
+        command_values += command_line
+    command_values = command_values[:-1]
+    command = command + command_values + command_condition
+
+    # execute insertion
+    try:
+        cursor.execute(command)
+        cursor.commit()
+        print('Data is updated to table', tableName, ':', command_values + ' on Worker with Id: ' + table['WorkerID'])
+    except Exception as e:
+        print("did not find the Worker to attach this observation on: " + e)
+        return
+    return command
+
+
+def check_existing_patient(patientId):
+    existing = True
+    return existing
 
 
 def post_db(data_posted, path):
@@ -278,7 +339,10 @@ def post_db(data_posted, path):
             # db insertion
             for j in range(len(list_Worker)):
                 if list_Worker[j]:
-                    insert_table(cursor, list_Worker[j], 'Worker')
+                    if list_Worker[j]['isUpdate'] is True:
+                        update_table(cursor, list_Worker[j], 'Worker')
+                    else:
+                        insert_table(cursor, list_Worker[j], 'Worker')
             for i in range(len(list_WorkerRace)):
                 if list_WorkerRace[i]:
                     insert_table(cursor, list_WorkerRace[i], 'WorkerRace')
