@@ -347,9 +347,9 @@ def post_db(data_posted, path):
                 if list_WorkerRace[i]:
                     insert_table(cursor, list_WorkerRace[i], 'WorkerRace')
 
-            # check if the insertion is succeed
-            check_table_insertion(cursor, 'Worker')
-            check_table_insertion(cursor, 'WorkerRace')
+            # check if the insertion is succeed (DEBUG Printout)
+            # check_table_insertion(cursor, 'Worker')
+            # check_table_insertion(cursor, 'WorkerRace')
 
             # close db connection
             close_db(conn, cursor)
