@@ -104,7 +104,9 @@ def map_data(data, path):
         #    tb_Worker['WorkerID'] = data['identifier'][x]['value']
         #    tb_WorkerRace['WorkerID'] = data['identifier'][x]['value']
         tb_Worker['StudyCode'] = 'NFR'
+        # GenderCode read from gender field in patient FHIR standard
         tb_Worker['GenderCode'] = data['gender']
+        # Source file is the path the file was read in from 
         tb_Worker['SourceFile'] = path
         tb_Worker['ImportCode'] = 'NFR_Script'
 
@@ -114,6 +116,7 @@ def map_data(data, path):
         tb_WorkerRace['SourceFile'] = path
         tb_WorkerRace['ImportCode'] = 'NFR_Script'
 
+        # For addres we read in the most recent address in the patient FHIR standard
         if 'address' in data:
             tb_Worker['CurrentResidentialStreet'] = data['address'][-1]['line'][0]
             tb_Worker['CurrentResidentialCity'] = data['address'][-1]['city']
@@ -157,30 +160,36 @@ def map_data(data, path):
                     tb_Worker['MiddleName'] = data['name'][-1]['given'][1]
                 else:
                     tb_Worker['FirstName'] = data['name'][-1]['given'][0]
+        # Phone number and email are both found in telecom section of patient FHIR data standard
         if 'telecom' in data:
             for telecom in data['telecom']:
                 if telecom['system'] == 'phone' and telecom['use'] == 'mobile':
                     tb_Worker['MobilePhoneNumber'] = telecom['value']
                 elif telecom['system'] == 'email':
                     tb_Worker['PrimaryEmailAddress'] = telecom['value']
+        # We read in Birth Data and break it into Month, Day, Year
         birthDate = datetime.datetime.strptime(data['birthDate'], '%Y-%m-%d')
         tb_Worker['BirthMonth'] = birthDate.strftime("%m")
         tb_Worker['BirthDay'] = birthDate.strftime("%d")
         tb_Worker['Birthyear'] = birthDate.strftime("%Y")
+        # We read SSN from identifier section of FHIR Patient standard
         for x in range(len(data['identifier'])):
             if data['identifier'][x]['system'] == "http://hl7.org/fhir/sid/us-ssn":
                 tb_Worker['SSN'] = data['identifier'][x]['value']
         if 'extension' in data:
             for x in range(len(data['extension'])):
+                # We read in us-core-ethinicy extention for paitent ethnicity
                 if data['extension'][x]['url'] == "http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity":
                     for i in range(len(data['extension'][x]['extension']) - 1, -1, -1):
                         if 'valueCoding' in data['extension'][x]['extension'][i].keys():
                             tb_Worker['EthnicityCode'] = data['extension'][x]['extension'][i]['valueCoding']['code']
                             break
+                # We read in patient-birthPlace extention for paitent birth place
                 elif data['extension'][x]['url'] == "http://hl7.org/fhir/StructureDefinition/patient-birthPlace":
                     tb_Worker['BirthPlaceCountry'] = data['extension'][x]['valueAddress']['country']
                     tb_Worker['BirthPlaceCity'] = data['extension'][x]['valueAddress']['city']
                     tb_Worker['BirthPlaceStateProv'] = data['extension'][x]['valueAddress']['state']
+                # We read in us-core-race extention for paitent race
                 elif data['extension'][x]['url'] == "http://hl7.org/fhir/us/core/StructureDefinition/us-core-race":
                     for i in range(len(data['extension'][x]['extension']) - 1, -1, -1):
                         if 'valueCoding' in data['extension'][x]['extension'][i].keys():
@@ -191,6 +200,7 @@ def map_data(data, path):
         observation_found, observation_data = search_observation(data['id'])
         tb_Worker['DiagnosedWithCancer'] = observation_data['DiagnosedWithCancer']
         if observation_found:
+            # We update last patient observation date if cancer observation found
             tb_Worker['LastObservedMonth'] = observation_data['LastObservedMonth']
             tb_Worker['LastObservedDay'] = observation_data['LastObservedDay']
             tb_Worker['LastObservedyear'] = observation_data['LastObservedyear']
