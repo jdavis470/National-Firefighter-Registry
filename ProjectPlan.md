@@ -61,7 +61,7 @@ Exit criteria: Dashboard to visualize the number of firefighters in each fire de
 - Haolong Yan
 - Rahul Nowlakha
 - Traver Clifford
-- Michael Rojas
+- Eric Mammoser
 - Joe Kurokawa
 
 ### Team Roles
@@ -75,7 +75,7 @@ Exit criteria: Dashboard to visualize the number of firefighters in each fire de
 | Haolong Yan | Developer |
 | Rahul Nowlakha | Developer |
 | Traver Clifford | Developer |
-| Michael Rojas | QA |
+| Eric Mammoser | QA |
 | Joe Kurokawa | Developer |
 
 ## 4 Mentor Questions
