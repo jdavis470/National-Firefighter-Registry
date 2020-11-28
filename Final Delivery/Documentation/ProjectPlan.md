@@ -16,8 +16,8 @@ Entrance criteria: Project is assigned.
 Exit criteria: Language selection for project, database to use, alignment on intermediate data format for patient resource fields, and example patient resources.  
 
 ### JSON Parser
-Activity name: Parse patient resource in JSON format and PUT to FHIR server.
-Activity description: The JSON parser should be python code which accepts the FHIR patient resources in JSON format.  This input
+Activity name: Parse patient resource in both JSON and NDJSON format and PUT to FHIR server.
+Activity description: The JSON parser should be python code which accepts the FHIR patient resources in JSON and NDJSON format.  This input
 comes in the form of a file with one or more patient resources, each representing a patient.  This should be PUT to the FHIR server for validation.  
 Entrance criteria: Example patient resources and alignment on format for intermediate data output.  
 Exit criteria: Data in some intermediate format for use with DB population.  Extracted data should match input in terms of semantics but be in the aligned intermediate format.  
