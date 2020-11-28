@@ -16,24 +16,18 @@ Entrance criteria: Project is assigned.
 Exit criteria: Language selection for project, database to use, alignment on intermediate data format for patient resource fields, and example patient resources.  
 
 ### JSON Parser
-Activity name: Parse patient resource in JSON format.  
+Activity name: Parse patient resource in JSON format and PUT to FHIR server.
 Activity description: The JSON parser should be python code which accepts the FHIR patient resources in JSON format.  This input
-comes in the form of a file with one or more patient resources, each representing a patient.  
+comes in the form of a file with one or more patient resources, each representing a patient.  This should be PUT to the FHIR server for validation.  
 Entrance criteria: Example patient resources and alignment on format for intermediate data output.  
-Exit criteria: Data in some intermediate format for use with FHIR validation code and DB population.  Extracted data should match input in terms of semantics but be in the aligned intermediate format.  
+Exit criteria: Data in some intermediate format for use with DB population.  Extracted data should match input in terms of semantics but be in the aligned intermediate format.  
 
 ### XML Parser
-Activity name: Parse patient resource in XML format.  
+Activity name: Parse patient resource in XML format and PUT to FHIR server.
 Activity description: The XML parser should be python code which accepts the FHIR patient resources in XML format.  This input
-comes in the form of a file with one or more patient resources, each representing a patient.  
+comes in the form of a file with one or more patient resources, each representing a patient.   This should be PUT to the FHIR server for validation.  
 Entrance criteria: Example patient resources and alignment on format for intermediate data output.  
-Exit criteria: Data in some intermediate format for use with FHIR validation code and DB population.  Extracted data should match input in terms of semantics but be in the aligned intermediate format.  
-
-### Data validation using FHIR server
-Activity name: Validate extracted data.  
-Activity description: The validation code should query the FHIR server to validate that the data matches the FHIR standard.  If so, should return a pass.  Otherwise, should return a fail and log an error.  
-Entrance criteria: Extracted data in aligned upon intermediate format from XML & JSON parser.  
-Exit criteria: Correct pass/fail depending on the validity of data.  Logs for errors if the data is invalid.  
+Exit criteria: Data in some intermediate format for use with DB population.  Extracted data should match input in terms of semantics but be in the aligned intermediate format.  
 
 ### DB creation
 Activity name: Create the database.  
