@@ -54,4 +54,14 @@ As an alternative, we could find a way to store the original ID and the new ID. 
 find the new ID from the old ID and do a substitution before POSTing. A similar approach would be to use the old ID as an identifier when POSTing to the FHIR server.  These
 solutions are slightly more complex, so we opted for the simpler solution detailed previously.  However, if the behavior chagnes then these are viable alternatives.
 
+Finally, we were faced with a challenge of handling the sequencing of observation data and patient data.  In a FHIR server, there is a requirement that the observation
+subject's reference ID (referring to a patient) exists in the FHIR server when trying to POST the observation.  As a result, patient data has to be PUT/POSTED before the
+observation is.  Since we are relying on validation of the FHIR data via the FHIR server, we are requiring that the order of data read in is patient and then observation.
+This means that a patient resource read in results in a creation of a new entry in the DB, while a read in of observation data results in an update of an existing entry.  In
+theory, this could be changed if we did not rely on the FHIR server for validation purposes.  For example, if we validated the data ourselves, we could do a SQL query for the
+reference ID for the patient to see if it exists in the database.  If not (as would be the case if the observation is read in before a patient) then we could create an entry
+with the reference ID but the rest of the patient fields left empty.  Then, we could perform an update to the DB when reading in the patient data if the ID already existed.
+In this way, there is more flexibility of data read order if dealing with many data files of different resource types without an easy way to sort them.  However, this would
+require significantly more complexity: we would have to perform our own validation of the FHIR data, and then both patient and observation read ins would need to support a
+create (if the patient ID doesn't exist in the DB), or an update (if the patient ID already exists).
 
