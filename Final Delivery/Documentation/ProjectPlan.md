@@ -59,7 +59,7 @@ Exit criteria: Dashboard to visualize the number of firefighters in each fire de
 - Joe Kurokawa
 
 ### Team Roles
-- Developer: Responsible for the creation of JSON and XML parser for the patient resource, FHIR validation code, and creation and population of SQL DB
+- Developer: Responsible for the creation of JSON and XML parser for the patient resource and creation and population of SQL DB
 - QA: Validate the parsers with various JSON & XML patient resource examples, testing validation code with good and bad patient resources, and validation that DB is constructed with the resulting data correctly
 - Project Manager: Run weekly meetings, determine deliverables along with plan to create them, plan and track project progress, and develop Tableau visualization dashboard
 
