@@ -8,6 +8,19 @@ import datetime
 
 
 def connect_db(uid='sa', pwd='Password!123'):
+    """
+        Connect to the database with specific credentials.
+
+        Args:
+            uid: String type of user id, by default system administrator.
+
+            pwd: String type of password, by default system administrator.
+
+        Returns:
+            conn: the connection String to the database.
+
+            cursor: the cursor for the connection.
+    """
     # connection db with credentials
     command = 'Driver={ODBC Driver 17 for SQL Server};' + 'Server=localhost,1433;' + 'Database=DFSE_FRB_WORKER;' \
               + 'UID=' + uid + ';' \
@@ -18,6 +31,14 @@ def connect_db(uid='sa', pwd='Password!123'):
 
 
 def close_db(conn, cursor):
+    """
+        Close the database connection.
+
+        Args:
+            conn: the connection String to the database.
+
+            cursor: the cursor for the connection.
+    """
     cursor.close()
     conn.close()
 
@@ -25,6 +46,16 @@ def close_db(conn, cursor):
 
 
 def assert_data(data_posted, cursor, path):
+    """
+        Assert the data insertion/update to our database tables.
+
+        Args:
+            data_posted: Dict type of resource data for the data insertion/update.
+
+            cursor: the cursor for the database connection.
+
+            path: String type of source file path.
+    """
     if data_posted['resourceType'] == 'Patient':
         # Execute query for patient ID on Worker table
         command = 'SELECT * FROM worker.Worker WHERE WorkerID = ' + '\'' + data_posted['id'] + '\''
@@ -113,9 +144,11 @@ def assert_data(data_posted, cursor, path):
                                    data_posted['extension'][x]['extension'][i]['valueCoding']['code']
                             break
                 elif data_posted['extension'][x]['url'] == "http://hl7.org/fhir/StructureDefinition/patient-birthPlace":
-                    assert worker_db_result['BirthPlaceCountry'] == data_posted['extension'][x]['valueAddress']['country']
+                    assert worker_db_result['BirthPlaceCountry'] == data_posted['extension'][x]['valueAddress'][
+                        'country']
                     assert worker_db_result['BirthPlaceCity'] == data_posted['extension'][x]['valueAddress']['city']
-                    assert worker_db_result['BirthPlaceStateProv'] == data_posted['extension'][x]['valueAddress']['state']
+                    assert worker_db_result['BirthPlaceStateProv'] == data_posted['extension'][x]['valueAddress'][
+                        'state']
         assert workerRace_db_result['RaceCode'] == race_code
 
         # Verify Observation fields
@@ -143,7 +176,7 @@ def assert_data(data_posted, cursor, path):
     if data_posted['resourceType'] == 'Observation':
         # Execute query for patient ID on Worker table given the subject field from the Obervation
         subjectId = data_posted['subject']['reference'].split('/')[1]
-        command = 'SELECT * FROM worker.Worker WHERE WorkerID = ' + '\'' + subjectId+ '\''
+        command = 'SELECT * FROM worker.Worker WHERE WorkerID = ' + '\'' + subjectId + '\''
         cursor.execute(command)
         worker_item = cursor.fetchone()
 
@@ -161,6 +194,9 @@ def assert_data(data_posted, cursor, path):
 
 
 def usage():
+    """
+        Print out an error message when the program is called incorrectly.
+    """
     print("Usage: FHIR_insertDB.py <file_to_verify>")
 
 
