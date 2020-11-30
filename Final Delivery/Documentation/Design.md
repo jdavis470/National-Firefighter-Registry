@@ -18,8 +18,9 @@ The content of the input files supported shall include:
 The database fields were provided as part of a SQL create script provided by the CDC NIOSH.  These shall be populated using FHIR patient and observation resource elements.
 
 ## Project Architecture
-FIgure 1 shows the design architecture of our project.
-TODO: Insert Diagram
+![Figure 1](../../collateral/architecture.png)
+
+Figure 1 shows the design architecture of our project.
 
 
 ## Design Decisions
