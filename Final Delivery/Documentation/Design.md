@@ -20,8 +20,18 @@ The database fields were provided as part of a SQL create script provided by the
 ## Project Architecture
 ![Figure 1](../../collateral/architecture.png)
 
-Figure 1 shows the design architecture of our project.
+Figure 1 shows the design architecture of our project.  The first two steps are the "Process Input" step and the "Pass Input Files" step.  As input can come in a variety of 
+file formats, we are using a few libraries to handle this.  JSON is handled by the json lib, NDJSON is handled by the ndjson lib, and XML is handled by the xmltodict lib.  
 
+The next step is the HTTP PUT of the data to the FHIR server. This process involves forming our own HTTP request to the FHIR server using the requests lib.  For the NDJSON 
+data, we are dealing with multiple resources so to reduce the number of HTTP requests, we form this into a bundle and POST it that way.  
+
+After performing the PUT, we can do an HTTP GET and request the data from the FHIR server that we just PUT, but specifying that we want the return to be JSON formatted.  This 
+again uses the requests lib.  
+
+The final step in our data pipeline is to take the response data from the HTTP GET and process it, pulling out the fields (and processing them as necessary) to be able to insert
+these into the SQL database.  We used the pyodbc library for this purpose.  After this point, our code execution is complete and the user is able to use any of their preferred
+methods to interact with the SQL database to perform queries.  
 
 ## Design Decisions
 Throughout the design process, we made several architectural decision which we would like to provide the rationale for.  First, our design used a FHIR server for two
