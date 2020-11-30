@@ -18,9 +18,9 @@ The content of the input files supported shall include:
 The database fields were provided as part of a SQL create script provided by the CDC NIOSH.  These shall be populated using FHIR patient and observation resource elements.
 
 ## Project Architecture
-![Figure 1](../../collateral/architecture.png)
+![Figure 1](../../collateral/images/architecture.png)
 
-Figure 1 shows the design architecture of our project.  The first two steps are the "Process Input" step and the "Pass Input Files" step.  As input can come in a variety of 
+The above figure shows the design architecture of our project.  The first two steps are the "Process Input" step and the "Pass Input Files" step.  As input can come in a variety of 
 file formats, we are using a few libraries to handle this.  JSON is handled by the json lib, NDJSON is handled by the ndjson lib, and XML is handled by the xmltodict lib.  
 
 The next step is the HTTP PUT of the data to the FHIR server. This process involves forming our own HTTP request to the FHIR server using the requests lib.  For the NDJSON 
