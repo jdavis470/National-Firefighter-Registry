@@ -16,36 +16,37 @@ Entrance criteria: Project is assigned.
 Exit criteria: Language selection for project, database to use, alignment on intermediate data format for patient resource fields, and example patient resources.  
 
 ### JSON Parser
-Activity name: Parse patient resource in both JSON and NDJSON format and PUT to FHIR server.
-Activity description: The JSON parser should be python code which accepts the FHIR patient resources in JSON and NDJSON format.  This input
-comes in the form of a file with one or more patient resources, each representing a patient.  This should be PUT to the FHIR server for validation.  
-Entrance criteria: Example patient resources and alignment on format for intermediate data output.  
+Activity name: Parse patient, observation, and bundle resource in both JSON and NDJSON format and PUT to FHIR server.  
+Activity description: The JSON parser should be python code which accepts the FHIR resources in JSON and NDJSON format.  This input
+comes in the form of a file with either a single resource or NDJSON collection of resources, each representing a patient or observation.  This should be PUT to the FHIR server for validation.  
+Entrance criteria: Example patient, observation, and bundle resources and alignment on format for intermediate data output.  
 Exit criteria: Data in some intermediate format for use with DB population.  Extracted data should match input in terms of semantics but be in the aligned intermediate format.  
 
 ### XML Parser
-Activity name: Parse patient resource in XML format and PUT to FHIR server.
-Activity description: The XML parser should be python code which accepts the FHIR patient resources in XML format.  This input
-comes in the form of a file with one or more patient resources, each representing a patient.   This should be PUT to the FHIR server for validation.  
-Entrance criteria: Example patient resources and alignment on format for intermediate data output.  
+Activity name: Parse patient, observation, and bundle resource in XML format and PUT to FHIR server.  
+Activity description: The XML parser should be python code which accepts the FHIR resources in XML format.  This input
+comes in the form of a file with either a single resource or NJDSON collection of resources, each representing a patient or observation.   This should be PUT to the FHIR server for validation.  
+Entrance criteria: Example patient, observation, and bundle resources and alignment on format for intermediate data output.  
 Exit criteria: Data in some intermediate format for use with DB population.  Extracted data should match input in terms of semantics but be in the aligned intermediate format.  
 
 ### DB creation
 Activity name: Create the database.  
-Activity description: The database should be implemented in the agreed upon technology.  It should have all the fields necessary for storing the FHIR patient resource.  
-Entrance criteria: Database technology to use, along with FHIR patient resource fields.  
-Exit criteria: Empty database but configured for patients to be inserted.  
+Activity description: The database should be implemented in the agreed upon technology.  It should have all the fields necessary for storing the FHIR patient or observation resource.  
+Entrance criteria: Database technology to use, along with FHIR patient or observation resource fields.  
+Exit criteria: Empty database but configured for patients and observations to be inserted.  
 
 ### DB population
 Activity name: Populate the database.  
 Activity description: The database should be populated with sample data from the CDC mentor.  Data will flow through the parsers, be validated, and then inserted accordingly.  
-Entrance criteria: The created (empty) database along with sample patient data from the CDC mentor.  
+Entrance criteria: The created (empty) database along with sample patient and observation data from the CDC mentor.  
 Exit criteria: Completely populated database.  
 
 ### Data visualization
 Activity name: Visualize the database.  
-Activity description: A Tableau dashboard should be created which connects to the created database.  The dashboard should include the requested visualization of the number of firefighters in each fire department.  
-Entrance criteria: Populated database with sample patient data.  
-Exit criteria: Dashboard to visualize the number of firefighters in each fire department.  
+Activity description: A Tableau dashboard should be created which connects to the created database.  The dashboard should include the requested visualization of where the enrolled
+firefighters are located.  
+Entrance criteria: Populated database with sample patient and observation data.  
+Exit criteria: Dashboard to visualize the location of firefighters enrolled in the registry.  
 
 ## 3 Team
 
@@ -59,8 +60,8 @@ Exit criteria: Dashboard to visualize the number of firefighters in each fire de
 - Joe Kurokawa
 
 ### Team Roles
-- Developer: Responsible for the creation of JSON and XML parser for the patient resource and creation and population of SQL DB
-- QA: Validate the parsers with various JSON & XML patient resource examples, testing validation code with good and bad patient resources, and validation that DB is constructed with the resulting data correctly
+- Developer: Responsible for the creation of JSON, NDJSON, and XML parser for the patient, observation, and bundle resource and creation and population of SQL DB
+- QA: Validate the parsers with various JSON, NDJSON, and XML patient, observation, and bundle resource examples.  Additionally, validation that DB is constructed with the resulting data correctly
 - Project Manager: Run weekly meetings, determine deliverables along with plan to create them, plan and track project progress, and develop Tableau visualization dashboard
 
 | Member | Role |
